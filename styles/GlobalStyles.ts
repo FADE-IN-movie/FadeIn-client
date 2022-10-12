@@ -9,4 +9,8 @@ export const GlobalStyles = createGlobalStyle`
     padding: 0;
     font-size: 12px;
   }
+
+  img {
+    -webkit-user-drag: none;
+  }
 `;
