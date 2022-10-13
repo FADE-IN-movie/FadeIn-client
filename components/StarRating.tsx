@@ -32,10 +32,6 @@ function StarRating() {
     onResizeStar((score * width) / 5);
   };
 
-  useEffect(() => {
-    console.log(score);
-  }, [score]);
-
   return (
     <Box>
       <span className="desc">별점을 선택해주세요.</span>

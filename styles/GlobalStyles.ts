@@ -11,8 +11,6 @@ export const GlobalStyles = createGlobalStyle`
     font-style: normal;
   }
 
-  @import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Pangolin&display=swap');
-
   html {
     width: 100%;
     padding: 0;
