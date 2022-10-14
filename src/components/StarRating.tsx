@@ -43,7 +43,7 @@ function StarRating() {
         >
           <ImageWrap>
             <Background
-              src="/images/empty_star_img.png"
+              src="/assets/images/empty_star_img.png"
               alt="background"
               layout="fill"
             />
@@ -51,7 +51,7 @@ function StarRating() {
           <SizeWrap ref={starRef}>
             <ImageWrap>
               <Star
-                src="/images/colored_star_img.png"
+                src="/assets/images/colored_star_img.png"
                 alt="star"
                 layout="fill"
               />
