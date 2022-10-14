@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 import { IDate } from "@typings/date";
@@ -10,6 +10,29 @@ interface IProps {
 }
 
 function Tbody({ today, selectedDate }: IProps) {
+  const [dateCnt, setDateCnt] = useState<number>();
+  const [startDay, setStartDay] = useState<number>();
+
+  useEffect(() => {
+    if (!selectedDate) return;
+
+    const dateCnt = new Date(
+      selectedDate.year,
+      selectedDate.month - 1,
+      0
+    ).getDate();
+
+    const startDay = new Date(
+      selectedDate.year,
+      selectedDate.month - 1,
+      1
+    ).getDay();
+
+    setDateCnt(dateCnt);
+
+    setStartDay(startDay);
+  }, [selectedDate]);
+
   if (!today) return null;
   return (
     <tbody>
@@ -20,7 +43,7 @@ function Tbody({ today, selectedDate }: IProps) {
         <Td>1</Td>
         <Td>1</Td>
         <Td>1</Td>
-        <Td>{today?.month}</Td>
+        <Td>{today.day}</Td>
       </tr>
     </tbody>
   );

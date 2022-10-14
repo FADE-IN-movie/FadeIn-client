@@ -12,5 +12,10 @@ function Date({ children }: IProps) {
 export default Date;
 
 const Td = styled.td`
+  font-size: 1.2rem;
   padding: 1rem 2rem;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.8;
+  }
 `;

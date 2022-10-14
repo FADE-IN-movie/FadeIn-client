@@ -5,16 +5,18 @@ import PrevBtn from "@images/prev_arrow_icon.svg";
 import NextBtn from "@images/next_arrow_icon.svg";
 
 interface IProps {
+  currentYM: string;
   onClickPrev: () => void;
   onClickNext: () => void;
 }
 
-function Control({ onClickPrev, onClickNext }: IProps) {
+function Control({ currentYM, onClickPrev, onClickNext }: IProps) {
   return (
     <Box>
       <PrevBtn className="btn" onClick={onClickPrev}>
         &lt;
       </PrevBtn>
+      <span>{currentYM}</span>
       <NextBtn className="btn" onClick={onClickNext}>
         &gt;
       </NextBtn>
@@ -28,9 +30,15 @@ const Box = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+
+  span {
+    font-size: 1.4rem;
+    font-weight: 700;
+  }
 
   .btn {
-    font-size: 1.25rem;
     padding: 0.5rem 1.5rem;
     cursor: pointer;
     &:hover {

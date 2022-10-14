@@ -13,7 +13,8 @@ export default Th;
 
 const StyledTh = styled.th`
   font-size: 1.2rem;
-  border: 1px solid gray;
+  font-weight: 600;
+  padding: 0.5rem;
 
   &:first-child {
     color: #ff5050;

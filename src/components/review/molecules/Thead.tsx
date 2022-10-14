@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import Day from "../atoms/Day";
 
-const dayData = ["S", "M", "T", "W", "T", "F", "S"];
+const dayData = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
 
 function Thead() {
   return (

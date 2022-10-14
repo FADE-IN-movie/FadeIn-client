@@ -62,7 +62,11 @@ function Calendar() {
 
   return (
     <StyledCalendar>
-      <Control onClickPrev={onClickPrev} onClickNext={onClickNext} />
+      <Control
+        currentYM={`${selectedDateInfo?.year}. ${selectedDateInfo?.month}`}
+        onClickPrev={onClickPrev}
+        onClickNext={onClickNext}
+      />
       <Table>
         <Thead />
         <Tbody today={todayInfo} selectedDate={selectedDateInfo} />
@@ -74,7 +78,7 @@ function Calendar() {
 export default Calendar;
 
 const StyledCalendar = styled.div`
-  width: 32.5rem; // 수정 필요
+  width: 33rem; // 수정 필요
 `;
 
 const Table = styled.table`
