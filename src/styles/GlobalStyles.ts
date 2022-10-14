@@ -24,4 +24,15 @@ export const GlobalStyles = createGlobalStyle`
   img {
     -webkit-user-drag: none;
   }
+
+  button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    
+    &:hover {
+      opacity: 0.8;
+    }
+  }
 `;
