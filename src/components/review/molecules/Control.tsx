@@ -32,6 +32,7 @@ const Box = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 0.5rem 0;
+  margin: 1rem 0;
 
   span {
     font-size: 1.4rem;
