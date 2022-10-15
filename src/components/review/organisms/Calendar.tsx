@@ -78,10 +78,9 @@ function Calendar() {
 export default Calendar;
 
 const StyledCalendar = styled.div`
-  width: 37.5rem; // 수정 필요
+  width: 24.5rem; // 수정 필요
 `;
 
 const Table = styled.table`
   text-align: center;
-  border: 1px solid gray;
 `;
