@@ -23,11 +23,11 @@ export default Date;
 
 const Td = styled.td<DatePropsType>`
   font-size: 1.2rem;
-  padding: 0.1rem 0.1rem;
+  padding: 0.3rem 0.4rem;
   border-radius: 50%;
 
   div {
-    padding: 1rem;
+    padding: 0.7rem;
   }
 
   ${(props) =>
