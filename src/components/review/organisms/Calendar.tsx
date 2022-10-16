@@ -7,6 +7,8 @@ import Thead from "../molecules/Thead";
 import Tbody from "../molecules/Tbody";
 import Control from "../molecules/Control";
 
+const reviewDateArr = ["4", "5", "11", "16", "30"];
+
 function Calendar() {
   const [todayInfo, setTodayInfo] = useState<IDate>();
   const [selectedDateInfo, setSelectedDateInfo] = useState<IDate>();
@@ -69,7 +71,11 @@ function Calendar() {
       />
       <Table>
         <Thead />
-        <Tbody today={todayInfo} selectedDate={selectedDateInfo} />
+        <Tbody
+          today={todayInfo}
+          selectedDate={selectedDateInfo}
+          reviewDateArr={reviewDateArr}
+        />
       </Table>
     </StyledCalendar>
   );
@@ -78,7 +84,7 @@ function Calendar() {
 export default Calendar;
 
 const StyledCalendar = styled.div`
-  width: 24.5rem; // 수정 필요
+  width: 24rem; // 수정 필요
 `;
 
 const Table = styled.table`
