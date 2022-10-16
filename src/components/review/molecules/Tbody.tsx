@@ -6,15 +6,16 @@ import Td from "../atoms/Date";
 interface IProps {
   today: IDate | undefined;
   selectedDate: IDate | undefined;
+  reviewDateArr: string[];
 }
 
-function Tbody({ today, selectedDate }: IProps) {
+function Tbody({ today, selectedDate, reviewDateArr }: IProps) {
   const [dateArr, setDateArr] = useState<JSX.Element[][]>();
   const [totalDate, setTotalDate] = useState<number>();
   const [startDay, setStartDay] = useState<number>();
 
   const fillDate = () => {
-    if (!totalDate || !startDay || !selectedDate || !today) return;
+    if (!totalDate || startDay === undefined || !selectedDate || !today) return;
 
     const totalArr = [];
     let weekArr = [];
@@ -30,10 +31,15 @@ function Tbody({ today, selectedDate }: IProps) {
 
       if (i % 7 === 0) {
         if (weekArr) totalArr.push(weekArr);
+        if (j > totalDate && dayText === "") break;
         weekArr = [];
       }
       weekArr?.push(
-        <Td key={i} isToday={isToday}>
+        <Td
+          key={i}
+          isToday={isToday}
+          isReviewExist={reviewDateArr.includes(dayText)}
+        >
           {dayText}
         </Td>
       );
@@ -66,9 +72,15 @@ function Tbody({ today, selectedDate }: IProps) {
   if (!today) return null;
   return (
     <tbody>
-      {dateArr?.map((week, i) => (
-        <tr key={i}>{week}</tr>
-      ))}
+      {dateArr?.map((week, i) => {
+        const styles = i !== dateArr.length - 1 ? "1px solid lightgray" : "";
+        if (!week.length) return null;
+        return (
+          <tr key={i} style={{ borderBottom: styles }}>
+            {week}
+          </tr>
+        );
+      })}
     </tbody>
   );
 }

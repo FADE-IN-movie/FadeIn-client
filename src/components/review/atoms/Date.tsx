@@ -4,17 +4,24 @@ import styled, { css } from "styled-components";
 interface IProps {
   children: ReactNode;
   isToday?: boolean;
+  isReviewExist?: boolean;
 }
 
 type DatePropsType = {
   isToday?: boolean;
-  isValid: boolean;
+  isValid?: boolean;
+  isReviewExist?: boolean;
 };
 
-function Date({ children, isToday }: IProps) {
+function Date({ children, isToday, isReviewExist }: IProps) {
   return (
-    <Td isToday={isToday} isValid={children !== ""}>
-      <div>{children}</div>
+    <Td
+      isToday={isToday}
+      isValid={children !== ""}
+      isReviewExist={isReviewExist}
+    >
+      <div className="text">{children}</div>
+      {isReviewExist && <div className="sign" />}
     </Td>
   );
 }
@@ -22,12 +29,27 @@ function Date({ children, isToday }: IProps) {
 export default Date;
 
 const Td = styled.td<DatePropsType>`
-  font-size: 1.2rem;
-  padding: 0.3rem 0.4rem;
+  position: relative;
+  font-size: 1.05rem;
+  /* padding: 0.3rem 0.4rem; */
+  padding: 0rem 0.4rem 0.6rem 0.4rem;
   border-radius: 50%;
 
-  div {
-    padding: 0.7rem;
+  .text {
+    padding: 0.4rem;
+    margin: 0.3rem;
+  }
+
+  .sign {
+    position: absolute;
+    /* right: 0.4rem;
+    top: 0.5rem; */
+    left: 45%;
+    bottom: 0.3rem;
+    border-radius: 50%;
+    width: 0.4rem;
+    height: 0.4rem;
+    background: #ff5d5d;
   }
 
   ${(props) =>
@@ -42,7 +64,7 @@ const Td = styled.td<DatePropsType>`
   ${(props) =>
     props.isToday &&
     css`
-      div {
+      .text {
         background: #ffd255;
         border-radius: 50%;
         color: white;
