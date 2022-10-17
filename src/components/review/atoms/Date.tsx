@@ -31,7 +31,7 @@ export default Date;
 const Td = styled.td<DatePropsType>`
   position: relative;
   font-size: 1.05rem;
-  padding: 0.1rem 0.4rem 0.6rem 0.4rem;
+  padding: 0.3rem 0.4rem 0.2rem 0.4rem;
   border-radius: 50%;
 
   .text {
@@ -41,8 +41,10 @@ const Td = styled.td<DatePropsType>`
 
   .sign {
     position: absolute;
-    left: 45%;
-    bottom: 0.3rem;
+    /* left: 45%;
+    bottom: 0.3rem; */
+    left: 69%;
+    top: 10%;
     border-radius: 50%;
     width: 0.4rem;
     height: 0.4rem;
