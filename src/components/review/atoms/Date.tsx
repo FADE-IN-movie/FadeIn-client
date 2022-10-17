@@ -31,19 +31,16 @@ export default Date;
 const Td = styled.td<DatePropsType>`
   position: relative;
   font-size: 1.05rem;
-  /* padding: 0.3rem 0.4rem; */
-  padding: 0rem 0.4rem 0.6rem 0.4rem;
+  padding: 0.1rem 0.4rem 0.6rem 0.4rem;
   border-radius: 50%;
 
   .text {
-    padding: 0.4rem;
+    padding: 0.55rem;
     margin: 0.3rem;
   }
 
   .sign {
     position: absolute;
-    /* right: 0.4rem;
-    top: 0.5rem; */
     left: 45%;
     bottom: 0.3rem;
     border-radius: 50%;
