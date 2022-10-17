@@ -10,6 +10,10 @@ export const GlobalStyles = createGlobalStyle`
     font-weight: normal;
     font-style: normal;
   }
+ 
+  * {
+    box-sizing: border-box;
+  }
 
   html {
     width: 100%;
@@ -17,8 +21,9 @@ export const GlobalStyles = createGlobalStyle`
     font-size: 12px;
   }
 
-  body {
+  body, button {
     font-family: 'Noto Sans KR', 'sans-serif';
+    color: #191F29;
   }
 
   img {
