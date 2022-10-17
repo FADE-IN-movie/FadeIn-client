@@ -27,11 +27,12 @@ const Button = styled.button`
   display: flex;
   align-items: center;
   gap: 0.7rem;
+  font-size: 1.2rem;
   background: ${(props) => props.color};
-  font-weight: 600;
   border: 1px solid #cccccc;
   border-radius: 3px;
-  padding: 0.8rem;
+  padding: 1rem;
+  line-height: 1;
 
   ${(props) =>
     props.color !== "white" &&
