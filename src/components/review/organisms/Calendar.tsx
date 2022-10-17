@@ -7,7 +7,7 @@ import Thead from "../molecules/Thead";
 import Tbody from "../molecules/Tbody";
 import Control from "../molecules/Control";
 
-const reviewDateArr = ["4", "5", "11", "16", "30"];
+const reviewDateArr = ["4", "5", "11", "16", "17", "30"];
 
 function Calendar() {
   const [todayInfo, setTodayInfo] = useState<IDate>();
@@ -84,7 +84,7 @@ function Calendar() {
 export default Calendar;
 
 const StyledCalendar = styled.div`
-  width: 24rem; // 수정 필요
+  width: 25.5rem; // 수정 필요
 `;
 
 const Table = styled.table`
