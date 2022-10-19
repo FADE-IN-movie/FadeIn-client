@@ -19,7 +19,7 @@ export const GlobalStyles = createGlobalStyle`
   html {
     width: 100%;
     padding: 0;
-    font-size: 0.6vw;
+    font-size: calc(7px + 0.3vw);
     /* font-size: 12px; */
     background: ${theme.bg_color};
   }
@@ -42,5 +42,11 @@ export const GlobalStyles = createGlobalStyle`
     &:hover {
       opacity: 0.8;
     }
+  }
+
+  input {
+    font-family: ${theme.fonts.base};
+    outline: none;
+    border: none;
   }
 `;
