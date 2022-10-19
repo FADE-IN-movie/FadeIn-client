@@ -49,4 +49,9 @@ export const GlobalStyles = createGlobalStyle`
     outline: none;
     border: none;
   }
+
+  a {
+    text-decoration: none;
+    color: ${theme.text_color};
+  }
 `;

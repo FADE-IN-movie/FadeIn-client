@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { theme } from "@styles/theme";
 
-import Logo from "./atoms/Logo";
+import Logo from "../Logo";
 import MenuList from "./molecules/NavMenuList";
 import UserBox from "./organisms/UserBox";
 import SearchBar from "./molecules/SearchBar";
@@ -35,6 +35,7 @@ const Container = styled.div`
   width: 100%;
   padding: 0 4rem;
   height: 6rem;
+  z-index: 10;
 
   .box {
     display: flex;

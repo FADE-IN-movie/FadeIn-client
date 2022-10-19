@@ -12,5 +12,6 @@ function Layout({ children }: IProps) {
 export default Layout;
 
 const Wrap = styled.div`
-  margin: 8rem 4rem 7rem 4rem;
+  min-height: 100vh;
+  padding: 8rem 4rem 7rem 4rem;
 `;

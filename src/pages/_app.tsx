@@ -6,6 +6,7 @@ import { theme } from "../styles/theme";
 
 import Header from "@components/common/Header";
 import Layout from "@components/common/Layout";
+import Footer from "@components/common/Footer";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -20,6 +21,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <Layout>
           <Component {...pageProps} />
         </Layout>
+        <Footer />
       </ThemeProvider>
     </>
   );

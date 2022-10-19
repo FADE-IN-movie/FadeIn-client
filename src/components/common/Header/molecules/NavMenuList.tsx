@@ -17,4 +17,5 @@ export default NavMenuList;
 const List = styled.ul`
   display: flex;
   gap: 1.5rem;
+  z-index: 10;
 `;

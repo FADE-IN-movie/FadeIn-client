@@ -6,6 +6,7 @@ export const theme = {
     dark_gray: "#1D1D1D",
     gray: "#2B2B2B",
     muted_gray: "#565656",
+    light_gray: "#B9B9B9",
     primary_color: "#4762E5", // 임시
   },
   fonts: {
