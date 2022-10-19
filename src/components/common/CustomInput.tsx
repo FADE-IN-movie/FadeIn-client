@@ -3,14 +3,15 @@ import { theme } from "@styles/theme";
 
 interface IProps {
   search?: boolean;
+  placeholderText: string;
 }
 
 interface InputPropsType {
   search?: boolean;
 }
 
-function CustomInput({ search }: IProps) {
-  return <Input search={search} placeholder="dd" />;
+function CustomInput({ search, placeholderText }: IProps) {
+  return <Input search={search} placeholder={placeholderText} />;
 }
 
 export default CustomInput;

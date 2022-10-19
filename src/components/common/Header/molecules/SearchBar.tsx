@@ -6,7 +6,7 @@ import SearchIcon from "@images/search_icon.svg";
 function SearchBar() {
   return (
     <Bar>
-      <CustomInput search />
+      <CustomInput search placeholderText="영화, TV 프로그램 검색" />
       <StyledSearchIcon />
     </Bar>
   );
