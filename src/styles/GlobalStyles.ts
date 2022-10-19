@@ -1,5 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
+import { theme } from "./theme";
 
 export const GlobalStyles = createGlobalStyle`
   ${reset}
@@ -10,18 +11,36 @@ export const GlobalStyles = createGlobalStyle`
     font-weight: normal;
     font-style: normal;
   }
+ 
+  * {
+    box-sizing: border-box;
+  }
 
   html {
     width: 100%;
     padding: 0;
-    font-size: 12px;
+    font-size: 0.6vw;
+    /* font-size: 12px; */
+    background: ${theme.bg_color};
   }
 
-  body {
-    font-family: 'Noto Sans KR', 'sans-serif';
+  body, button {
+    font-family: ${theme.fonts.base};
+    color: ${theme.text_color};
   }
 
   img {
     -webkit-user-drag: none;
+  }
+
+  button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    
+    &:hover {
+      opacity: 0.8;
+    }
   }
 `;
