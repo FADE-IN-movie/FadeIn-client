@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 import NavMenu from "../atoms/NavMenu";
 
-function MenuList() {
+function NavMenuList() {
   return (
     <List>
       <NavMenu>영화</NavMenu>
@@ -12,7 +12,7 @@ function MenuList() {
   );
 }
 
-export default MenuList;
+export default NavMenuList;
 
 const List = styled.ul`
   display: flex;

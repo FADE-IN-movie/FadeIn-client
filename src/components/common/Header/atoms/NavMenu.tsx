@@ -5,13 +5,13 @@ interface IProps {
   children: ReactNode;
 }
 
-function Menu({ children }: IProps) {
-  return <Li>{children}</Li>;
+function NavMenu({ children }: IProps) {
+  return <Menu>{children}</Menu>;
 }
 
-export default Menu;
+export default NavMenu;
 
-const Li = styled.li`
+const Menu = styled.li`
   font-size: 1.4rem;
 
   cursor: pointer;
