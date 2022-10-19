@@ -4,6 +4,9 @@ import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "../styles/GlobalStyles";
 import { theme } from "../styles/theme";
 
+import Header from "@components/common/Header";
+import Layout from "@components/common/Layout";
+
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
@@ -13,7 +16,10 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <GlobalStyles />
       <ThemeProvider theme={theme}>
-        <Component {...pageProps} />
+        <Header />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
       </ThemeProvider>
     </>
   );

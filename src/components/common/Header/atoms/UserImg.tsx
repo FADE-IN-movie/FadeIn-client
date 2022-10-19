@@ -7,8 +7,8 @@ function UserImg() {
 export default UserImg;
 
 const Img = styled.div`
-  width: 3.8rem;
-  height: 3.8rem;
+  width: 4rem;
+  height: 4rem;
   border-radius: 50%;
   background: white;
   cursor: pointer;

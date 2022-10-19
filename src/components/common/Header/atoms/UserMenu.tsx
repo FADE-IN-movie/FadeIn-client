@@ -16,8 +16,8 @@ export default UserMenu;
 const Menu = styled.li`
   font-size: 1.3rem;
   background: ${theme.palette.dark_gray};
-  width: 15rem;
-  padding: 1.5rem;
+  width: 17rem;
+  padding: 1.6rem;
   cursor: pointer;
 
   &:hover {

@@ -5,7 +5,6 @@ import styled from "styled-components";
 import StarRating from "@components/StarRating";
 import SignInBox from "@components/auth/SignInBox";
 import Modal from "@components/common/Modal";
-import NavBar from "@components/common/Header";
 
 const Home: NextPage = () => {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
@@ -14,7 +13,6 @@ const Home: NextPage = () => {
 
   return (
     <Wrap>
-      <NavBar />
       <StarRating />
       <button onClick={onOpenLoginModal}>로그인</button>
       <Modal isOpen={isLoginModalOpen} setIsOpen={setIsLoginModalOpen}>
