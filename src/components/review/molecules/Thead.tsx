@@ -1,16 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 
-import Th from "../atoms/Th";
+import Day from "../atoms/Day";
 
-const dayData = ["S", "M", "T", "W", "T", "F", "S"];
+const dayData = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
 
 function Thead() {
   return (
     <StyledThead>
       <tr>
         {dayData?.map((day, i) => (
-          <Th key={i}>{day}</Th>
+          <Day key={i}>{day}</Day>
         ))}
       </tr>
     </StyledThead>
