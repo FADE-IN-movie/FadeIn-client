@@ -1,5 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
+import { theme } from "./theme";
 
 export const GlobalStyles = createGlobalStyle`
   ${reset}
@@ -18,12 +19,14 @@ export const GlobalStyles = createGlobalStyle`
   html {
     width: 100%;
     padding: 0;
-    font-size: 12px;
+    font-size: 0.6vw;
+    /* font-size: 12px; */
+    background: ${theme.bg_color};
   }
 
   body, button {
-    font-family: 'Noto Sans KR', 'sans-serif';
-    color: #191F29;
+    font-family: ${theme.fonts.base};
+    color: ${theme.text_color};
   }
 
   img {
