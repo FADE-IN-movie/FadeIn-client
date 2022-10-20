@@ -1,7 +1,10 @@
 import React, { ReactNode } from "react";
 import styled from "styled-components";
+import { theme } from "@styles/theme";
 
 import Image from "next/image";
+
+import CloseIcon from "@images/close_icon.svg";
 
 interface IProps {
   children: ReactNode;
@@ -17,12 +20,7 @@ function Modal({ children, isOpen, setIsOpen }: IProps) {
     <Background>
       <Box>
         <CloseBtn onClick={onCloseModal}>
-          <Image
-            src="/assets/images/close_icon.svg"
-            width="15"
-            height="15"
-            alt="closeIcon"
-          />
+          <CloseIcon fill={theme.palette.light_gray} />
         </CloseBtn>
         <div className="content">{children}</div>
       </Box>
@@ -42,7 +40,7 @@ const Background = styled.div`
   align-items: center;
   width: 100%;
   height: 100vh;
-  z-index: 5;
+  z-index: 20;
 `;
 
 const Box = styled.div`
@@ -53,14 +51,13 @@ const Box = styled.div`
   height: fit-content;
   min-width: 34rem;
   min-height: 18rem;
-  background: white;
+  background: ${theme.palette.dark_gray};
   padding: 3rem 4rem;
-  border-radius: 10px;
-  z-index: 6;
+  border-radius: 5px;
+  z-index: 21;
 
   .content {
     width: 100%;
-    margin-top: 1.5rem;
   }
 `;
 

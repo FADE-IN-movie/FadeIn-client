@@ -1,13 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { theme } from "@styles/theme";
+
+import { useRecoilValue } from "recoil";
+import { isSignInState } from "src/states/user";
 
 import Logo from "../Logo";
 import MenuList from "./molecules/NavMenuList";
 import UserBox from "./organisms/UserBox";
 import SearchBar from "./molecules/SearchBar";
+import SignInBtn from "./atoms/SignInBtn";
+import Modal from "../Modal";
+import SignInBox from "@components/auth/SignInBox";
 
 function Header() {
+  const [isSignInModalOpen, setIsSignInModalOpen] = useState(false);
+
+  const onOpenSignInModal = () => setIsSignInModalOpen(true);
+  const isSignIn = useRecoilValue(isSignInState);
+
   return (
     <Container>
       <div className="box leftBox ">
@@ -16,7 +27,14 @@ function Header() {
       </div>
       <div className="box rightBox">
         <SearchBar />
-        <UserBox />
+        {isSignIn ? (
+          <UserBox />
+        ) : (
+          <SignInBtn onOpenSignInModal={onOpenSignInModal} />
+        )}
+        <Modal isOpen={isSignInModalOpen} setIsOpen={setIsSignInModalOpen}>
+          <SignInBox />
+        </Modal>
       </div>
     </Container>
   );
