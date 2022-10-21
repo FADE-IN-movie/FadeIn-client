@@ -1,15 +1,12 @@
-import React from "react";
 import type { NextPage } from "next";
 import styled from "styled-components";
 
-import StarRating from "@components/StarRating";
-import SearchBar from "@components/common/SearchBar";
+import MainPageTemplate from "@components/main/templates/MainPageTemplate";
 
 const Home: NextPage = () => {
   return (
     <Wrap>
-      <StarRating />
-      <SearchBar main width="43rem" />
+      <MainPageTemplate />
     </Wrap>
   );
 };
