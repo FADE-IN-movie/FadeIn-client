@@ -3,10 +3,20 @@ import styled from "styled-components";
 import CustomInput from "@components/common/CustomInput";
 import SearchIcon from "@images/search_icon.svg";
 
-function SearchBar() {
+interface IProps {
+  main?: boolean;
+  width: string;
+}
+
+function SearchBar({ main, width }: IProps) {
   return (
     <Bar>
-      <CustomInput search placeholderText="영화, TV 프로그램 검색" />
+      <CustomInput
+        search
+        main={main}
+        width={width}
+        placeholderText="영화, TV 프로그램 검색"
+      />
       <StyledSearchIcon />
     </Bar>
   );
@@ -15,13 +25,14 @@ function SearchBar() {
 export default SearchBar;
 
 const Bar = styled.div`
-  position: relative;
+  width: fit-content;
+  display: flex;
+  align-items: center;
 `;
 
 const StyledSearchIcon = styled(SearchIcon)`
-  position: absolute;
-  right: 0.8rem;
-  top: 0.5rem;
+  position: relative;
+  right: 30px;
 
   cursor: pointer;
   &:hover {

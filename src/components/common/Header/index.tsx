@@ -8,7 +8,7 @@ import { isSignInState } from "src/states/user";
 import Logo from "../Logo";
 import MenuList from "./molecules/NavMenuList";
 import UserBox from "./organisms/UserBox";
-import SearchBar from "./molecules/SearchBar";
+import SearchBar from "@components/common/SearchBar";
 import SignInBtn from "./atoms/SignInBtn";
 import Modal from "../Modal";
 import SignInBox from "@components/auth/SignInBox";
@@ -26,7 +26,7 @@ function Header() {
         <MenuList />
       </div>
       <div className="box rightBox">
-        <SearchBar />
+        <SearchBar width="23rem" />
         {isSignIn ? (
           <UserBox />
         ) : (
