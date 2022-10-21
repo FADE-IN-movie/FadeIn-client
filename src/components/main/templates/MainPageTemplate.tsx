@@ -1,11 +1,9 @@
-import SearchBar from "@components/common/SearchBar";
-import BackgroundImg from "../molecules/BackgroundImg";
+import IntroSection from "../organisms/IntroSection";
 
 function MainPageTemplate() {
   return (
     <div>
-      <BackgroundImg />
-      {/* <SearchBar main width="43rem" /> */}
+      <IntroSection />
     </div>
   );
 }
