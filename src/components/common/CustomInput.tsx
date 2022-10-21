@@ -1,7 +1,10 @@
+import { RefObject } from "react";
 import styled, { css } from "styled-components";
 import { theme } from "@styles/theme";
 
 interface IProps {
+  inputRef?: RefObject<HTMLInputElement>;
+  isVisible?: boolean;
   search?: boolean;
   main?: boolean;
   width: string;
@@ -9,14 +12,24 @@ interface IProps {
 }
 
 interface InputPropsType {
+  isVisible?: boolean;
   search?: boolean;
   main?: boolean;
   width: string;
 }
 
-function CustomInput({ search, main, width, placeholderText }: IProps) {
+function CustomInput({
+  inputRef,
+  isVisible,
+  search,
+  main,
+  width,
+  placeholderText,
+}: IProps) {
   return (
     <Input
+      ref={inputRef}
+      isVisible={isVisible}
       search={search}
       main={main}
       width={width}
@@ -28,6 +41,8 @@ function CustomInput({ search, main, width, placeholderText }: IProps) {
 export default CustomInput;
 
 const Input = styled.input<InputPropsType>`
+  display: ${(props) => (props.isVisible ? "inline-block" : "none")};
+  display: ${(props) => props.main && "inline-block"};
   background: ${theme.palette.gray};
   width: ${(props) => props.width};
   padding: 0.6rem 1.2rem;
@@ -43,7 +58,7 @@ const Input = styled.input<InputPropsType>`
       font-size: 1.5rem;
       border-radius: 12px;
       line-height: 1.15;
-    `}
+    `};
 
   &::placeholder {
     color: #949494;

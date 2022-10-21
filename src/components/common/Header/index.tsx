@@ -17,6 +17,7 @@ function Header() {
   const [isSignInModalOpen, setIsSignInModalOpen] = useState(false);
 
   const onOpenSignInModal = () => setIsSignInModalOpen(true);
+
   const isSignIn = useRecoilValue(isSignInState);
 
   return (
@@ -65,6 +66,6 @@ const Container = styled.div`
   }
 
   .rightBox {
-    gap: 4rem;
+    gap: 1rem;
   }
 `;
