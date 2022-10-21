@@ -13,6 +13,11 @@ const nextConfig = {
     });
     return config;
   },
+  experimental: {
+    images: {
+      allowFutureImage: true,
+    },
+  },
 };
 
 module.exports = nextConfig;
