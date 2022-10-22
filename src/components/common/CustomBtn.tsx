@@ -11,11 +11,12 @@ interface IProps {
 type ButtonPropsType = {
   outline?: boolean;
   color: string;
+  textColor?: string;
 };
 
-function CustomBtn({ children, outline, color }: IProps) {
+function CustomBtn({ children, outline, color, textColor }: IProps) {
   return (
-    <Button outline={outline} color={color}>
+    <Button outline={outline} color={color} textColor={textColor}>
       {children}
     </Button>
   );
@@ -24,15 +25,27 @@ function CustomBtn({ children, outline, color }: IProps) {
 export default CustomBtn;
 
 const Button = styled.button<ButtonPropsType>`
-  padding: 1rem 2rem;
-  border: 1px solid gray;
-  min-width: 10rem;
+  padding: 1.1rem 2.3rem;
+  min-width: 11.5rem;
+  line-height: 1;
   border-radius: 30px;
+  font-size: 1.5rem;
 
   ${(props) => {
-    if (!props.outline)
+    if (props.outline)
+      return css`
+        border: 1px solid ${props.color};
+        color: ${props.color};
+      `;
+    else
       return css`
         background: ${props.color};
       `;
   }}
+
+  ${(props) =>
+    props.textColor &&
+    css`
+      color: ${props.textColor};
+    `}
 `;

@@ -15,13 +15,15 @@ function IntroSection() {
         <div className="searchBarWrap">
           <SearchBar main width="43rem" />
         </div>
-        <div>
-          <CustomBtn
-            outline
-            color="linear-gradient(276.79deg, #8E9EEE 20.53%, #E3E3FF 95.78%)"
-            textColor={theme.logo_color}
-          >
+        <div className="btnBox">
+          <CustomBtn outline color="#8E9EEE" textColor={theme.logo_color}>
             Show more
+          </CustomBtn>
+          <CustomBtn
+            color="linear-gradient(276.79deg, #8E9EEE 20.53%, #E3E3FF 95.78%)"
+            textColor="white"
+          >
+            Login
           </CustomBtn>
         </div>
       </div>
@@ -32,9 +34,23 @@ function IntroSection() {
 export default IntroSection;
 
 const Section = styled.section`
+  position: relative;
+
   .content {
+    position: absolute;
+    top: 2rem;
+    z-index: 2;
+
     .searchBarWrap {
       margin-top: 4rem;
+    }
+
+    .btnBox {
+      display: flex;
+      width: 43rem;
+      justify-content: flex-end;
+      gap: 1.5rem;
+      margin-top: 3rem;
     }
   }
 `;
