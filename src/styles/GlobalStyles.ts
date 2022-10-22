@@ -54,4 +54,8 @@ export const GlobalStyles = createGlobalStyle`
     text-decoration: none;
     color: ${theme.text_color};
   }
+
+  h1, h2, h3, h4, h5 {
+    font-weight: bold;
+  }
 `;
