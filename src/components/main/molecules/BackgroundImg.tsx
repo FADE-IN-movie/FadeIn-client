@@ -6,7 +6,7 @@ function BackgroundImg() {
     <Box>
       <div className="darkFilter"></div>
       <ImgWrap>
-        <Img src="/assets/images/main_img.jpg" layout="fill" alt="mainImg" />
+        <Img src="/assets/images/main_img.png" layout="fill" alt="mainImg" />
       </ImgWrap>
     </Box>
   );
