@@ -4,10 +4,11 @@ import Image from "next/image";
 function BackgroundImg() {
   return (
     <Box>
-      <div className="darkFilter"></div>
+      <div className="darkFilter" />
       <ImgWrap>
         <Img src="/assets/images/main_img.png" layout="fill" alt="mainImg" />
       </ImgWrap>
+      <div className="fadeOutFilter" />
     </Box>
   );
 }
@@ -18,7 +19,7 @@ const Box = styled.div`
   position: relative;
   margin-top: -2rem;
   margin-left: -4rem;
-  width: calc(100% + 8rem);
+  width: 98vw;
 
   .darkFilter {
     position: absolute;
@@ -26,6 +27,14 @@ const Box = styled.div`
     height: 100%;
     z-index: 1;
     background: radial-gradient(rgba(20, 20, 20, 0.2), rgba(20, 20, 20, 1));
+  }
+
+  .fadeOutFilter {
+    position: absolute;
+    background: linear-gradient(to top, rgba(20, 20, 20), rgba(20, 20, 20, 0));
+    bottom: 0;
+    width: 100%;
+    height: 10rem;
   }
 `;
 

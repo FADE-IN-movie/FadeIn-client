@@ -38,7 +38,7 @@ const Section = styled.section`
 
   .content {
     position: absolute;
-    top: 2rem;
+    top: 0;
     z-index: 2;
 
     .searchBarWrap {
