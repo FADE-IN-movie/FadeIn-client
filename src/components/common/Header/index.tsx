@@ -21,23 +21,26 @@ function Header() {
   const isSignIn = useRecoilValue(isSignInState);
 
   return (
-    <Container>
-      <div className="box leftBox ">
-        <Logo />
-        <MenuList />
-      </div>
-      <div className="box rightBox">
-        <SearchBar width="23rem" />
-        {isSignIn ? (
-          <UserBox />
-        ) : (
-          <SignInBtn onOpenSignInModal={onOpenSignInModal} />
-        )}
-        <Modal isOpen={isSignInModalOpen} setIsOpen={setIsSignInModalOpen}>
-          <SignInBox />
-        </Modal>
-      </div>
-    </Container>
+    <>
+      <Container>
+        <div className="box leftBox ">
+          <Logo />
+          <MenuList />
+        </div>
+        <div className="box rightBox">
+          <SearchBar width="23rem" />
+          {isSignIn ? (
+            <UserBox />
+          ) : (
+            <SignInBtn onOpenSignInModal={onOpenSignInModal} />
+          )}
+        </div>
+      </Container>
+
+      <Modal isOpen={isSignInModalOpen} setIsOpen={setIsSignInModalOpen}>
+        <SignInBox />
+      </Modal>
+    </>
   );
 }
 
