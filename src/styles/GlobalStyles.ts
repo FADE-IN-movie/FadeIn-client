@@ -42,6 +42,10 @@ export const GlobalStyles = createGlobalStyle`
     &:hover {
       opacity: 0.8;
     }
+
+    &:active {
+      opacity: 0.7;
+    }
   }
 
   input {

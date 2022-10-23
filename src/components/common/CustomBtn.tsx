@@ -6,6 +6,7 @@ interface IProps {
   outline?: boolean;
   color: string;
   textColor?: string;
+  onClickHandler?: () => void;
 }
 
 type ButtonPropsType = {
@@ -14,9 +15,20 @@ type ButtonPropsType = {
   textColor?: string;
 };
 
-function CustomBtn({ children, outline, color, textColor }: IProps) {
+function CustomBtn({
+  children,
+  outline,
+  color,
+  textColor,
+  onClickHandler,
+}: IProps) {
   return (
-    <Button outline={outline} color={color} textColor={textColor}>
+    <Button
+      outline={outline}
+      color={color}
+      textColor={textColor}
+      onClick={onClickHandler}
+    >
       {children}
     </Button>
   );
