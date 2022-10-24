@@ -20,8 +20,12 @@ export const GlobalStyles = createGlobalStyle`
     width: 100%;
     padding: 0;
     font-size: calc(7px + 0.3vw);
-    /* font-size: 12px; */
+    left: calc(7px + 0.3vw);
     background: ${theme.bg_color};
+  }
+
+  body {
+    overflow-x: hidden;
   }
 
   body, button {
@@ -37,6 +41,7 @@ export const GlobalStyles = createGlobalStyle`
     background: none;
     border: none;
     padding: 0;
+    outline: none;
     cursor: pointer;
     
     &:hover {

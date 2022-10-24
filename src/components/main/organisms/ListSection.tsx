@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 import CustomTitle from "@components/common/CustomTitle";
 import InfoCard from "@components/common/InfoCard";
+import Carousel from "@components/common/Carousel";
 
 const infoData = [
   {
@@ -82,11 +83,11 @@ function ListSection() {
       <TitleWrap>
         <CustomTitle>실시간 영화 Top 10</CustomTitle>
       </TitleWrap>
-      <List>
+      <Carousel limit={infoData.length}>
         {infoData.map((info, i) => (
           <InfoCard key={i} info={info} />
         ))}
-      </List>
+      </Carousel>
     </div>
   );
 }
@@ -95,10 +96,4 @@ export default ListSection;
 
 const TitleWrap = styled.div`
   margin-bottom: 2rem;
-`;
-
-const List = styled.div`
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
 `;

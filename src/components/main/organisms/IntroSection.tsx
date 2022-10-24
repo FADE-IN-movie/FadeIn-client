@@ -21,25 +21,23 @@ function IntroSection() {
         <BackgroundImg />
         <div className="content">
           <MainText />
-          {
-            <div className="bottomBox">
-              <div className="searchBarWrap">
-                <SearchBar main width="43rem" />
-              </div>
-              <div className="btnBox">
-                <CustomBtn outline color="#8E9EEE" textColor={theme.logo_color}>
-                  Show more
-                </CustomBtn>
-                <CustomBtn
-                  color="linear-gradient(276.79deg, #8E9EEE 20.53%, #E3E3FF 95.78%)"
-                  textColor="white"
-                  onClickHandler={onOpenSignInModal}
-                >
-                  Login
-                </CustomBtn>
-              </div>
+          <div className="bottomBox">
+            <div className="searchBarWrap">
+              <SearchBar main width="43rem" />
             </div>
-          }
+            <div className="btnBox">
+              <CustomBtn outline color="#8E9EEE" textColor={theme.logo_color}>
+                Show more
+              </CustomBtn>
+              <CustomBtn
+                color="linear-gradient(276.79deg, #8E9EEE 20.53%, #E3E3FF 95.78%)"
+                textColor="white"
+                onClickHandler={onOpenSignInModal}
+              >
+                Login
+              </CustomBtn>
+            </div>
+          </div>
         </div>
       </Section>
 
