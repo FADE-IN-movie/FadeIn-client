@@ -128,8 +128,8 @@ const Container = styled.div`
   .slideItems {
     display: flex;
     padding: 0 4rem;
-    margin-left: -4.1rem;
-    width: 97.8vw;
+    width: calc(100% + 8rem);
+    margin-left: -4rem;
     overflow-x: scroll;
     overflow-y: hidden;
     -ms-overflow-style: none;
@@ -151,10 +151,10 @@ const Btn = styled.button`
 
 const PrevBtn = styled(Btn)`
   border-radius: 5px 0 0 5px;
-  left: -4.1rem;
+  left: -4rem;
 `;
 
 const NextBtn = styled(Btn)`
   border-radius: 0 5px 5px 0;
-  right: -4.1rem;
+  right: -4rem;
 `;
