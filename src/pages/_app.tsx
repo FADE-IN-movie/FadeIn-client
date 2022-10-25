@@ -1,4 +1,5 @@
 import type { AppProps } from "next/app";
+import Head from "next/head";
 import { RecoilRoot } from "recoil";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "../styles/GlobalStyles";
@@ -11,6 +12,9 @@ import Footer from "@components/common/Footer";
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
+      <Head>
+        <script src="https://accounts.google.com/gsi/client" async defer />
+      </Head>
       <RecoilRoot>
         <GlobalStyles />
         <ThemeProvider theme={theme}>

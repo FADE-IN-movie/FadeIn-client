@@ -1,5 +1,6 @@
-import React from "react";
 import styled from "styled-components";
+
+import { googleSignIn, naverSignIn } from "@utils/account";
 
 import SocialSignInBtn from "./SocialSignInBtn";
 
@@ -7,10 +8,19 @@ function SignInBox() {
   return (
     <Box>
       <h3>소셜 로그인</h3>
-      <SocialSignInBtn imgUrl="/assets/images/google_icon.png" color="white">
+      <SocialSignInBtn
+        imgUrl="/assets/images/google_icon.png"
+        color="white"
+        handleSignIn={googleSignIn}
+      >
         Google 로그인
       </SocialSignInBtn>
-      <SocialSignInBtn imgUrl="/assets/images/naver_icon.png" color="#1cc801">
+      <div id="googleSignInDiv" />
+      <SocialSignInBtn
+        imgUrl="/assets/images/naver_icon.png"
+        color="#1cc801"
+        handleSignIn={naverSignIn}
+      >
         네이버 로그인
       </SocialSignInBtn>
     </Box>

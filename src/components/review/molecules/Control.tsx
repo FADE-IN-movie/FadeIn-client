@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 
 import PrevBtn from "@images/prev_arrow_icon.svg";

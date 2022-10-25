@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 import { IDate } from "@typings/date";
 import Td from "../atoms/Date";

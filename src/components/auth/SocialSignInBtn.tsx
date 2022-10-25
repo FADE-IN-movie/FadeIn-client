@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 import styled from "styled-components";
 import { theme } from "@styles/theme";
 
@@ -8,11 +8,12 @@ interface IProps {
   children: ReactNode;
   imgUrl: string;
   color: string;
+  handleSignIn: () => void;
 }
 
-function SocialSignInBtn({ children, imgUrl, color }: IProps) {
+function SocialSignInBtn({ children, imgUrl, color, handleSignIn }: IProps) {
   return (
-    <Button color={color}>
+    <Button color={color} onClick={handleSignIn}>
       <div className="wrap">
         <Image src={imgUrl} alt="siteLogo" layout="fill" />
       </div>
