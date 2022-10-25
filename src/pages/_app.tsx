@@ -1,5 +1,4 @@
 import type { AppProps } from "next/app";
-import Head from "next/head";
 import { RecoilRoot } from "recoil";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "../styles/GlobalStyles";
@@ -12,10 +11,6 @@ import Footer from "@components/common/Footer";
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
-      <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>FADE-IN</title>
-      </Head>
       <RecoilRoot>
         <GlobalStyles />
         <ThemeProvider theme={theme}>
