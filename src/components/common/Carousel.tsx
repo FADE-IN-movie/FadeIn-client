@@ -52,13 +52,6 @@ function Carousel({ children, limit }: IProps) {
         Math.ceil(convertRemToPixels(8.5)) >=
       itemsRef.current.scrollWidth;
 
-    console.log(
-      leftPos +
-        containerRef.current.offsetWidth +
-        Math.ceil(convertRemToPixels(8.5))
-    );
-    console.log(itemsRef.current.scrollWidth);
-
     setIsStart(isStart);
     setIsEnd(isEnd);
   };
