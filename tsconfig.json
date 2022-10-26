@@ -20,6 +20,7 @@
       "@utils/*": ["./src/utils/*"],
       "@typings/*": ["typings/*"],
       "@images/*": ["public/assets/images/*"],
+      "@states/*": ["./src/states/*"],
       "@styles/*": ["./src/styles/*"]
     }
   },
