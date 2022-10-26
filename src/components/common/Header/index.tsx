@@ -12,6 +12,7 @@ import SearchBar from "@components/common/SearchBar";
 import SignInBtn from "./atoms/SignInBtn";
 import Modal from "../Modal";
 import SignInBox from "@components/auth/SignInBox";
+import Link from "next/link";
 
 function Header() {
   const [isSignInModalOpen, setIsSignInModalOpen] = useState(false);
@@ -24,7 +25,11 @@ function Header() {
     <>
       <Container>
         <div className="box leftBox ">
-          <Logo />
+          <Link href="/">
+            <a>
+              <Logo />
+            </a>
+          </Link>
           <MenuList />
         </div>
         <div className="box rightBox">
