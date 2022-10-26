@@ -13,11 +13,11 @@ function Control({ currentYM, onClickPrev, onClickNext }: IProps) {
   return (
     <Box>
       <button className="btn" onClick={onClickPrev}>
-        <PrevIcon width="10" fill="white" />
+        <PrevIcon width="1rem" fill="white" />
       </button>
       <span>{currentYM}</span>
       <button className="btn" onClick={onClickNext}>
-        <NextIcon width="10" fill="white" />
+        <NextIcon width="1rem" fill="white" />
       </button>
     </Box>
   );
