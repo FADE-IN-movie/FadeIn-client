@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { theme } from "@styles/theme";
 
 import { useRecoilValue } from "recoil";
-import { isSignInState } from "src/states/user";
+import { isSignInState } from "@states/user";
 
 import Logo from "../Logo";
 import MenuList from "./molecules/NavMenuList";
@@ -24,7 +24,7 @@ function Header() {
   return (
     <>
       <Container>
-        <div className="box leftBox ">
+        <div className="box leftBox">
           <Link href="/">
             <a>
               <Logo />
