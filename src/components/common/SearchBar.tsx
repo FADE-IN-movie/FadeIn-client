@@ -1,6 +1,8 @@
 import { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 
+import { clickOutside } from "@utils/display";
+
 import CustomInput from "@components/common/CustomInput";
 import SearchIcon from "@images/search_icon.svg";
 
@@ -23,14 +25,8 @@ function SearchBar({ main, width }: IProps) {
   }, [isInputVisible]);
 
   useEffect(() => {
-    if (main) return;
-    const onCloseInput = (e: Event) => {
-      if (!inputRef.current?.contains(e.target as HTMLElement))
-        setIsInputVisible(false);
-    };
-
-    document.addEventListener("click", onCloseInput);
-    return () => document.removeEventListener("click", onCloseInput);
+    if (main || !inputRef.current) return;
+    clickOutside(inputRef.current, setIsInputVisible);
   }, []);
 
   return (
