@@ -23,6 +23,7 @@ function SignInBox() {
       >
         네이버 로그인
       </SocialSignInBtn>
+      <div id="naverIdLogin"></div>
     </Box>
   );
 }

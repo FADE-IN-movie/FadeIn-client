@@ -14,8 +14,25 @@ export function googleSignIn() {
   google.accounts.id.renderButton(document.getElementById("googleSignInDiv"), {
     theme: "outline",
     size: "large",
-    type: "icon",
   });
+
+  //@ts-ignore
+  google.accounts.id.prompt();
 }
 
-export function naverSignIn() {}
+export function naverSignIn() {
+  const initializeNaver = () => {
+    //@ts-ignore
+    const signIn = new naver.LoginWithNaverId({
+      clientId: process.env.NEXT_PUBLIC_NAVER_CLIENT_ID,
+      clientSecret: process.env.NEXT_PUBLIC_NAVER_CLIENT_SECRET,
+      callbackUrl: "http://localhost:3000/auth/callback/naver",
+      isPopup: true,
+      loginButton: { color: "green", type: 3, height: "47" },
+    });
+
+    signIn.init();
+  };
+
+  initializeNaver();
+}
