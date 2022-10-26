@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-import PrevBtn from "@images/prev_arrow_icon.svg";
-import NextBtn from "@images/next_arrow_icon.svg";
+import PrevIcon from "@images/prev_arrow_icon.svg";
+import NextIcon from "@images/next_arrow_icon.svg";
 
 interface IProps {
   currentYM: string;
@@ -12,13 +12,13 @@ interface IProps {
 function Control({ currentYM, onClickPrev, onClickNext }: IProps) {
   return (
     <Box>
-      <PrevBtn className="btn" onClick={onClickPrev}>
-        &lt;
-      </PrevBtn>
+      <button className="btn" onClick={onClickPrev}>
+        <PrevIcon width="10" fill="white" />
+      </button>
       <span>{currentYM}</span>
-      <NextBtn className="btn" onClick={onClickNext}>
-        &gt;
-      </NextBtn>
+      <button className="btn" onClick={onClickNext}>
+        <NextIcon width="10" fill="white" />
+      </button>
     </Box>
   );
 }
@@ -39,7 +39,7 @@ const Box = styled.div`
   }
 
   .btn {
-    padding: 0.5rem 1.5rem;
+    padding: 0.7rem 1.3rem 0.3rem 1.3rem;
     cursor: pointer;
     &:hover {
       opacity: 0.8;
