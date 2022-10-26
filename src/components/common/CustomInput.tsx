@@ -1,4 +1,4 @@
-import { RefObject } from "react";
+import { ChangeEvent, RefObject } from "react";
 import styled, { css } from "styled-components";
 import { theme } from "@styles/theme";
 
@@ -9,6 +9,7 @@ interface IProps {
   main?: boolean;
   width: string;
   placeholderText: string;
+  handleChangeInput: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 interface InputPropsType {
@@ -25,6 +26,7 @@ function CustomInput({
   main,
   width,
   placeholderText,
+  handleChangeInput,
 }: IProps) {
   return (
     <Input
@@ -34,6 +36,7 @@ function CustomInput({
       main={main}
       width={width}
       placeholder={placeholderText}
+      onChange={handleChangeInput}
     />
   );
 }

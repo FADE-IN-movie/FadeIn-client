@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, FormEvent, ChangeEvent } from "react";
 import styled from "styled-components";
 
 import { clickOutside } from "@utils/display";
@@ -12,8 +12,17 @@ interface IProps {
 }
 
 function SearchBar({ main, width }: IProps) {
+  const [text, setText] = useState("");
   const [isInputVisible, setIsInputVisible] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  const onSubmitSearch = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  };
+
+  const onChangeInput = ({ target }: ChangeEvent<HTMLInputElement>) => {
+    setText(target.value);
+  };
 
   const onOpenSearchBar = (e: MouseEvent) => {
     e.stopPropagation();
@@ -26,11 +35,11 @@ function SearchBar({ main, width }: IProps) {
 
   useEffect(() => {
     if (main || !inputRef.current) return;
-    clickOutside(inputRef.current, setIsInputVisible);
-  }, []);
+    clickOutside(inputRef.current, setIsInputVisible, true);
+  }, [inputRef, main, text]);
 
   return (
-    <Bar>
+    <Form onSubmit={onSubmitSearch}>
       <CustomInput
         inputRef={inputRef}
         isVisible={isInputVisible}
@@ -38,15 +47,16 @@ function SearchBar({ main, width }: IProps) {
         main={main}
         width={width}
         placeholderText="영화, TV 프로그램 검색"
+        handleChangeInput={onChangeInput}
       />
       <StyledSearchIcon onClick={onOpenSearchBar} />
-    </Bar>
+    </Form>
   );
 }
 
 export default SearchBar;
 
-const Bar = styled.div`
+const Form = styled.form`
   width: fit-content;
   display: flex;
   align-items: center;
