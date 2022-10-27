@@ -1,6 +1,18 @@
-import { atom } from "recoil";
+import { atom, selector } from "recoil";
 
-export const isSignInState = atom({
+export const loggedUserState = atom({
+  key: "loggedUserState",
+  default: {
+    userName: "",
+    userImg: "",
+    userEmail: "",
+  },
+});
+
+export const isSignInState = selector<boolean>({
   key: "isSignInState",
-  default: false,
+  get: ({ get }) => {
+    const userInfo = get(loggedUserState);
+    return userInfo.userEmail !== "";
+  },
 });

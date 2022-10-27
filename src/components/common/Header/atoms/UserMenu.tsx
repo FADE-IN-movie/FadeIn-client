@@ -5,10 +5,11 @@ import { theme } from "@styles/theme";
 
 interface IProps {
   children: ReactNode;
+  handleClick?: () => void;
 }
 
-function UserMenu({ children }: IProps) {
-  return <Menu>{children}</Menu>;
+function UserMenu({ children, handleClick }: IProps) {
+  return <Menu onClick={handleClick}>{children}</Menu>;
 }
 
 export default UserMenu;
