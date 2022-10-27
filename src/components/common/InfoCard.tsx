@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import Image from "next/image";
 
-import { IInfo } from "@typings/info";
+import { IMovieInfo } from "@typings/info";
 
 interface IProps {
-  info: IInfo;
+  info: IMovieInfo;
 }
 
 type TitlePropsType = {

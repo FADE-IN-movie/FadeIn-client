@@ -7,6 +7,7 @@ import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "../styles/GlobalStyles";
 import { theme } from "../styles/theme";
 
+import Auth from "@components/auth/Auth";
 import Header from "@components/common/Header";
 import Layout from "@components/common/Layout";
 import Footer from "@components/common/Footer";
@@ -26,6 +27,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <RecoilNexus />
         <GlobalStyles />
         <ThemeProvider theme={theme}>
+          <Auth />
           <Header />
           <Layout>
             <Component {...pageProps} />
