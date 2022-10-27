@@ -49,6 +49,7 @@ export function signOut() {
   removeCookie("userImg");
 
   resetRecoil(loggedUserState);
+  setAuthorizationToken();
 }
 
 export function googleSignIn() {
@@ -92,7 +93,7 @@ export function naverSignIn() {
   initializeNaver();
 }
 
-export function setAuthorizationToken(accessToken: ITokenInfo) {
+export function setAuthorizationToken(accessToken?: ITokenInfo) {
   if (accessToken) {
     api.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
   } else {
