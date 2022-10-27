@@ -11,9 +11,11 @@ export function googleSignIn() {
   });
 
   //@ts-ignore
-  google.accounts.id.renderButton(document.getElementById("googleSignInDiv"), {
+  google.accounts.id.renderButton(document.getElementById("googleIdLogin"), {
     theme: "outline",
     size: "large",
+    logo_alignment: "left",
+    width: 250,
   });
 
   //@ts-ignore
@@ -28,7 +30,7 @@ export function naverSignIn() {
       clientSecret: process.env.NEXT_PUBLIC_NAVER_CLIENT_SECRET,
       callbackUrl: "http://localhost:3000/auth/callback/naver",
       isPopup: true,
-      loginButton: { color: "green", type: 3, height: "47" },
+      loginButton: { color: "green", type: 3, height: 40, width: 250 },
     });
 
     signIn.init();

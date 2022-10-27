@@ -2,23 +2,26 @@ import { ReactNode } from "react";
 import styled from "styled-components";
 import { theme } from "@styles/theme";
 
-import Image from "next/image";
-
 import CloseIcon from "@images/close_icon.svg";
 
 interface IProps {
   children: ReactNode;
+  isStatic?: boolean;
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
 }
 
-function Modal({ children, isOpen, setIsOpen }: IProps) {
+type BoxPropsType = {
+  isStatic?: boolean;
+};
+
+function Modal({ children, isStatic, isOpen, setIsOpen }: IProps) {
   const onCloseModal = () => setIsOpen(false);
 
   if (!isOpen) return null;
   return (
     <Background>
-      <Box>
+      <Box isStatic={isStatic}>
         <CloseBtn onClick={onCloseModal}>
           <CloseIcon fill={theme.palette.light_gray} />
         </CloseBtn>
@@ -43,14 +46,14 @@ const Background = styled.div`
   z-index: 20;
 `;
 
-const Box = styled.div`
+const Box = styled.div<BoxPropsType>`
   position: relative;
   display: flex;
   align-items: center;
   width: fit-content;
   height: fit-content;
-  min-width: 34rem;
-  min-height: 18rem;
+  min-width: ${(props) => !props.isStatic && "34rem"};
+  min-height: ${(props) => !props.isStatic && "18rem"};
   background: ${theme.palette.dark_gray};
   padding: 3rem 4rem;
   border-radius: 5px;
