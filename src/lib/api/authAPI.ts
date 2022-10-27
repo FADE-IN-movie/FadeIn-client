@@ -1,12 +1,12 @@
 import api from "./api";
+import { signIn } from "@utils/account";
 
 const url = "/auth";
 
 const auth = {
   signIn: async (provider: string, token: string) => {
-    const res = await api.post(`${url}/${provider}`, token);
-
-    return res.data;
+    const { data, status } = await api.post(`${url}/${provider}`, token);
+    if (status === 200) signIn(data);
   },
 };
 

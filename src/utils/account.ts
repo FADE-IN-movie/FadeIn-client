@@ -24,12 +24,6 @@ export function signIn(info: IUser & ITokenInfo) {
     refreshTokenExp,
   } = info;
 
-  setRecoil(loggedUserState, {
-    userName: userName,
-    userEmail: userEmail,
-    userImg: userImg,
-  });
-
   setCookie("accessToken", accessToken);
   setCookie("refreshToken", refreshToken);
   setCookie("accessTokenExp", accessTokenExp);
@@ -37,6 +31,14 @@ export function signIn(info: IUser & ITokenInfo) {
   setCookie("userName", userName);
   setCookie("userEmail", userEmail);
   setCookie("userImg", userImg);
+
+  setRecoil(loggedUserState, {
+    userName: userName,
+    userEmail: userEmail,
+    userImg: userImg,
+  });
+
+  window.location.href = "/";
 }
 
 export function signOut() {
@@ -54,8 +56,7 @@ export function signOut() {
 
 export function googleSignIn() {
   const handleCallback = async (res: any) => {
-    const loggedInfo = await auth.signIn("google", res.credential);
-    signIn(loggedInfo);
+    await auth.signIn("google", res.credential);
   };
 
   //@ts-ignore
