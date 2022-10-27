@@ -42,7 +42,11 @@ function Header() {
         </div>
       </Container>
 
-      <Modal isOpen={isSignInModalOpen} setIsOpen={setIsSignInModalOpen}>
+      <Modal
+        isStatic
+        isOpen={isSignInModalOpen}
+        setIsOpen={setIsSignInModalOpen}
+      >
         <SignInBox />
       </Modal>
     </>

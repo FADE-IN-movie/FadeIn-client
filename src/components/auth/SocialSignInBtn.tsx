@@ -30,12 +30,13 @@ const Button = styled.button`
   display: flex;
   align-items: center;
   gap: 0.7rem;
-  font-size: 1.2rem;
+  font-size: 14px;
   background: ${(props) => props.color};
   border: none;
   border-radius: 3px;
-  padding: 1rem;
-  line-height: 1;
+  padding: 12px;
+  height: 40px;
+  font-family: "Google Sans", arial, sans-serif;
 
   color: ${(props) =>
     props.color === "white"
@@ -46,13 +47,14 @@ const Button = styled.button`
         `};
 
   .wrap {
-    position: absolute;
-    width: 1.5rem;
-    height: 1.5rem;
+    position: relative;
+    width: 21px;
+    height: 20px;
   }
 
   .site {
-    width: 100%;
+    display: inline-block;
+    width: calc(100% - 21px);
     text-align: center;
   }
 `;

@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import styled from "styled-components";
 
 import { googleSignIn, naverSignIn } from "@utils/account";
@@ -5,25 +6,28 @@ import { googleSignIn, naverSignIn } from "@utils/account";
 import SocialSignInBtn from "./SocialSignInBtn";
 
 function SignInBox() {
+  const googleRef = useRef<HTMLDivElement>(null);
+  const naverRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    googleSignIn();
+    naverSignIn();
+  }, []);
+
   return (
     <Box>
       <h3>소셜 로그인</h3>
-      <SocialSignInBtn
-        imgUrl="/assets/images/google_icon.png"
-        color="white"
-        handleSignIn={googleSignIn}
-      >
-        Google 로그인
-      </SocialSignInBtn>
-      <div id="googleSignInDiv" />
+      <div id="googleIdLogin" ref={googleRef} />
       <SocialSignInBtn
         imgUrl="/assets/images/naver_icon.png"
-        color="#1cc801"
-        handleSignIn={naverSignIn}
+        color="#1ec800"
+        handleSignIn={() =>
+          (naverRef.current?.children[0] as HTMLAnchorElement).click()
+        }
       >
-        네이버 로그인
+        네이버 계정으로 로그인
       </SocialSignInBtn>
-      <div id="naverIdLogin"></div>
+      <div id="naverIdLogin" ref={naverRef} />
     </Box>
   );
 }
@@ -39,5 +43,9 @@ const Box = styled.div`
     font-size: 1.5rem;
     font-weight: bold;
     margin-bottom: 1rem;
+  }
+
+  #naverIdLogin {
+    display: none;
   }
 `;
