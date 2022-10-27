@@ -2,6 +2,7 @@ import type { AppProps } from "next/app";
 import Head from "next/head";
 import Script from "next/script";
 import { RecoilRoot } from "recoil";
+import RecoilNexus from "recoil-nexus";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "../styles/GlobalStyles";
 import { theme } from "../styles/theme";
@@ -22,6 +23,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         async
       />
       <RecoilRoot>
+        <RecoilNexus />
         <GlobalStyles />
         <ThemeProvider theme={theme}>
           <Header />
