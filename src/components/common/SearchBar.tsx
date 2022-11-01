@@ -2,8 +2,6 @@ import { useState, useRef, useEffect, FormEvent, ChangeEvent } from "react";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 
-import { useRecoilState } from "recoil";
-import { keywordState } from "@states/search";
 import { clickOutside } from "@utils/display";
 
 import CustomInput from "@components/common/CustomInput";
@@ -15,7 +13,7 @@ interface IProps {
 }
 
 function SearchBar({ main, width }: IProps) {
-  const [keyword, setKeyword] = useRecoilState(keywordState);
+  const [keyword, setKeyword] = useState("");
   const [isInputVisible, setIsInputVisible] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
@@ -53,14 +51,19 @@ function SearchBar({ main, width }: IProps) {
   }, [inputRef, main]);
 
   useEffect(() => {
-    inputRef?.current?.blur();
+    if (!inputRef.current) return;
+    inputRef.current.blur();
 
-    if (router.pathname === "/search") setIsInputVisible(true);
-    else {
+    const { pathname, query } = router;
+
+    if (pathname === "/search") {
+      if (typeof query.keyword === "string") setKeyword(query.keyword);
+      setIsInputVisible(true);
+    } else {
+      setKeyword("");
       setIsInputVisible(false);
-      setTimeout(() => setKeyword(""), 1);
     }
-  }, [router]);
+  }, [router, inputRef]);
 
   return (
     <Form onSubmit={onSearchKeyword}>
