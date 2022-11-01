@@ -21,13 +21,13 @@ function Tbody({ today, selectedDate, reviewDateArr }: IProps) {
     let weekArr = [];
 
     for (let i = 0, j = 1; i <= 42; i++) {
+      const dayText =
+        i >= startDay && i < startDay + totalDate ? (j++).toString() : "";
+
       const isToday =
         selectedDate.year === today.year &&
         selectedDate.month === today.month &&
-        j === today.date;
-
-      const dayText =
-        i >= startDay && i < startDay + totalDate ? (j++).toString() : "";
+        dayText === today.date.toString();
 
       if (i % 7 === 0) {
         if (weekArr) totalArr.push(weekArr);
