@@ -3,6 +3,7 @@ import styled from "styled-components";
 import ResultText from "../atoms/ResultText";
 import Grid from "@components/layouts/Grid";
 import InfoCard from "@components/common/InfoCard";
+import TabBar from "@components/common/TabBar";
 
 const infoData = [
   {
@@ -77,10 +78,13 @@ const infoData = [
   },
 ];
 
+const menuInfo = ["영화", "TV 프로그램"];
+
 function SearchPageTemplate() {
   return (
     <div>
       <ResultText />
+      <TabBar menu={menuInfo} />
       <Content>
         <Grid>
           {infoData.map((info, i) => (
@@ -98,4 +102,5 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8rem;
+  padding: 3rem 0;
 `;
