@@ -1,5 +1,7 @@
-import { removeCookie, setCookie } from "./cookie";
+import { AxiosRequestConfig } from "axios";
+import { getCookie, removeCookie, setCookie } from "./cookie";
 import { setRecoil, resetRecoil } from "recoil-nexus";
+import moment from "moment";
 import { loggedUserState } from "@states/user";
 import { IUser } from "@typings/user";
 
@@ -51,7 +53,7 @@ export function signIn(info: IUser & ITokenInfo) {
     userImg: userImg,
   });
 
-  window.location.replace("/");
+  // window.location.replace("/");
 }
 
 export function signOut() {
@@ -105,6 +107,37 @@ export function naverSignIn() {
   };
 
   initializeNaver();
+}
+
+export function verifyToken(config: AxiosRequestConfig<any>) {
+  const refreshToken = getCookie("refreshToken");
+  const accessTokenExp = moment(getCookie("accessTokenExp")).format(
+    "YYYY-MM-DD HH:mm:ss.SSSS"
+  );
+  const refreshTokenExp = moment(getCookie("refreshTokenExp")).format(
+    "YYYY-MM-DD HH:mm:ss.SSSS"
+  );
+  const currentTime = moment().format("YYYY-MM-DD HH:mm:ss.SSSS");
+
+  if (refreshTokenExp < currentTime) {
+    signOut();
+    window.location.href = "/";
+  } else if (accessTokenExp < currentTime && refreshToken) {
+    setAuthorizationToken();
+    // await getNewToken();
+
+    removeCookie("accessToken");
+    removeCookie("accessTokenExp");
+    // setAuthorizationToken(token);
+    // setCookie("accessToken", token);
+    // setCookie("accessTokenExp", tokenExp);
+  }
+
+  return config;
+}
+
+export function verifyTokenErrorHandler() {
+  signOut();
 }
 
 export function setAuthorizationToken(accessToken?: ITokenInfo) {
