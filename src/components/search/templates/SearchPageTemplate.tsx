@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 import ResultText from "../atoms/ResultText";
-import Grid from "@components/common/Grid";
+import Grid from "@components/layouts/Grid";
 import InfoCard from "@components/common/InfoCard";
 
 const infoData = [
