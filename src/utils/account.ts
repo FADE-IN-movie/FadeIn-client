@@ -24,6 +24,19 @@ export function signIn(info: IUser & ITokenInfo) {
     refreshTokenExp,
   } = info;
 
+  if (
+    !(
+      userName ||
+      userEmail ||
+      userImg ||
+      accessToken ||
+      refreshToken ||
+      accessTokenExp ||
+      refreshTokenExp
+    )
+  )
+    return;
+
   setCookie("accessToken", accessToken);
   setCookie("refreshToken", refreshToken);
   setCookie("accessTokenExp", accessTokenExp);
@@ -38,7 +51,7 @@ export function signIn(info: IUser & ITokenInfo) {
     userImg: userImg,
   });
 
-  window.location.href = "/";
+  window.location.replace("/");
 }
 
 export function signOut() {
@@ -55,8 +68,8 @@ export function signOut() {
 }
 
 export function googleSignIn() {
-  const handleCallback = async (res: any) => {
-    await auth.signIn("google", res.credential);
+  const handleCallback = (res: any) => {
+    auth.signIn("google", res.credential);
   };
 
   //@ts-ignore
