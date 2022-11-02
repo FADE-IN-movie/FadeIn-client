@@ -1,6 +1,6 @@
 export interface IContentInfo {
   title: string;
-  genres: string[];
+  genre: string[];
   overview: string;
   rank?: number;
 }

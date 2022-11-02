@@ -32,7 +32,7 @@ function ContentCard({ info }: IProps) {
         </CardFront>
         <CardBack>
           <h3 className="backTitle">{info.title}</h3>
-          <span className="genres">{info.genres.join(", ")}</span>
+          <span className="genre">{info.genre.join(", ")}</span>
           <p className="overview">{info.overview}</p>
         </CardBack>
       </div>
@@ -71,7 +71,7 @@ const CardBack = styled.div<CardPropsType>`
     text-overflow: ellipsis;
   }
 
-  .genres {
+  .genre {
     display: inline-block;
     color: #c3c3c3;
     font-size: 0.85em;
