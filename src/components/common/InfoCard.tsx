@@ -14,21 +14,23 @@ type TitlePropsType = {
 function InfoCard({ info }: IProps) {
   return (
     <Container>
-      <CardFront>
-        <ImageWrap>
-          <Image
-            src="/assets/images/poster_img.jpg"
-            className="autoImg"
-            layout="fill"
-            alt="posterImg"
-          />
-        </ImageWrap>
-      </CardFront>
-      <CardBack>
-        <h3 className="backTitle">{info.title}</h3>
-        <span className="genres">{info.genres.join(", ")}</span>
-        <p className="overview">{info.overview}</p>
-      </CardBack>
+      <div>
+        <CardFront>
+          <ImageWrap>
+            <Image
+              src="/assets/images/poster_img.jpg"
+              className="autoImg"
+              layout="fill"
+              alt="posterImg"
+            />
+          </ImageWrap>
+        </CardFront>
+        <CardBack>
+          <h3 className="backTitle">{info.title}</h3>
+          <span className="genres">{info.genres.join(", ")}</span>
+          <p className="overview">{info.overview}</p>
+        </CardBack>
+      </div>
       <InfoBox>
         <div className="rank">{info.rank}</div>
         <Title isDigit={info.rank && info.rank < 10 ? true : false}>
@@ -44,7 +46,7 @@ export default InfoCard;
 const CardBack = styled.div`
   opacity: 0;
   position: absolute;
-  height: 25rem;
+  height: calc(100% - 2.7rem);
   background: rgba(0, 0, 0, 0.8);
   top: 0;
   z-index: 1;
@@ -86,12 +88,15 @@ const CardBack = styled.div`
 
 const CardFront = styled.div`
   width: 100%;
-  /* height: 25rem; */
 `;
 
 const Container = styled.div`
   position: relative;
   cursor: pointer;
+
+  .cardContainer {
+    border: 1px solid gray;
+  }
 
   @media screen and (min-width: 1651px) {
     width: calc(12.5% - 0.9rem); //
