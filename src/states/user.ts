@@ -13,6 +13,6 @@ export const isSignInState = selector<boolean>({
   key: "isSignInState",
   get: ({ get }) => {
     const userInfo = get(loggedUserState);
-    return userInfo.userEmail !== "";
+    return !(userInfo.userEmail === "" || !userInfo.userEmail);
   },
 });

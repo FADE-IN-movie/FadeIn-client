@@ -26,7 +26,7 @@ function Auth() {
       userEmail: userEmail,
       userImg: userImg,
     });
-    // setAuthorizationToken(accessToken);
+    setAuthorizationToken(accessToken);
   }, []);
 
   return <div></div>;
