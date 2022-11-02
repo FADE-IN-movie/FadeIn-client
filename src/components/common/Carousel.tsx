@@ -12,7 +12,7 @@ interface IProps {
   limit: number;
 }
 
-function Carousel({ children, limit }: IProps) {
+function Carousel({ children }: IProps) {
   const [isStart, setIsStart] = useState(true);
   const [isEnd, setIsEnd] = useState(false);
   const [currentItemCnt, setCurrentItemCnt] = useState(0);
@@ -21,11 +21,13 @@ function Carousel({ children, limit }: IProps) {
 
   const handleHorizontalScroll = (sign: number) => {
     if (!itemsRef.current) return;
-    const itemWidth = convertRemToPixels(17.5 + 1);
+    const itemWidth = convertRemToPixels(17 + 1);
     const currentLeft = itemsRef.current.scrollLeft;
     const diff = itemWidth * currentItemCnt * sign;
 
     calculateStartEnd(currentLeft + diff);
+
+    alert(currentItemCnt);
 
     itemsRef.current.scrollTo({
       top: 0,
@@ -58,11 +60,10 @@ function Carousel({ children, limit }: IProps) {
 
   const calculateContainerSize = () => {
     const containerWidth = containerRef?.current?.offsetWidth;
-    const itemWidth = convertRemToPixels(17.5 + 1);
-    const remPx = convertRemToPixels(1);
+    const itemWidth = convertRemToPixels(16 + 1);
 
     if (containerWidth) {
-      const currentCardCnt = Math.floor((containerWidth + remPx) / itemWidth);
+      const currentCardCnt = Math.floor(containerWidth / itemWidth);
 
       setCurrentItemCnt(currentCardCnt);
     }
@@ -117,6 +118,7 @@ export default Carousel;
 const Container = styled.div`
   position: relative;
   transform: 0.1 ease-out;
+  font-size: 1.7rem;
 
   .slideItems {
     display: flex;
@@ -136,7 +138,7 @@ const Container = styled.div`
 const Btn = styled.button`
   position: absolute;
   top: 0;
-  height: 25rem;
+  height: calc(100% - 2.8rem);
   padding: 1rem;
   background: rgba(0, 0, 0, 0.5);
   z-index: 5;
