@@ -23,6 +23,7 @@ function Header() {
 
   return (
     <>
+      <Background />
       <Container>
         <div className="box leftBox">
           <Link href="/">
@@ -55,6 +56,17 @@ function Header() {
 
 export default Header;
 
+const Background = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 6rem;
+  z-index: 9;
+  background: ${theme.bg_color};
+  opacity: 0.95;
+`;
+
 const Container = styled.div`
   position: fixed;
   top: 0;
@@ -62,7 +74,6 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: ${theme.bg_color};
   width: 100%;
   padding: 0 4rem;
   height: 6rem;

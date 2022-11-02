@@ -11,7 +11,7 @@ export const theme = {
   },
   fonts: {
     logo: "'SF_HambakSnow', 'serif'",
-    base: "'Noto Sans KR', 'sans-serif'",
+    base: "'SpoqaHanSansNeo-Regular', 'sans-serif'",
     barcode: "'Libre Barcode 128', 'cursive'",
   },
 };
