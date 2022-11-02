@@ -27,8 +27,6 @@ function Carousel({ children }: IProps) {
 
     calculateStartEnd(currentLeft + diff);
 
-    alert(currentItemCnt);
-
     itemsRef.current.scrollTo({
       top: 0,
       left: currentLeft + diff,
