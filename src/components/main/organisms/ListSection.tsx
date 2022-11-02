@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 import CustomTitle from "@components/common/CustomTitle";
-import InfoCard from "@components/common/InfoCard";
+import ContentCard from "@components/common/ContentCard";
 import Carousel from "@components/common/Carousel";
 
 const infoData = [
@@ -85,7 +85,7 @@ function ListSection() {
       </TitleWrap>
       <Carousel limit={infoData.length}>
         {infoData.map((info, i) => (
-          <InfoCard key={i} info={info} />
+          <ContentCard key={i} info={info} />
         ))}
       </Carousel>
     </div>

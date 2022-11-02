@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import Image from "next/image";
 
-import { IMovieInfo } from "@typings/info";
+import { IContentInfo } from "@typings/info";
 
 interface IProps {
-  info: IMovieInfo;
+  info: IContentInfo;
   width?: number;
 }
 
@@ -16,7 +16,7 @@ type CardPropsType = {
   width?: number;
 };
 
-function InfoCard({ info }: IProps) {
+function ContentCard({ info }: IProps) {
   return (
     <Container>
       <div>
@@ -46,7 +46,7 @@ function InfoCard({ info }: IProps) {
   );
 }
 
-export default InfoCard;
+export default ContentCard;
 
 const CardBack = styled.div<CardPropsType>`
   opacity: 0;

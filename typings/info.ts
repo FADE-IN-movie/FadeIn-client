@@ -1,4 +1,4 @@
-export interface IMovieInfo {
+export interface IContentInfo {
   title: string;
   genres: string[];
   overview: string;
