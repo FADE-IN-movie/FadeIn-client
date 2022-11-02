@@ -18,6 +18,7 @@ function InfoCard({ info }: IProps) {
         <ImageWrap>
           <Image
             src="/assets/images/poster_img.jpg"
+            className="autoImg"
             layout="fill"
             alt="posterImg"
           />
@@ -43,7 +44,6 @@ export default InfoCard;
 const CardBack = styled.div`
   opacity: 0;
   position: absolute;
-  width: 17.5rem;
   height: 25rem;
   background: rgba(0, 0, 0, 0.8);
   top: 0;
@@ -85,13 +85,38 @@ const CardBack = styled.div`
 `;
 
 const CardFront = styled.div`
-  width: 17.5rem;
-  height: 25rem;
+  width: 100%;
+  /* height: 25rem; */
 `;
 
 const Container = styled.div`
   position: relative;
   cursor: pointer;
+
+  @media screen and (min-width: 1651px) {
+    width: calc(12.5% - 0.9rem); //
+  }
+  @media screen and (max-width: 1650px) {
+    width: calc(14.25% - 0.85rem); // 16.67
+  }
+  @media screen and (max-width: 1400px) {
+    width: calc(16.67% - 0.85rem); // 6
+  }
+  @media screen and (max-width: 1200px) {
+    width: calc(20% - 0.85rem); // 6
+  }
+  @media screen and (max-width: 950px) {
+    width: calc(25% - 0.85rem); // 5
+  }
+  @media screen and (max-width: 720px) {
+    width: calc(33.3% - 0.85rem);
+  }
+  @media screen and (max-width: 500px) {
+    width: calc(50% - 0.85rem);
+  }
+  @media screen and (max-width: 300px) {
+    width: 100%;
+  }
 
   &:hover {
     ${CardBack} {
@@ -107,6 +132,15 @@ const ImageWrap = styled.div`
   border-radius: 5px;
   overflow: hidden;
   cursor: pointer;
+
+  & > span {
+    position: unset !important;
+    & .autoImg {
+      object-fit: contain !important;
+      position: relative !important;
+      height: auto !important;
+    }
+  }
 `;
 
 const InfoBox = styled.div`
