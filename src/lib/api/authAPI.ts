@@ -1,5 +1,5 @@
 import api from "./api";
-import { setAuthorizationToken, signIn } from "@utils/account";
+import { signIn } from "@utils/account";
 
 const url = "/auth";
 
@@ -11,7 +11,7 @@ const auth = {
     if (status === 200) signIn(data);
   },
   getNewToken: async (refreshToken: string) => {
-    const res = await api.post("", refreshToken);
+    const res = await api.post(`${url}/refresh`, refreshToken);
     return res.data;
   },
 };

@@ -53,7 +53,7 @@ export function signIn(info: IUser & ITokenInfo) {
     userImg: userImg,
   });
 
-  // window.location.replace("/");
+  window.location.replace("/");
 }
 
 export function signOut() {
@@ -109,7 +109,7 @@ export function naverSignIn() {
   initializeNaver();
 }
 
-export function verifyToken(config: AxiosRequestConfig<any>) {
+export async function verifyToken(config: AxiosRequestConfig<any>) {
   const refreshToken = getCookie("refreshToken");
   const accessTokenExp = moment(getCookie("accessTokenExp")).format(
     "YYYY-MM-DD HH:mm:ss.SSSS"
@@ -117,20 +117,22 @@ export function verifyToken(config: AxiosRequestConfig<any>) {
   const refreshTokenExp = moment(getCookie("refreshTokenExp")).format(
     "YYYY-MM-DD HH:mm:ss.SSSS"
   );
-  const currentTime = moment().format("YYYY-MM-DD HH:mm:ss.SSSS");
+  const currentTime = moment().add("1", "h").format("YYYY-MM-DD HH:mm:ss.SSSS");
 
   if (refreshTokenExp < currentTime) {
     signOut();
     window.location.href = "/";
   } else if (accessTokenExp < currentTime && refreshToken) {
     setAuthorizationToken();
-    // await getNewToken();
 
+    const { accessToken, accessTokenExp } = await auth.getNewToken(
+      refreshToken
+    );
+    setAuthorizationToken(accessToken);
     removeCookie("accessToken");
     removeCookie("accessTokenExp");
-    // setAuthorizationToken(token);
-    // setCookie("accessToken", token);
-    // setCookie("accessTokenExp", tokenExp);
+    setCookie("accessToken", accessToken);
+    setCookie("accessTokenExp", accessTokenExp);
   }
 
   return config;
