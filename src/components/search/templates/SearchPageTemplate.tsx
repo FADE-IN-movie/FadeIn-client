@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 import ResultText from "../atoms/ResultText";
 import Grid from "@components/layouts/Grid";
-import InfoCard from "@components/common/InfoCard";
+import ContentCard from "@components/common/ContentCard";
 import TabBar from "@components/common/TabBar";
 
 const infoData = [
@@ -88,7 +88,7 @@ function SearchPageTemplate() {
       <Content>
         <Grid>
           {infoData.map((info, i) => (
-            <InfoCard key={i} info={info} />
+            <ContentCard key={i} info={info} />
           ))}
         </Grid>
       </Content>

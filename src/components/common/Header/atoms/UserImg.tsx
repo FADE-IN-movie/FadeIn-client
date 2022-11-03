@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Image from "next/image";
 
 import { useRecoilValue } from "recoil";
-import { loggedUserState } from "@states/user";
+import { loggedUserState } from "@states/users";
 
 function UserImg() {
   const loggedUser = useRecoilValue(loggedUserState);
