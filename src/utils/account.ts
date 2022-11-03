@@ -117,11 +117,10 @@ export async function verifyToken(config: AxiosRequestConfig<any>) {
   const refreshTokenExp = moment(getCookie("refreshTokenExp")).format(
     "YYYY-MM-DD HH:mm:ss.SSSS"
   );
-  const currentTime = moment().add("1", "h").format("YYYY-MM-DD HH:mm:ss.SSSS");
+  const currentTime = moment().format("YYYY-MM-DD HH:mm:ss.SSSS");
 
   if (refreshTokenExp < currentTime) {
     signOut();
-    window.location.href = "/";
   } else if (accessTokenExp < currentTime && refreshToken) {
     setAuthorizationToken();
 

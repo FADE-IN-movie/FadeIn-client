@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styled from "styled-components";
 
 import NavMenu from "../atoms/NavMenu";
@@ -5,8 +6,16 @@ import NavMenu from "../atoms/NavMenu";
 function NavMenuList() {
   return (
     <List>
-      <NavMenu>영화</NavMenu>
-      <NavMenu>TV 프로그램</NavMenu>
+      <Link href="/movie">
+        <a>
+          <NavMenu>영화</NavMenu>
+        </a>
+      </Link>
+      <Link href="/tv">
+        <a>
+          <NavMenu>TV 프로그램</NavMenu>
+        </a>
+      </Link>
       <NavMenu>랭킹</NavMenu>
     </List>
   );

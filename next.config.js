@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  images: {
+    domains: ["localhost", "image.tmdb.org", "*"],
+  },
   reactStrictMode: true,
   swcMinify: true,
   compiler: {
@@ -13,10 +16,14 @@ const nextConfig = {
     });
     return config;
   },
-  experimental: {
-    images: {
-      allowFutureImage: true,
-    },
+  async redirects() {
+    return [
+      {
+        source: "/",
+        destination: "/movie",
+        permanent: true,
+      },
+    ];
   },
 };
 

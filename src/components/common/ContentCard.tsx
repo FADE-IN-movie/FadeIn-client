@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Image from "next/image";
 
 import { IContentInfo } from "@typings/info";
+import Link from "next/link";
 
 interface IProps {
   info: IContentInfo;
@@ -18,91 +19,46 @@ type CardPropsType = {
 
 function ContentCard({ info }: IProps) {
   return (
-    <Container>
-      <div>
-        <CardFront>
-          <ImageWrap>
-            <Image
-              src="/assets/images/poster_img.jpg"
-              className="autoImg"
-              layout="fill"
-              alt="posterImg"
-            />
-          </ImageWrap>
-        </CardFront>
-        <CardBack>
-          <h3 className="backTitle">{info.title}</h3>
-          <span className="genres">{info.genres.join(", ")}</span>
-          <p className="overview">{info.overview}</p>
-        </CardBack>
-      </div>
-      <InfoBox>
-        <div className="rank">{info.rank}</div>
-        <Title isDigit={info.rank && info.rank < 10 ? true : false}>
-          {info.title}
-        </Title>
-      </InfoBox>
-    </Container>
+    <CustomLink href="">
+      <a>
+        <Container>
+          <div>
+            <CardFront>
+              <ImageWrap>
+                <Image
+                  src={info.poster}
+                  className="autoImg"
+                  layout="fill"
+                  loading="lazy"
+                  alt="posterImg"
+                />
+              </ImageWrap>
+            </CardFront>
+            <CardBack>
+              <h3 className="backTitle">{info.title}</h3>
+              <span className="genre">
+                {info.genre?.slice(0, 4).join(", ")}
+              </span>
+              <p className="overview">{info.overview}</p>
+            </CardBack>
+          </div>
+          <InfoBox>
+            {info.rank !== undefined && info.rank > 0 && (
+              <div className="rank">{info.rank}</div>
+            )}
+            <Title isDigit={info.rank && info.rank < 10 ? true : false}>
+              {info.title}
+            </Title>
+          </InfoBox>
+        </Container>
+      </a>
+    </CustomLink>
   );
 }
 
 export default ContentCard;
 
-const CardBack = styled.div<CardPropsType>`
-  opacity: 0;
-  position: absolute;
-  height: calc(100% - 1.6em);
-  background: rgba(0, 0, 0, 0.8);
-  top: 0;
-  z-index: 1;
-  border-radius: 5px;
-  padding: 2rem 1.8rem;
-
-  .backTitle {
-    color: #ffffff;
-    font-size: 1.1em;
-    line-height: 1.2;
-    margin-bottom: 0.3em;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    display: -webkit-box;
-    word-wrap: break-word;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .genres {
-    display: inline-block;
-    color: #c3c3c3;
-    font-size: 0.85em;
-    margin-bottom: 0.8em;
-  }
-
-  .overview {
-    color: #a4a4a4;
-    font-size: 0.75em;
-    line-height: 1.35;
-    -webkit-line-clamp: 7;
-    -webkit-box-orient: vertical;
-    display: -webkit-box;
-    word-wrap: break-word;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-`;
-
-const CardFront = styled.div`
-  width: 100%;
-`;
-
-const Container = styled.div`
-  position: relative;
-  cursor: pointer;
-
-  .cardContainer {
-    border: 1px solid gray;
-  }
-
+const CustomLink = styled(Link)`
   @media screen and (min-width: 1651px) {
     width: calc(12.5% - 0.9rem);
   }
@@ -127,6 +83,61 @@ const Container = styled.div`
   @media screen and (max-width: 300px) {
     width: 100%;
   }
+`;
+
+const CardBack = styled.div<CardPropsType>`
+  opacity: 0;
+  position: absolute;
+  height: calc(100% - 1.5em);
+  background: rgba(0, 0, 0, 0.8);
+  top: 0;
+  width: 100%;
+  z-index: 1;
+  border-radius: 5px;
+  padding: 2rem 1.8rem;
+
+  .backTitle {
+    color: #ffffff;
+    font-size: 1.1em;
+    line-height: 1.2;
+    margin-bottom: 0.3em;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    word-wrap: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .genre {
+    display: inline-block;
+    color: #c3c3c3;
+    font-size: 0.85em;
+    margin-bottom: 0.8em;
+    line-height: 1.2;
+  }
+
+  .overview {
+    color: #a4a4a4;
+    font-size: 0.75em;
+    line-height: 1.35;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    word-wrap: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+`;
+
+const CardFront = styled.div`
+  width: 100%;
+`;
+
+const Container = styled.div`
+  position: relative;
+  flex-shrink: 0;
+  cursor: pointer;
 
   &:hover {
     ${CardBack} {
@@ -160,7 +171,7 @@ const InfoBox = styled.div`
     color: #f1f1f1;
     font-size: 3em;
     font-weight: bold;
-    margin: -0.45em 1rem 0 0.2rem;
+    margin: -0.5em 1rem 0 0.2rem;
     z-index: 3;
     text-shadow: 5px 0px 5px rgba(0, 0, 0, 0.5);
   }

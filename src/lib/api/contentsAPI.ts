@@ -3,8 +3,12 @@ import api from "./api";
 const url = "/contents";
 
 const contents = {
-  getMovies: async () => {
-    const res = await api.get(`${url}`);
+  getContents: async (type: string) => {
+    return api.get(`${url}`, {
+      params: {
+        type: type,
+      },
+    });
   },
 };
 
