@@ -91,6 +91,7 @@ const CardBack = styled.div<CardPropsType>`
   height: calc(100% - 1.5em);
   background: rgba(0, 0, 0, 0.8);
   top: 0;
+  width: 100%;
   z-index: 1;
   border-radius: 5px;
   padding: 2rem 1.8rem;

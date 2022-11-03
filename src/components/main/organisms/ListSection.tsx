@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import styled from "styled-components";
 
 import { useRecoilValue } from "recoil";
@@ -17,10 +18,13 @@ type ListTitlesType = {
 };
 
 function ListSection() {
-  const [content, setContent] = useState<any>({});
-  const type =
-    useRecoilValue(selectedTypeState) === "movie" ? "영화" : "TV 프로그램";
+  const [content, setContent] = useState<any>({}); //
+  // const type =
+  //   useRecoilValue(selectedTypeState) === "movie" ? "영화" : "TV 프로그램";
   const { userName } = useRecoilValue(loggedUserState);
+  const {
+    query: { type },
+  } = useRouter();
   // const contents = useRecoilValue(recommendContentsQuery);
 
   const listTitles: ListTitlesType = {
@@ -33,12 +37,12 @@ function ListSection() {
 
   useEffect(() => {
     const getData = async () => {
-      const res = await contents.getContents("movie");
+      if (type !== "movie" && type !== "tv") return;
+      const res = await contents.getContents(type as string);
       setContent(res.data);
-      console.log(Object.values(res.data));
     };
     getData();
-  }, []);
+  }, [type]);
 
   return (
     <Section>
