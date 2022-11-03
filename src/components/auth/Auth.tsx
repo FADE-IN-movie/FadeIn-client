@@ -27,7 +27,7 @@ function Auth() {
       userImg: userImg,
     });
     setAuthorizationToken(accessToken);
-  }, []);
+  }, [setLoggedUser]);
 
   return <div></div>;
 }

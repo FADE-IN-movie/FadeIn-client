@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  images: {
+    domains: ["localhost", "image.tmdb.org", "*"],
+  },
   reactStrictMode: true,
   swcMinify: true,
   compiler: {
@@ -12,11 +15,6 @@ const nextConfig = {
       use: ["@svgr/webpack"],
     });
     return config;
-  },
-  experimental: {
-    images: {
-      allowFutureImage: true,
-    },
   },
 };
 

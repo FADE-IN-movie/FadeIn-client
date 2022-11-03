@@ -13,7 +13,6 @@ import SignInBtn from "./atoms/SignInBtn";
 import Modal from "../Modal";
 import SignInBox from "@components/auth/SignInBox";
 import Link from "next/link";
-import { verifyToken } from "@utils/account";
 
 function Header() {
   const [isSignInModalOpen, setIsSignInModalOpen] = useState(false);

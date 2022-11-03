@@ -9,7 +9,6 @@ import NextIcon from "@images/next_arrow_icon.svg";
 
 interface IProps {
   children: ReactNode;
-  limit: number;
 }
 
 function Carousel({ children }: IProps) {
@@ -136,7 +135,7 @@ const Container = styled.div`
 const Btn = styled.button`
   position: absolute;
   top: 0;
-  height: calc(100% - 2.8rem);
+  height: calc(100% - 2.6rem);
   padding: 1rem;
   background: rgba(0, 0, 0, 0.5);
   z-index: 5;

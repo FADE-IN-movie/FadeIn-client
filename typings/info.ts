@@ -1,6 +1,9 @@
 export interface IContentInfo {
+  id: number;
+  rank?: number;
+  type: string;
   title: string;
   genre: string[];
-  overview: string;
-  rank?: number;
+  poster: string;
+  overview?: string;
 }
