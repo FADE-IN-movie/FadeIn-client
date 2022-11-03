@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useSetRecoilState } from "recoil";
-import { loggedUserState } from "@states/user";
+import { loggedUserState } from "@states/users";
 import { getCookie } from "@utils/cookie";
 import { setAuthorizationToken } from "@utils/account";
 

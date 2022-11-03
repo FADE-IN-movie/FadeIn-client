@@ -2,7 +2,7 @@ import { AxiosRequestConfig } from "axios";
 import { getCookie, removeCookie, setCookie } from "./cookie";
 import { setRecoil, resetRecoil } from "recoil-nexus";
 import moment from "moment";
-import { loggedUserState } from "@states/user";
+import { loggedUserState } from "@states/users";
 import { IUser } from "@typings/user";
 
 import api from "src/lib/api/api";

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { theme } from "@styles/theme";
 
 import { useRecoilValue } from "recoil";
-import { isSignInState } from "@states/user";
+import { isSignInState } from "@states/users";
 
 import Logo from "../Logo";
 import MenuList from "./molecules/NavMenuList";
