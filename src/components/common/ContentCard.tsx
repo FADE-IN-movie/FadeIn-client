@@ -1,91 +1,58 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import Image from "next/image";
 
 import { IContentInfo } from "@typings/info";
-import Link from "next/link";
 
 interface IProps {
   info: IContentInfo;
   width?: number;
+  responsive?: boolean;
 }
 
 type TitlePropsType = {
-  isDigit?: boolean;
+  digit?: number;
 };
 
 type CardPropsType = {
-  width?: number;
+  responsive?: boolean;
 };
 
-function ContentCard({ info }: IProps) {
+function ContentCard({ info, responsive }: IProps) {
   return (
-    <CustomLink href="">
-      <a>
-        <Container>
-          <div>
-            <CardFront>
-              <ImageWrap>
-                <Image
-                  src={info.poster}
-                  className="autoImg"
-                  layout="fill"
-                  loading="lazy"
-                  alt="posterImg"
-                />
-              </ImageWrap>
-            </CardFront>
-            <CardBack>
-              <h3 className="backTitle">{info.title}</h3>
-              <span className="genre">
-                {info.genre?.slice(0, 4).join(", ")}
-              </span>
-              <p className="overview">{info.overview}</p>
-            </CardBack>
-          </div>
-          <InfoBox>
-            {info.rank !== undefined && info.rank > 0 && (
-              <div className="rank">{info.rank}</div>
-            )}
-            <Title isDigit={info.rank && info.rank < 10 ? true : false}>
-              {info.title}
-            </Title>
-          </InfoBox>
-        </Container>
-      </a>
-    </CustomLink>
+    <Container responsive={responsive}>
+      <div>
+        <CardFront>
+          <ImageWrap>
+            <Image
+              src={info.poster}
+              className="autoImg"
+              layout="fill"
+              loading="lazy"
+              alt="posterImg"
+            />
+          </ImageWrap>
+        </CardFront>
+        <CardBack>
+          <h3 className="backTitle">{info.title}</h3>
+          <span className="genre">{info.genre?.slice(0, 4).join(", ")}</span>
+          <p className="overview">{info.overview}</p>
+        </CardBack>
+      </div>
+      <InfoBox>
+        {info.rank !== undefined && info.rank > 0 && (
+          <div className="rank">{info.rank}</div>
+        )}
+        <Title digit={info.rank ? (info.rank < 10 ? 1 : 2) : 0}>
+          {info.title}
+        </Title>
+      </InfoBox>
+    </Container>
   );
 }
 
 export default ContentCard;
 
-const CustomLink = styled(Link)`
-  @media screen and (min-width: 1651px) {
-    width: calc(12.5% - 0.9rem);
-  }
-  @media screen and (max-width: 1650px) {
-    width: calc(14.25% - 0.85rem);
-  }
-  @media screen and (max-width: 1400px) {
-    width: calc(16.67% - 0.85rem);
-  }
-  @media screen and (max-width: 1200px) {
-    width: calc(20% - 0.85rem);
-  }
-  @media screen and (max-width: 950px) {
-    width: calc(25% - 0.85rem);
-  }
-  @media screen and (max-width: 720px) {
-    width: calc(33.3% - 0.85rem);
-  }
-  @media screen and (max-width: 500px) {
-    width: calc(50% - 0.85rem);
-  }
-  @media screen and (max-width: 300px) {
-    width: 100%;
-  }
-`;
-
-const CardBack = styled.div<CardPropsType>`
+const CardBack = styled.div`
   opacity: 0;
   position: absolute;
   height: calc(100% - 1.5em);
@@ -134,10 +101,39 @@ const CardFront = styled.div`
   width: 100%;
 `;
 
-const Container = styled.div`
+const Container = styled.div<CardPropsType>`
   position: relative;
   flex-shrink: 0;
   cursor: pointer;
+
+  ${(props) =>
+    props.responsive &&
+    css`
+      @media screen and (min-width: 1651px) {
+        width: calc(12.5% - 0.9rem);
+      }
+      @media screen and (max-width: 1650px) {
+        width: calc(14.25% - 0.85rem);
+      }
+      @media screen and (max-width: 1400px) {
+        width: calc(16.67% - 0.85rem);
+      }
+      @media screen and (max-width: 1200px) {
+        width: calc(20% - 0.85rem);
+      }
+      @media screen and (max-width: 950px) {
+        width: calc(25% - 0.85rem);
+      }
+      @media screen and (max-width: 720px) {
+        width: calc(33.3% - 0.85rem);
+      }
+      @media screen and (max-width: 500px) {
+        width: calc(50% - 0.85rem);
+      }
+      @media screen and (max-width: 300px) {
+        width: 100%;
+      }
+    `}
 
   &:hover {
     ${CardBack} {
@@ -148,20 +144,10 @@ const Container = styled.div`
 
 const ImageWrap = styled.div`
   position: relative;
-  width: 100%;
-  height: 100%;
   border-radius: 5px;
   overflow: hidden;
+  height: 14.5em;
   cursor: pointer;
-
-  & > span {
-    position: unset !important;
-    & .autoImg {
-      object-fit: contain !important;
-      position: relative !important;
-      height: auto !important;
-    }
-  }
 `;
 
 const InfoBox = styled.div`
@@ -169,7 +155,7 @@ const InfoBox = styled.div`
 
   .rank {
     color: #f1f1f1;
-    font-size: 3em;
+    font-size: 3.5em;
     font-weight: bold;
     margin: -0.5em 1rem 0 0.2rem;
     z-index: 3;
@@ -181,7 +167,13 @@ const Title = styled.span<TitlePropsType>`
   font-size: 0.9em;
   color: #bbbbbb;
   margin-top: 0.7em;
-  width: ${(props) => (props.isDigit ? "12.5rem" : "10rem")};
+  width: ${(props) => {
+    const digit = props.digit;
+
+    if (digit === 0) return "15rem";
+    if (digit === 1) return "12.5rem";
+    else return "10rem";
+  }};
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
