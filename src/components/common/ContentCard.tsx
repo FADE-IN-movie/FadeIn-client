@@ -72,7 +72,7 @@ const CardBack = styled.div<CardBackPropsType>`
     color: #ffffff;
     font-size: 1.1em;
     line-height: 1.2;
-    margin-bottom: 0.3em;
+    margin-bottom: 0.1em;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     display: -webkit-box;
@@ -84,14 +84,14 @@ const CardBack = styled.div<CardBackPropsType>`
   .genre {
     display: inline-block;
     color: #c3c3c3;
-    font-size: 0.85em;
-    margin-bottom: 0.8em;
+    font-size: 0.8em;
+    margin-bottom: 0.9em;
     line-height: 1.2;
   }
 
   .overview {
     color: #a4a4a4;
-    font-size: 0.75em;
+    font-size: 0.7em;
     line-height: 1.35;
     -webkit-line-clamp: 6;
     -webkit-box-orient: vertical;

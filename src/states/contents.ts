@@ -1,15 +1,13 @@
-import { atom, selector } from "recoil";
+import { selector } from "recoil";
+import { currentPageState } from "./pages";
 import contents from "@lib/api/contentsAPI";
-
-export const selectedTypeState = atom({
-  key: "selectedTypeState",
-  default: "movie",
-});
 
 export const recommendContentsQuery = selector({
   key: "recommendContentsQuery",
   get: async ({ get }) => {
-    const res = await contents.getContents(get(selectedTypeState));
+    const page = get(currentPageState);
+    if (page === "rank") return;
+    const res = await contents.getRecommendContents(page);
     return res.data;
   },
 });
