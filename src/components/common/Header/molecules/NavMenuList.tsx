@@ -1,22 +1,31 @@
 import Link from "next/link";
 import styled from "styled-components";
 
+import { useRecoilValue } from "recoil";
+import { currentPageState } from "@states/pages";
+
 import NavMenu from "../atoms/NavMenu";
 
 function NavMenuList() {
+  const currentPage = useRecoilValue(currentPageState);
+
   return (
     <List>
       <Link href="/movie">
         <a>
-          <NavMenu>영화</NavMenu>
+          <NavMenu isActive={currentPage === "movie"}>영화</NavMenu>
         </a>
       </Link>
       <Link href="/tv">
         <a>
-          <NavMenu>TV 프로그램</NavMenu>
+          <NavMenu isActive={currentPage === "tv"}>TV 프로그램</NavMenu>
         </a>
       </Link>
-      <NavMenu>랭킹</NavMenu>
+      <Link href="/rank">
+        <a>
+          <NavMenu isActive={currentPage === "rank"}>랭킹</NavMenu>
+        </a>
+      </Link>
     </List>
   );
 }
