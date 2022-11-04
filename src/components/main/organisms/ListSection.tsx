@@ -32,6 +32,7 @@ function ListSection() {
     recommend: `FADE-IN 추천 ${type}`,
   };
 
+  if (state === "loading") return null;
   return (
     <Section>
       {Object.keys(content)?.map((title, i) => (
