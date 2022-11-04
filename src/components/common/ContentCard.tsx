@@ -17,6 +17,10 @@ type CardPropsType = {
   responsive?: boolean;
 };
 
+type CardBackPropsType = {
+  isRank: boolean;
+};
+
 function ContentCard({ info, responsive }: IProps) {
   return (
     <Container responsive={responsive}>
@@ -32,7 +36,7 @@ function ContentCard({ info, responsive }: IProps) {
             />
           </ImageWrap>
         </CardFront>
-        <CardBack>
+        <CardBack isRank={info.rank !== undefined && info.rank > 0}>
           <h3 className="backTitle">{info.title}</h3>
           <span className="genre">{info.genre?.slice(0, 4).join(", ")}</span>
           <p className="overview">{info.overview}</p>
@@ -52,10 +56,11 @@ function ContentCard({ info, responsive }: IProps) {
 
 export default ContentCard;
 
-const CardBack = styled.div`
+const CardBack = styled.div<CardBackPropsType>`
   opacity: 0;
   position: absolute;
   height: calc(100% - 1.5em);
+  height: ${(props) => props.isRank && "calc(100% - 1.8em)"};
   background: rgba(0, 0, 0, 0.8);
   top: 0;
   width: 100%;
@@ -105,6 +110,7 @@ const Container = styled.div<CardPropsType>`
   position: relative;
   flex-shrink: 0;
   cursor: pointer;
+  width: 10em;
 
   ${(props) =>
     props.responsive &&
@@ -155,9 +161,9 @@ const InfoBox = styled.div`
 
   .rank {
     color: #f1f1f1;
-    font-size: 3.5em;
+    font-size: 4em;
     font-weight: bold;
-    margin: -0.5em 1rem 0 0.2rem;
+    margin: -0.55em 1rem 0 0.2rem;
     z-index: 3;
     text-shadow: 5px 0px 5px rgba(0, 0, 0, 0.5);
   }
@@ -169,7 +175,6 @@ const Title = styled.span<TitlePropsType>`
   margin-top: 0.7em;
   width: ${(props) => {
     const digit = props.digit;
-
     if (digit === 0) return "15rem";
     if (digit === 1) return "12.5rem";
     else return "10rem";
