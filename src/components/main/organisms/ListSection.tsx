@@ -30,7 +30,8 @@ function ListSection() {
   const listTitles: ListTitlesType = {
     popular: `실시간 ${type} Top 10`,
     topRate: `역대 ${type} Top`,
-    nowPlaying: `현재 상영 중인 ${type}`,
+    nowPlaying:
+      type === "movie" ? `현재 상영 중인 ${type}` : `방영 중인 ${type}`,
     preference: `${userName}님이 좋아할만한 ${type}`,
     recommend: `FADE-IN 추천 ${type}`,
   };
