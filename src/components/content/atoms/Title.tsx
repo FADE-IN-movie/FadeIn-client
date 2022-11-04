@@ -1,0 +1,16 @@
+import { ReactNode } from "react";
+import styled from "styled-components";
+
+interface IProps {
+  children: ReactNode;
+}
+
+function Title({ children }: IProps) {
+  return <CustomTitle>{children}</CustomTitle>;
+}
+
+export default Title;
+
+const CustomTitle = styled.h1`
+  font-size: 3.5rem;
+`;
