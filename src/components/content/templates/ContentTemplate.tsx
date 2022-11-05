@@ -1,7 +1,10 @@
 import styled from "styled-components";
 
 import ButtonControlBox from "../organisms/BtnControlBox";
+import CastSection from "../organisms/CastSection";
+import ContentDetailInfoSection from "../organisms/ContentDetailInfoSection";
 import ContentInfoBox from "../organisms/ContentInfoBox";
+import SimilarContentsSection from "../organisms/SimilarContentsSection";
 
 function ContentTemplate() {
   return (
@@ -13,6 +16,15 @@ function ContentTemplate() {
             <ButtonControlBox />
           </div>
         </TopContent>
+        <Main>
+          <MainContent>
+            <ContentDetailInfoSection />
+            <SimilarContentsSection />
+          </MainContent>
+          <SideContent>
+            <CastSection />
+          </SideContent>
+        </Main>
       </Contents>
     </div>
   );
@@ -22,9 +34,9 @@ export default ContentTemplate;
 
 const Contents = styled.div`
   background: #1a1a1a;
+  max-width: 1280px;
   margin: 0 auto;
   padding: 5rem;
-  width: fit-content;
 `;
 
 const TopContent = styled.div`
@@ -33,6 +45,25 @@ const TopContent = styled.div`
   justify-content: center;
 
   .boxWrap {
-    margin: 0 0 5rem 3rem;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5rem;
+    width: 35%;
   }
+`;
+
+const Main = styled.main`
+  display: flex;
+  justify-content: space-between;
+`;
+
+const MainContent = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 65%;
+  margin-top: 7rem;
+`;
+
+const SideContent = styled.div`
+  width: 35%;
 `;
