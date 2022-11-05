@@ -59,11 +59,15 @@ const Main = styled.main`
 
 const MainContent = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  gap: 6rem;
   width: 65%;
   margin-top: 7rem;
 `;
 
 const SideContent = styled.div`
   width: 35%;
+  margin-top: 3rem;
+  padding: 4rem;
 `;

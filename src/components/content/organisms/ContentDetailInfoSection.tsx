@@ -5,7 +5,9 @@ import Descript from "../molecules/Descript";
 function ContentDetailInfoSection() {
   return (
     <Section>
-      <CustomTitle>세부 정보</CustomTitle>
+      <div className="titleWrap">
+        <CustomTitle>세부 정보</CustomTitle>
+      </div>
       <div className="detailInfoBox">
         <div className="infoBox">
           <Descript title="원제" value="Thor:Love and Thunder" />
@@ -32,9 +34,11 @@ export default ContentDetailInfoSection;
 const Section = styled.section`
   width: 100%;
 
-  .detailInfoBox {
-    padding: 2.5rem 1rem;
+  .titleWrap {
+    margin-bottom: 2.5rem;
+  }
 
+  .detailInfoBox {
     .infoBox {
       display: grid;
       grid-template-columns: 1fr 1fr;
