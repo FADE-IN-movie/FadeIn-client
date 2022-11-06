@@ -139,7 +139,7 @@ const Container = styled.div<CardPropsType>`
       @media screen and (max-width: 300px) {
         width: 100%;
       }
-    `}
+    `};
 
   &:hover {
     ${CardBack} {

@@ -124,5 +124,7 @@ const Section = styled.section`
     display: flex;
     flex-wrap: wrap;
     gap: 3rem 1rem;
+    font-size: 1.5rem;
+    border: 1px solid gray;
   }
 `;

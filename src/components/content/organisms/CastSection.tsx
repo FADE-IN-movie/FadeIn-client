@@ -20,6 +20,9 @@ function CastSection() {
         <CastInfoBox info={castInfo} />
         <CastInfoBox info={castInfo} />
         <CastInfoBox info={castInfo} />
+        <CastInfoBox info={castInfo} />
+        <CastInfoBox info={castInfo} />
+        <CastInfoBox info={castInfo} />
       </div>
     </Section>
   );

@@ -32,6 +32,7 @@ const Box = styled.div<DescriptPropsType>`
     color: ${(props) => (props.isMain ? "white" : "#bbbbbb")};
     margin-bottom: ${(props) => props.isOverview && "1rem"};
     margin-right: 1.5rem;
+    line-height: 1.4;
   }
 
   .value {

@@ -1,13 +1,11 @@
 import styled from "styled-components";
 
-import Poster from "../atoms/Poster";
 import Title from "../atoms/Title";
 import Descript from "../molecules/Descript";
 
 function ContentInfoBox() {
   return (
     <Box>
-      <Poster />
       <div className="contentInfoBox">
         <Title>토르: 러브 앤 썬더</Title>
         <div className="contentDetailInfoBox">

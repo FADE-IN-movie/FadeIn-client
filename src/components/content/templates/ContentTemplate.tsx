@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+import Poster from "../atoms/Poster";
 import ButtonControlBox from "../organisms/BtnControlBox";
 import CastSection from "../organisms/CastSection";
 import ContentDetailInfoSection from "../organisms/ContentDetailInfoSection";
@@ -11,9 +12,12 @@ function ContentTemplate() {
     <div>
       <Contents>
         <TopContent>
-          <ContentInfoBox />
-          <div className="boxWrap">
-            <ButtonControlBox />
+          <Poster />
+          <div className="container">
+            <ContentInfoBox />
+            <div className="boxWrap">
+              <ButtonControlBox />
+            </div>
           </div>
         </TopContent>
         <Main>
@@ -42,32 +46,52 @@ const Contents = styled.div`
 const TopContent = styled.div`
   display: flex;
   align-items: flex-end;
-  justify-content: center;
+
+  .container {
+    display: flex;
+    flex-grow: 1;
+    @media screen and (max-width: 1000px) {
+      flex-direction: column;
+    }
+  }
 
   .boxWrap {
     display: flex;
     justify-content: center;
+    @media screen and (max-width: 1000px) {
+      justify-content: start;
+      margin: 2rem 0 0 4rem;
+    }
+    flex-grow: 2;
+    align-items: flex-end;
     margin-bottom: 5rem;
-    width: 35%;
   }
 `;
 
 const Main = styled.main`
   display: flex;
+  @media screen and (max-width: 1280px) {
+    flex-direction: column;
+  }
   justify-content: space-between;
 `;
 
 const MainContent = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   gap: 6rem;
   width: 65%;
+  @media screen and (max-width: 1280px) {
+    width: 100%;
+  }
   margin-top: 7rem;
 `;
 
 const SideContent = styled.div`
   width: 35%;
-  margin-top: 3rem;
-  padding: 4rem;
+  margin-top: 5rem;
+  padding: 2rem 4rem;
+  @media screen and (max-width: 1280px) {
+    padding: 0;
+  }
 `;
