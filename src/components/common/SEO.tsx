@@ -5,7 +5,7 @@ interface IProps {
 }
 
 function SEO({ title }: IProps) {
-  const text = title ? `${title} | ` : "" + "FADE-IN";
+  const text = (title ? `${title} | ` : "") + "FADE-IN";
   return (
     <Head>
       <title>{text}</title>
