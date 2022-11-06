@@ -66,7 +66,7 @@ const CardBack = styled.div<CardBackPropsType>`
   width: 100%;
   z-index: 1;
   border-radius: 5px;
-  padding: 2rem 1.8rem;
+  padding: 1.3em 1.1em;
 
   .backTitle {
     color: #ffffff;
@@ -111,35 +111,6 @@ const Container = styled.div<CardPropsType>`
   flex-shrink: 0;
   cursor: pointer;
   width: 10em;
-
-  ${(props) =>
-    props.responsive &&
-    css`
-      @media screen and (min-width: 1651px) {
-        width: calc(12.5% - 0.9rem);
-      }
-      @media screen and (max-width: 1650px) {
-        width: calc(14.25% - 0.85rem);
-      }
-      @media screen and (max-width: 1400px) {
-        width: calc(16.67% - 0.85rem);
-      }
-      @media screen and (max-width: 1200px) {
-        width: calc(20% - 0.85rem);
-      }
-      @media screen and (max-width: 950px) {
-        width: calc(25% - 0.85rem);
-      }
-      @media screen and (max-width: 720px) {
-        width: calc(33.3% - 0.85rem);
-      }
-      @media screen and (max-width: 500px) {
-        width: calc(50% - 0.85rem);
-      }
-      @media screen and (max-width: 300px) {
-        width: 100%;
-      }
-    `};
 
   &:hover {
     ${CardBack} {

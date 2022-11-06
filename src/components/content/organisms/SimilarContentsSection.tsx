@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-import Carousel from "@components/common/Carousel";
 import ContentCard from "@components/common/ContentCard";
 import CustomTitle from "@components/common/CustomTitle";
 import Grid from "@components/layouts/Grid";
@@ -104,11 +103,11 @@ function SimilarContentsSection() {
       <div className="titleWrap">
         <CustomTitle>비슷한 영화</CustomTitle>
       </div>
-      <div className="contentsGrid">
+      <Grid narrow>
         {infoData.map((info, i) => (
           <ContentCard key={i} responsive info={info} />
         ))}
-      </div>
+      </Grid>
     </Section>
   );
 }
@@ -118,13 +117,5 @@ export default SimilarContentsSection;
 const Section = styled.section`
   .titleWrap {
     margin-bottom: 2rem;
-  }
-
-  .contentsGrid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 3rem 1rem;
-    font-size: 1.5rem;
-    border: 1px solid gray;
   }
 `;
