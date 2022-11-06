@@ -13,20 +13,20 @@ function BtnControlBox() {
   return (
     <Box>
       <ContentActionBtn text="감상평">
-        <WriteIcon width="2.5rem" height="2.45rem" />
+        <WriteIcon width="3rem" height="2.95rem" />
       </ContentActionBtn>
       <ContentActionBtn
         text="찜"
         onClickHandler={() => setIsHeart((prev) => !prev)}
       >
         {isHeart ? (
-          <FillHeartIcon width="2.5rem" />
+          <FillHeartIcon width="3rem" />
         ) : (
-          <OutlineHeartIcon width="2.5rem" />
+          <OutlineHeartIcon width="3rem" />
         )}
       </ContentActionBtn>
       <ContentActionBtn text="공유">
-        <ShareIcon width="2.7rem" />
+        <ShareIcon width="3.2rem" />
       </ContentActionBtn>
     </Box>
   );
@@ -36,5 +36,5 @@ export default BtnControlBox;
 
 const Box = styled.div`
   display: flex;
-  gap: 3rem;
+  gap: 4rem;
 `;
