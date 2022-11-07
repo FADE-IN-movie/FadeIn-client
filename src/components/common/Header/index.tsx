@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import styled from "styled-components";
 import { theme } from "@styles/theme";
 
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { isSignInState } from "@states/users";
+import { currentPageState } from "@states/pages";
 
 import Logo from "../Logo";
 import MenuList from "./molecules/NavMenuList";
@@ -15,11 +17,21 @@ import SignInBox from "@components/auth/SignInBox";
 import Link from "next/link";
 
 function Header() {
+  const isSignIn = useRecoilValue(isSignInState);
   const [isSignInModalOpen, setIsSignInModalOpen] = useState(false);
+  const setCurrentPage = useSetRecoilState(currentPageState);
+  const {
+    pathname,
+    query: { type },
+  } = useRouter();
 
   const onOpenSignInModal = () => setIsSignInModalOpen(true);
 
-  const isSignIn = useRecoilValue(isSignInState);
+  useEffect(() => {
+    if (pathname === "/" && (type === "movie" || type === "tv"))
+      setCurrentPage(type as string);
+    else setCurrentPage("");
+  }, [pathname, type, setCurrentPage]);
 
   return (
     <>
