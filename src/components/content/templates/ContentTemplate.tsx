@@ -23,6 +23,9 @@ function ContentTemplate() {
         <Main>
           <MainContent>
             <ContentDetailInfoSection />
+            <div className="castSectionWrap">
+              <CastSection />
+            </div>
             <SimilarContentsSection />
           </MainContent>
           <SideContent>
@@ -85,6 +88,12 @@ const MainContent = styled.div`
     width: 100%;
   }
   margin-top: 7rem;
+
+  .castSectionWrap {
+    @media screen and (min-width: 1281px) {
+      display: none;
+    }
+  }
 `;
 
 const SideContent = styled.div`
@@ -92,6 +101,6 @@ const SideContent = styled.div`
   margin-top: 5rem;
   padding: 2rem 4rem;
   @media screen and (max-width: 1280px) {
-    padding: 0;
+    display: none;
   }
 `;

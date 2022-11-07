@@ -23,13 +23,15 @@ export default CastInfoBox;
 
 const Box = styled.div`
   display: flex;
+  background: #222222;
+  border-radius: 4px;
 
   .infoBox {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
     gap: 0.7rem;
-    padding: 1.3rem;
+    padding: 1.5rem;
 
     .name {
       font-size: 1.3rem;

@@ -45,7 +45,7 @@ export default Grid;
 const Layout = styled.div<LayoutPropsType>`
   display: flex;
   flex-wrap: wrap;
-  gap: 5rem 1rem;
+  gap: 3em 1rem;
   font-size: ${(props) => `${props.width}px`};
 
   & > div {
