@@ -23,6 +23,8 @@ export default CastInfoBox;
 
 const Box = styled.div`
   display: flex;
+  background: #222222;
+  border-radius: 4px;
 
   .infoBox {
     display: flex;

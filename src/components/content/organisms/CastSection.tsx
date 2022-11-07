@@ -21,8 +21,6 @@ function CastSection() {
         <CastInfoBox info={castInfo} />
         <CastInfoBox info={castInfo} />
         <CastInfoBox info={castInfo} />
-        <CastInfoBox info={castInfo} />
-        <CastInfoBox info={castInfo} />
       </div>
     </Section>
   );
@@ -38,6 +36,8 @@ const Section = styled.section`
   .castInfoContainer {
     display: flex;
     flex-direction: column;
+    /* flex-direction: row;
+    flex-wrap: wrap; */
     gap: 2rem;
   }
 `;
