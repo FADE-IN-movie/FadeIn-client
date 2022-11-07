@@ -31,7 +31,7 @@ const Box = styled.div`
     flex-direction: column;
     flex-grow: 1;
     gap: 0.7rem;
-    padding: 1.3rem;
+    padding: 1.5rem;
 
     .name {
       font-size: 1.3rem;
