@@ -99,7 +99,7 @@ const MainContent = styled.div`
 const SideContent = styled.div`
   width: 35%;
   margin-top: 5rem;
-  padding: 2rem 4rem;
+  padding: 2rem 0rem 2rem 4rem;
   @media screen and (max-width: 1280px) {
     display: none;
   }
