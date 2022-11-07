@@ -15,7 +15,7 @@ function ContentTemplate() {
           <Poster />
           <div className="container">
             <ContentInfoBox />
-            <div className="boxWrap">
+            <div className="buttonBoxWrap">
               <ButtonControlBox />
             </div>
           </div>
@@ -58,7 +58,7 @@ const TopContent = styled.div`
     }
   }
 
-  .boxWrap {
+  .buttonBoxWrap {
     display: flex;
     justify-content: center;
     @media screen and (max-width: 1000px) {

@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from "axios";
 import { getCookie, removeCookie, setCookie } from "./cookie";
 import { setRecoil, resetRecoil } from "recoil-nexus";
+import Router from "next/router";
 import moment from "moment";
 import { loggedUserState } from "@states/users";
 import { IUser } from "@typings/user";
@@ -53,7 +54,8 @@ export function signIn(info: IUser & ITokenInfo) {
     userImg: userImg,
   });
 
-  window.location.replace("/");
+  // window.location.replace("/");
+  Router.push("/");
 }
 
 export function signOut() {
@@ -97,7 +99,6 @@ export function naverSignIn() {
     //@ts-ignore
     const signIn = new naver.LoginWithNaverId({
       clientId: process.env.NEXT_PUBLIC_NAVER_CLIENT_ID,
-      clientSecret: process.env.NEXT_PUBLIC_NAVER_CLIENT_SECRET,
       callbackUrl: process.env.NEXT_PUBLIC_NAVER_REDIRECT_URI,
       isPopup: false,
       loginButton: { color: "green", type: 3, height: 40, width: 250 },
