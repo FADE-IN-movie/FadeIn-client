@@ -14,7 +14,9 @@ const ContentTemplate = () => {
       <BackDrop />
       <Contents>
         <TopContent>
-          <Poster />
+          <div className="posterWrap">
+            <Poster />
+          </div>
           <div className="container">
             <ContentInfoBox />
             <div className="buttonBoxWrap">
@@ -45,12 +47,17 @@ const Contents = styled.div`
   background: #1a1a1a;
   max-width: 1280px;
   margin: 0 auto;
-  padding: 5rem;
+  padding: 2rem 5rem 5rem 5rem;
 `;
 
 const TopContent = styled.div`
   display: flex;
   align-items: flex-end;
+  position: relative;
+
+  .posterWrap {
+    margin-top: -7rem;
+  }
 
   .container {
     display: flex;
