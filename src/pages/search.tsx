@@ -4,7 +4,7 @@ import styled from "styled-components";
 import SEO from "@components/common/SEO";
 import SearchPageTemplate from "@components/search/templates/SearchPageTemplate";
 
-function SearchPage() {
+const SearchPage = () => {
   const { query } = useRouter();
   return (
     <Wrap>
@@ -12,7 +12,7 @@ function SearchPage() {
       <SearchPageTemplate />
     </Wrap>
   );
-}
+};
 
 export default SearchPage;
 

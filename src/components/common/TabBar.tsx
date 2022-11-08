@@ -16,7 +16,7 @@ type UnderLinePropsType = {
   pos: number;
 };
 
-function TabBar({ menu }: IProps) {
+const TabBar = ({ menu }: IProps) => {
   const [lineWidth, setLineWidth] = useState(0);
   const [linePos, setLinePos] = useState(0);
   const [selectedMenuIdx, setSelectedMenuIdx] = useState(0);
@@ -61,7 +61,7 @@ function TabBar({ menu }: IProps) {
       <UnderLine width={lineWidth} pos={linePos} />
     </Bar>
   );
-}
+};
 
 export default TabBar;
 

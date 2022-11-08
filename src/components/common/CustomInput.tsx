@@ -21,7 +21,7 @@ interface InputPropsType {
   spellCheck: boolean;
 }
 
-function CustomInput({
+const CustomInput = ({
   inputRef,
   isVisible,
   search,
@@ -30,7 +30,7 @@ function CustomInput({
   placeholderText,
   value,
   handleChangeInput,
-}: IProps) {
+}: IProps) => {
   return (
     <Input
       type="text"
@@ -45,7 +45,7 @@ function CustomInput({
       onChange={handleChangeInput}
     />
   );
-}
+};
 
 export default CustomInput;
 

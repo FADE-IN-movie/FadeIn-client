@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { theme } from "@styles/theme";
 
-function MainText() {
+const MainText = () => {
   return (
     <Box>
       <p className="phrase">
@@ -17,7 +17,7 @@ function MainText() {
       </p>
     </Box>
   );
-}
+};
 
 export default MainText;
 

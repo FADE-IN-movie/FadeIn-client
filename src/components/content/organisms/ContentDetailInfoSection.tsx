@@ -2,7 +2,7 @@ import CustomTitle from "@components/common/CustomTitle";
 import styled from "styled-components";
 import Descript from "../molecules/Descript";
 
-function ContentDetailInfoSection() {
+const ContentDetailInfoSection = () => {
   return (
     <Section>
       <div className="titleWrap">
@@ -27,7 +27,7 @@ function ContentDetailInfoSection() {
       </div>
     </Section>
   );
-}
+};
 
 export default ContentDetailInfoSection;
 

@@ -7,14 +7,14 @@ interface IProps {
   onClickHandler?: () => void;
 }
 
-function ContentActionBtn({ children, text, onClickHandler }: IProps) {
+const ContentActionBtn = ({ children, text, onClickHandler }: IProps) => {
   return (
     <Button onClick={onClickHandler}>
       {children}
       <label>{text}</label>
     </Button>
   );
-}
+};
 
 export default ContentActionBtn;
 

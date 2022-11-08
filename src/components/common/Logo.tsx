@@ -2,9 +2,9 @@ import styled from "styled-components";
 
 import { theme } from "@styles/theme";
 
-function Logo() {
+const Logo = () => {
   return <LogoTitle>FADE-IN</LogoTitle>;
-}
+};
 
 export default Logo;
 

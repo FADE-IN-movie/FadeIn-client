@@ -12,7 +12,7 @@ type LayoutPropsType = {
   narrow?: boolean;
 };
 
-function Grid({ children, narrow }: IProps) {
+const Grid = ({ children, narrow }: IProps) => {
   const [width, setWidth] = useState(0);
   const layoutRef = useRef(null);
 
@@ -38,7 +38,7 @@ function Grid({ children, narrow }: IProps) {
       {children}
     </Layout>
   );
-}
+};
 
 export default Grid;
 

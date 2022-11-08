@@ -9,7 +9,7 @@ interface IProps {
   reviewDateArr: string[];
 }
 
-function Tbody({ today, selectedDate, reviewDateArr }: IProps) {
+const Tbody = ({ today, selectedDate, reviewDateArr }: IProps) => {
   const [dateArr, setDateArr] = useState<JSX.Element[][]>();
   const [totalDate, setTotalDate] = useState<number>();
   const [startDay, setStartDay] = useState<number>();
@@ -83,6 +83,6 @@ function Tbody({ today, selectedDate, reviewDateArr }: IProps) {
       })}
     </tbody>
   );
-}
+};
 
 export default Tbody;

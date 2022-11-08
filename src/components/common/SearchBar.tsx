@@ -12,7 +12,7 @@ interface IProps {
   width: string;
 }
 
-function SearchBar({ main, width }: IProps) {
+const SearchBar = ({ main, width }: IProps) => {
   const [keyword, setKeyword] = useState("");
   const [isInputVisible, setIsInputVisible] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -80,7 +80,7 @@ function SearchBar({ main, width }: IProps) {
       <StyledSearchIcon onClick={onClickSearchIcon} />
     </Form>
   );
-}
+};
 
 export default SearchBar;
 

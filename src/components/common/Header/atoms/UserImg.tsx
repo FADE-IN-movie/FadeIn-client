@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useRecoilValue } from "recoil";
 import { loggedUserState } from "@states/users";
 
-function UserImg() {
+const UserImg = () => {
   const loggedUser = useRecoilValue(loggedUserState);
 
   return (
@@ -17,7 +17,7 @@ function UserImg() {
       />
     </ImageWrap>
   );
-}
+};
 
 export default UserImg;
 

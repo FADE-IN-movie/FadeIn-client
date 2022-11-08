@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import Image from "next/image";
 
-function StarRating() {
+const StarRating = () => {
   const [score, setScore] = useState(0);
   const [currentScore, setCurrentScore] = useState(0);
   const starRef = useRef() as React.MutableRefObject<HTMLDivElement>;
@@ -62,7 +62,7 @@ function StarRating() {
       </div>
     </Box>
   );
-}
+};
 
 export default StarRating;
 

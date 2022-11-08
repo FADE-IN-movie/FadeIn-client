@@ -15,13 +15,13 @@ type ButtonPropsType = {
   textColor?: string;
 };
 
-function CustomBtn({
+const CustomBtn = ({
   children,
   outline,
   color,
   textColor,
   onClickHandler,
-}: IProps) {
+}: IProps) => {
   return (
     <Button
       outline={outline}
@@ -32,7 +32,7 @@ function CustomBtn({
       {children}
     </Button>
   );
-}
+};
 
 export default CustomBtn;
 

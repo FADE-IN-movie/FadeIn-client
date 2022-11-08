@@ -15,7 +15,7 @@ import Modal from "../Modal";
 import SignInBox from "@components/auth/SignInBox";
 import Link from "next/link";
 
-function Header() {
+const Header = () => {
   const isSignIn = useRecoilValue(isSignInState);
   const [isSignInModalOpen, setIsSignInModalOpen] = useState(false);
 
@@ -52,7 +52,7 @@ function Header() {
       </Modal>
     </>
   );
-}
+};
 
 export default Header;
 

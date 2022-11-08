@@ -11,7 +11,7 @@ interface IProps {
   children: ReactNode;
 }
 
-function Carousel({ children }: IProps) {
+const Carousel = ({ children }: IProps) => {
   const [isStart, setIsStart] = useState(true);
   const [isEnd, setIsEnd] = useState(false);
   const [currentItemCnt, setCurrentItemCnt] = useState(0);
@@ -108,7 +108,7 @@ function Carousel({ children }: IProps) {
       )}
     </Container>
   );
-}
+};
 
 export default Carousel;
 

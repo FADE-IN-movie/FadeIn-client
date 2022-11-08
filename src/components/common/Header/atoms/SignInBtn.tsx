@@ -4,9 +4,9 @@ interface IProps {
   onOpenSignInModal: () => void;
 }
 
-function SignInBtn({ onOpenSignInModal }: IProps) {
+const SignInBtn = ({ onOpenSignInModal }: IProps) => {
   return <Button onClick={onOpenSignInModal}>로그인</Button>;
-}
+};
 
 export default SignInBtn;
 

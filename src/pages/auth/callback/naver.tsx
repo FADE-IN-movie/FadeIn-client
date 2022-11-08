@@ -3,7 +3,7 @@ import { useEffect } from "react";
 
 import auth from "@lib/api/authAPI";
 
-function NaverCallback() {
+const NaverCallback = () => {
   const { asPath } = useRouter();
 
   useEffect(() => {
@@ -14,6 +14,6 @@ function NaverCallback() {
   }, [asPath]);
 
   return <></>;
-}
+};
 
 export default NaverCallback;

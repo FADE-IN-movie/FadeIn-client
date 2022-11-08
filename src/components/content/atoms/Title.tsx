@@ -5,9 +5,9 @@ interface IProps {
   children: ReactNode;
 }
 
-function Title({ children }: IProps) {
+const Title = ({ children }: IProps) => {
   return <CustomTitle>{children}</CustomTitle>;
-}
+};
 
 export default Title;
 

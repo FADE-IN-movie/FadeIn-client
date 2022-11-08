@@ -9,7 +9,7 @@ const castInfo = {
   role: "Thor Odinson",
 };
 
-function CastSection() {
+const CastSection = () => {
   return (
     <Section>
       <div className="titleWrap">
@@ -24,7 +24,7 @@ function CastSection() {
       </div>
     </Section>
   );
-}
+};
 
 export default CastSection;
 

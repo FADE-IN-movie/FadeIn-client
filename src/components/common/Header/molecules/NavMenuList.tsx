@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import NavMenu from "../atoms/NavMenu";
 
-function NavMenuList() {
+const NavMenuList = () => {
   const { query } = useRouter();
 
   return (
@@ -26,7 +26,7 @@ function NavMenuList() {
       </Link>
     </List>
   );
-}
+};
 
 export default NavMenuList;
 

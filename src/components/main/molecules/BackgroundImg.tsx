@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Image from "next/image";
 
-function BackgroundImg() {
+const BackgroundImg = () => {
   return (
     <Box>
       <div className="darkFilter" />
@@ -11,7 +11,7 @@ function BackgroundImg() {
       <div className="fadeOutFilter" />
     </Box>
   );
-}
+};
 
 export default BackgroundImg;
 

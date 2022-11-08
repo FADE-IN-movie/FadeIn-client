@@ -80,7 +80,7 @@ const infoData = [
 
 const menuInfo = ["영화", "TV 프로그램"];
 
-function SearchPageTemplate() {
+const SearchPageTemplate = () => {
   return (
     <div>
       <ResultText />
@@ -94,7 +94,7 @@ function SearchPageTemplate() {
       </Content>
     </div>
   );
-}
+};
 
 export default SearchPageTemplate;
 

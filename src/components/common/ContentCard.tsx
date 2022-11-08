@@ -22,7 +22,7 @@ type CardBackPropsType = {
   isRank: boolean;
 };
 
-function ContentCard({ info, responsive }: IProps) {
+const ContentCard = ({ info, responsive }: IProps) => {
   const router = useRouter();
 
   return (
@@ -63,7 +63,7 @@ function ContentCard({ info, responsive }: IProps) {
       </InfoBox>
     </Container>
   );
-}
+};
 
 export default ContentCard;
 

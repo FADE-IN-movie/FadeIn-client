@@ -12,14 +12,14 @@ type DescriptPropsType = {
   isOverview?: boolean;
 };
 
-function Descript({ main, overview, title, value }: IProps) {
+const Descript = ({ main, overview, title, value }: IProps) => {
   return (
     <Box isMain={main} isOverview={overview}>
       <span className="title">{title}</span>
       <span className="value">{value}</span>
     </Box>
   );
-}
+};
 
 export default Descript;
 

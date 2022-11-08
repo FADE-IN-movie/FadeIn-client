@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Image from "next/image";
 
-function Poster() {
+const Poster = () => {
   return (
     <ImageWrap>
       <Image
@@ -11,7 +11,7 @@ function Poster() {
       />
     </ImageWrap>
   );
-}
+};
 
 export default Poster;
 

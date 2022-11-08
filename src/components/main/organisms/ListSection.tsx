@@ -15,7 +15,7 @@ type ListTitlesType = {
   [title: string]: string;
 };
 
-function ListSection() {
+const ListSection = () => {
   const { userName } = useRecoilValue(loggedUserState);
   const { query } = useRouter();
   const { state, contents: content } = useRecoilValueLoadable(
@@ -49,7 +49,7 @@ function ListSection() {
       ))}
     </Section>
   );
-}
+};
 
 export default ListSection;
 

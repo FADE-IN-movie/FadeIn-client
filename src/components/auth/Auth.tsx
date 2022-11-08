@@ -4,7 +4,7 @@ import { loggedUserState } from "@states/users";
 import { getCookie } from "@utils/cookie";
 import { setAuthorizationToken } from "@utils/account";
 
-function Auth() {
+const Auth = () => {
   const setLoggedUser = useSetRecoilState(loggedUserState);
 
   const getUserInfo = () => {
@@ -30,6 +30,6 @@ function Auth() {
   }, [setLoggedUser]);
 
   return <div></div>;
-}
+};
 
 export default Auth;

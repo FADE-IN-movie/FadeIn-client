@@ -11,7 +11,7 @@ interface IProps {
   handleSignIn: () => void;
 }
 
-function SocialSignInBtn({ children, imgUrl, color, handleSignIn }: IProps) {
+const SocialSignInBtn = ({ children, imgUrl, color, handleSignIn }: IProps) => {
   return (
     <Button color={color} onClick={handleSignIn}>
       <div className="wrap">
@@ -20,7 +20,7 @@ function SocialSignInBtn({ children, imgUrl, color, handleSignIn }: IProps) {
       <span className="site">{children}</span>
     </Button>
   );
-}
+};
 
 export default SocialSignInBtn;
 

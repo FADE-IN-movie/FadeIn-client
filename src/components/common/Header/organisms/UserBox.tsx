@@ -6,7 +6,7 @@ import { clickOutside } from "@utils/display";
 import UserImg from "../atoms/UserImg";
 import UserMenuList from "../molecules/UserMenuList";
 
-function UserBox() {
+const UserBox = () => {
   const [isListOpen, setIsListOpen] = useState(false);
   const boxRef = useRef<HTMLDivElement>(null);
 
@@ -23,7 +23,7 @@ function UserBox() {
       {isListOpen && <UserMenuList />}
     </Box>
   );
-}
+};
 
 export default UserBox;
 

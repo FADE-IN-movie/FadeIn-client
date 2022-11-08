@@ -10,7 +10,7 @@ import SearchBar from "@components/common/SearchBar";
 import Modal from "@components/common/Modal";
 import SignInBox from "@components/auth/SignInBox";
 
-function IntroSection() {
+const IntroSection = () => {
   const [isSignInModalOpen, setIsSignInModalOpen] = useState(false);
 
   const onOpenSignInModal = () => setIsSignInModalOpen(true);
@@ -46,7 +46,7 @@ function IntroSection() {
       </Modal>
     </>
   );
-}
+};
 
 export default IntroSection;
 

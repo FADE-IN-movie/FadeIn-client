@@ -3,14 +3,14 @@ import styled from "styled-components";
 import IntroSection from "../organisms/IntroSection";
 import ListSection from "../organisms/ListSection";
 
-function MainPageTemplate() {
+const MainPageTemplate = () => {
   return (
     <Template>
       <IntroSection />
       <ListSection />
     </Template>
   );
-}
+};
 
 export default MainPageTemplate;
 

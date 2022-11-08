@@ -8,9 +8,9 @@ interface IProps {
   handleClick?: () => void;
 }
 
-function UserMenu({ children, handleClick }: IProps) {
+const UserMenu = ({ children, handleClick }: IProps) => {
   return <Menu onClick={handleClick}>{children}</Menu>;
-}
+};
 
 export default UserMenu;
 

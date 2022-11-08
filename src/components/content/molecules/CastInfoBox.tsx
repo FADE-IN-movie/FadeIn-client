@@ -5,7 +5,7 @@ interface IProps {
   info: any;
 }
 
-function CastInfoBox({ info }: IProps) {
+const CastInfoBox = ({ info }: IProps) => {
   return (
     <Box>
       <ImageWrap>
@@ -17,7 +17,7 @@ function CastInfoBox({ info }: IProps) {
       </div>
     </Box>
   );
-}
+};
 
 export default CastInfoBox;
 

@@ -5,7 +5,7 @@ import { theme } from "@styles/theme";
 
 import Logo from "./Logo";
 
-function Footer() {
+const Footer = () => {
   return (
     <Wrap>
       <div className="box">
@@ -23,7 +23,7 @@ function Footer() {
       </div>
     </Wrap>
   );
-}
+};
 
 export default Footer;
 

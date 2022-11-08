@@ -15,7 +15,7 @@ type BoxPropsType = {
   isStatic?: boolean;
 };
 
-function Modal({ children, isStatic, isOpen, setIsOpen }: IProps) {
+const Modal = ({ children, isStatic, isOpen, setIsOpen }: IProps) => {
   const onCloseModal = () => setIsOpen(false);
 
   if (!isOpen) return null;
@@ -29,7 +29,7 @@ function Modal({ children, isStatic, isOpen, setIsOpen }: IProps) {
       </Box>
     </Background>
   );
-}
+};
 
 export default Modal;
 

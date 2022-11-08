@@ -5,7 +5,7 @@ import { googleSignIn, naverSignIn } from "@utils/account";
 
 import SocialSignInBtn from "./SocialSignInBtn";
 
-function SignInBox() {
+const SignInBox = () => {
   const googleRef = useRef<HTMLDivElement>(null);
   const naverRef = useRef<HTMLDivElement>(null);
 
@@ -30,7 +30,7 @@ function SignInBox() {
       <div id="naverIdLogin" ref={naverRef} />
     </Box>
   );
-}
+};
 
 export default SignInBox;
 

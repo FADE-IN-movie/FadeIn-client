@@ -97,7 +97,7 @@ const infoData = [
   },
 ];
 
-function SimilarContentsSection() {
+const SimilarContentsSection = () => {
   return (
     <Section>
       <div className="titleWrap">
@@ -110,7 +110,7 @@ function SimilarContentsSection() {
       </Grid>
     </Section>
   );
-}
+};
 
 export default SimilarContentsSection;
 

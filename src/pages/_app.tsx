@@ -12,7 +12,7 @@ import Header from "@components/common/Header";
 import Layout from "@components/common/Layout";
 import Footer from "@components/common/Footer";
 
-function MyApp({ Component, pageProps }: AppProps) {
+const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <>
       <Head>
@@ -37,6 +37,6 @@ function MyApp({ Component, pageProps }: AppProps) {
       </RecoilRoot>
     </>
   );
-}
+};
 
 export default MyApp;

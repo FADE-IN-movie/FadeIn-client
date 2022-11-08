@@ -9,7 +9,7 @@ interface IProps {
   onClickNext: () => void;
 }
 
-function Control({ currentYM, onClickPrev, onClickNext }: IProps) {
+const Control = ({ currentYM, onClickPrev, onClickNext }: IProps) => {
   return (
     <Box>
       <button className="btn" onClick={onClickPrev}>
@@ -21,7 +21,7 @@ function Control({ currentYM, onClickPrev, onClickNext }: IProps) {
       </button>
     </Box>
   );
-}
+};
 
 export default Control;
 

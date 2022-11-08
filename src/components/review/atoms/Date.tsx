@@ -13,7 +13,7 @@ type DatePropsType = {
   isReviewExist?: boolean;
 };
 
-function Date({ children, isToday, isReviewExist }: IProps) {
+const Date({ children, isToday, isReviewExist }: IProps) => {
   return (
     <Td
       isToday={isToday}

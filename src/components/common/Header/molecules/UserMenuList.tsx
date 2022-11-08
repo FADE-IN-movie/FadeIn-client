@@ -3,7 +3,7 @@ import { signOut } from "@utils/account";
 
 import UserMenu from "../atoms/UserMenu";
 
-function UserMenuList() {
+const UserMenuList = () => {
   return (
     <List>
       <UserMenu>찜 목록</UserMenu>
@@ -11,7 +11,7 @@ function UserMenuList() {
       <UserMenu handleClick={signOut}>로그아웃</UserMenu>
     </List>
   );
-}
+};
 
 export default UserMenuList;
 

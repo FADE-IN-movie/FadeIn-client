@@ -9,7 +9,7 @@ import Control from "../molecules/Control";
 
 const reviewDateArr = ["4", "5", "11", "16", "17", "30"];
 
-function Calendar() {
+const Calendar = () => {
   const [todayInfo, setTodayInfo] = useState<IDate>();
   const [selectedDateInfo, setSelectedDateInfo] = useState<IDate>();
 
@@ -79,7 +79,7 @@ function Calendar() {
       </Table>
     </StyledCalendar>
   );
-}
+};
 
 export default Calendar;
 

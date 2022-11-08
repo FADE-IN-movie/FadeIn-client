@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+import BackDrop from "../atoms/BackDrop";
 import Poster from "../atoms/Poster";
 import ButtonControlBox from "../organisms/BtnControlBox";
 import CastSection from "../organisms/CastSection";
@@ -7,10 +8,11 @@ import ContentDetailInfoSection from "../organisms/ContentDetailInfoSection";
 import ContentInfoBox from "../organisms/ContentInfoBox";
 import SimilarContentsSection from "../organisms/SimilarContentsSection";
 
-function ContentTemplate() {
+const ContentTemplate = () => {
   return (
     <div>
       <Contents>
+        <BackDrop />
         <TopContent>
           <Poster />
           <div className="container">
@@ -35,7 +37,7 @@ function ContentTemplate() {
       </Contents>
     </div>
   );
-}
+};
 
 export default ContentTemplate;
 

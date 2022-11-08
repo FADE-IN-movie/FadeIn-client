@@ -5,9 +5,9 @@ interface IProps {
   children: ReactNode;
 }
 
-function Layout({ children }: IProps) {
+const Layout = ({ children }: IProps) => {
   return <Wrap>{children}</Wrap>;
-}
+};
 
 export default Layout;
 

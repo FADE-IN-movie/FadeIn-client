@@ -6,7 +6,7 @@ import { contentDetailInfoState } from "@states/contents";
 import Title from "../atoms/Title";
 import Descript from "../molecules/Descript";
 
-function ContentInfoBox() {
+const ContentInfoBox = () => {
   const { data, cast } = useRecoilValue(contentDetailInfoState);
   const formattedCast =
     cast &&
@@ -33,7 +33,7 @@ function ContentInfoBox() {
       </div>
     </Box>
   );
-}
+};
 
 export default ContentInfoBox;
 

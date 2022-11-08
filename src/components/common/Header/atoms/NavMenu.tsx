@@ -10,9 +10,9 @@ type MenuPropsType = {
   isActive: boolean;
 };
 
-function NavMenu({ children, isActive }: IProps) {
+const NavMenu = ({ children, isActive }: IProps) => {
   return <Menu isActive={isActive}>{children}</Menu>;
-}
+};
 
 export default NavMenu;
 

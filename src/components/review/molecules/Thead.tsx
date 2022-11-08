@@ -4,7 +4,7 @@ import Day from "../atoms/Day";
 
 const dayData = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
 
-function Thead() {
+const Thead = () => {
   return (
     <StyledThead>
       <tr>
@@ -14,7 +14,7 @@ function Thead() {
       </tr>
     </StyledThead>
   );
-}
+};
 
 export default Thead;
 

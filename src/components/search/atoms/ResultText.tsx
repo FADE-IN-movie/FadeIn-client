@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import styled from "styled-components";
 
-function ResultText() {
+const ResultText = () => {
   const { query } = useRouter();
 
   return (
@@ -10,7 +10,7 @@ function ResultText() {
       50개 있습니다.
     </Text>
   );
-}
+};
 
 export default ResultText;
 

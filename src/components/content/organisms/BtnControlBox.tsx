@@ -7,7 +7,7 @@ import OutlineHeartIcon from "@images/outline_heart_icon.svg";
 import FillHeartIcon from "@images/fill_heart_icon.svg";
 import ShareIcon from "@images/share_icon.svg";
 
-function BtnControlBox() {
+const BtnControlBox = () => {
   const [isHeart, setIsHeart] = useState(false);
 
   return (
@@ -30,7 +30,7 @@ function BtnControlBox() {
       </ContentActionBtn>
     </Box>
   );
-}
+};
 
 export default BtnControlBox;
 

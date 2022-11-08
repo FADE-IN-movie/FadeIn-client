@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import { GetServerSideProps } from "next";
 import styled from "styled-components";
 
+import { IContentDetailInfo } from "@typings/info";
+
 import { useSetRecoilState } from "recoil";
 import { contentDetailInfoState } from "@states/contents";
 
@@ -9,10 +11,10 @@ import ContentTemplate from "@components/content/templates/ContentTemplate";
 import contents from "@lib/api/contentsAPI";
 
 interface IProps {
-  info: any;
+  info: IContentDetailInfo;
 }
 
-function ContentDetailPage({ info }: IProps) {
+const ContentDetailPage = ({ info }: IProps) => {
   const setContentDetailInfo = useSetRecoilState(contentDetailInfoState);
 
   useEffect(() => setContentDetailInfo(info), [info, setContentDetailInfo]);
@@ -22,7 +24,7 @@ function ContentDetailPage({ info }: IProps) {
       <ContentTemplate />
     </Wrap>
   );
-}
+};
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const info = await contents.getDetail(

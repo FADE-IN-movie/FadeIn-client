@@ -5,7 +5,7 @@ interface IProps {
   children: ReactNode;
 }
 
-function Th({ children }: IProps) {
+const Th({ children }: IProps) => {
   return <StyledTh>{children}</StyledTh>;
 }
 
