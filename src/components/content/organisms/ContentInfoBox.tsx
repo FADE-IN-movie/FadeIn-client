@@ -1,26 +1,35 @@
 import styled from "styled-components";
 
+import { useRecoilValue } from "recoil";
+import { contentDetailInfoState } from "@states/contents";
+
 import Title from "../atoms/Title";
 import Descript from "../molecules/Descript";
 
 function ContentInfoBox() {
+  const { data, cast } = useRecoilValue(contentDetailInfoState);
+  const formattedCast =
+    cast &&
+    [...cast]
+      .slice(1, 3)
+      .map((v) => v.name)
+      .join(", ");
+
   return (
     <Box>
       <div className="contentInfoBox">
-        <Title>토르: 러브 앤 썬더</Title>
+        <Title>{data.title}</Title>
         <div className="contentDetailInfoBox">
-          <span className="year">2022</span>
-          <span className="genre">판타지/액션/코미디</span>
+          <span className="year">{data.releaseDate?.slice(0, 4)}</span>
+          <span className="genre">{data.genre.join("/")}</span>
           <span className="starRate">★ 6.7</span>
         </div>
-        <div className="creditsInfoBox">
-          <Descript main title="감독" value="Taika Waititi" />
-          <Descript
-            main
-            title="출연"
-            value="Chris Hemsworth, Natalie Portman 등"
-          />
-        </div>
+        {cast && (
+          <div className="creditsInfoBox">
+            <Descript main title="감독" value={cast[0]?.name} />
+            <Descript main title="출연" value={`${formattedCast} 등`} />
+          </div>
+        )}
       </div>
     </Box>
   );

@@ -10,6 +10,15 @@ const contents = {
       },
     });
   },
+  getDetail: async (id: string, type: string) => {
+    const res = await api.get(`${url}/${id}`, {
+      params: {
+        type: type,
+      },
+    });
+
+    return res.data;
+  },
 };
 
 export default contents;
