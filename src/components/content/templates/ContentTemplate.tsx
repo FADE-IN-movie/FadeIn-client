@@ -11,8 +11,8 @@ import SimilarContentsSection from "../organisms/SimilarContentsSection";
 const ContentTemplate = () => {
   return (
     <div>
+      <BackDrop />
       <Contents>
-        <BackDrop />
         <TopContent>
           <Poster />
           <div className="container">
