@@ -21,7 +21,7 @@ const CastSection = () => {
         <CustomTitle>주요 출연진</CustomTitle>
       </div>
       <div className="castInfoContainer">
-        {cast?.map((info, i) => (
+        {cast?.slice(1).map((info, i) => (
           <CastInfoBox key={i} info={info} />
         ))}
       </div>
