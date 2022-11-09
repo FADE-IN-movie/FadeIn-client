@@ -1,14 +1,15 @@
 import styled from "styled-components";
 import Image from "next/image";
 
+import { useRecoilValue } from "recoil";
+import { contentDetailInfoState } from "@states/contents";
+
 const Poster = () => {
+  const { data } = useRecoilValue(contentDetailInfoState);
+
   return (
     <ImageWrap>
-      <Image
-        src="/assets/images/poster_img.jpg"
-        alt="posterImg"
-        layout="fill"
-      />
+      <Image src={data.poster} alt="posterImg" layout="fill" />
     </ImageWrap>
   );
 };

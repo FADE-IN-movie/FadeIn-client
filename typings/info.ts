@@ -3,7 +3,7 @@ export interface IContentInfo {
   rank?: number;
   type: string;
   title: string;
-  genre: string[];
+  genre?: string[];
   poster: string;
   overview?: string;
   originalTitle?: string;
@@ -21,18 +21,8 @@ export interface ICastInfo {
   image: string;
 }
 
-export interface ISimilarContentInfo {
-  id: number;
-  rank?: number;
-  type: string;
-  title: string;
-  genre?: string[];
-  poster: string;
-  overview?: string;
-}
-
 export interface IContentDetailInfo {
   data: IContentInfo;
   cast?: ICastInfo[];
-  similarContent?: ISimilarContentInfo[];
+  similarContent?: IContentInfo[];
 }
