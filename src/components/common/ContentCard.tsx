@@ -40,7 +40,6 @@ const ContentCard = ({ info, responsive }: IProps) => {
           <ImageWrap>
             <Image
               src={info.poster}
-              className="autoImg"
               layout="fill"
               loading="lazy"
               alt="posterImg"
@@ -115,6 +114,8 @@ const CardBack = styled.div<CardBackPropsType>`
 
 const CardFront = styled.div`
   width: 100%;
+  background: #222222;
+  border-radius: 5px;
 `;
 
 const Container = styled.div<CardPropsType>`

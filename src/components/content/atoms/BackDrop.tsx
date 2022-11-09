@@ -30,7 +30,7 @@ const Box = styled.div`
   width: 100vw;
   margin-left: -4.2rem;
   margin-top: -3.1rem;
-  height: 25vw;
+  height: 22vw;
 `;
 
 const ImageWrap = styled.div`
@@ -44,7 +44,7 @@ const ImageWrap = styled.div`
       position: absolute;
       display: block;
       width: 100%;
-      height: 25vw;
+      height: 22vw;
       content: "";
       top: 0;
       left: 0;
@@ -55,7 +55,7 @@ const ImageWrap = styled.div`
       position: relative !important;
       object-fit: contain !important;
       height: auto !important;
-      filter: blur(7.5px);
+      filter: blur(0.6rem);
     }
   }
 `;

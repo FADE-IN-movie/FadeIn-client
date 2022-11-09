@@ -9,7 +9,7 @@ const CastInfoBox = ({ info }: IProps) => {
   return (
     <Box>
       <ImageWrap>
-        <Image src={info.imgUrl} layout="fill" alt="castImg" />
+        <Image src={info.image} layout="fill" alt="castImg" />
       </ImageWrap>
       <div className="infoBox">
         <span className="name">{info.name}</span>
@@ -47,7 +47,7 @@ const Box = styled.div`
 const ImageWrap = styled.div`
   position: relative;
   width: 7rem;
-  height: 9rem;
+  height: 10.5rem;
 
   img {
     border-radius: 3px;

@@ -1,5 +1,8 @@
 import styled from "styled-components";
 
+import { useRecoilValue } from "recoil";
+import { contentDetailInfoState } from "@states/contents";
+
 import CustomTitle from "@components/common/CustomTitle";
 import CastInfoBox from "../molecules/CastInfoBox";
 
@@ -10,17 +13,17 @@ const castInfo = {
 };
 
 const CastSection = () => {
+  const { cast } = useRecoilValue(contentDetailInfoState);
+
   return (
     <Section>
       <div className="titleWrap">
         <CustomTitle>주요 출연진</CustomTitle>
       </div>
       <div className="castInfoContainer">
-        <CastInfoBox info={castInfo} />
-        <CastInfoBox info={castInfo} />
-        <CastInfoBox info={castInfo} />
-        <CastInfoBox info={castInfo} />
-        <CastInfoBox info={castInfo} />
+        {cast?.map((info, i) => (
+          <CastInfoBox key={i} info={info} />
+        ))}
       </div>
     </Section>
   );
