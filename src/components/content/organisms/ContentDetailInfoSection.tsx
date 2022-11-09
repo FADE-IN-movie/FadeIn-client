@@ -8,6 +8,7 @@ import Descript from "../molecules/Descript";
 
 const ContentDetailInfoSection = () => {
   const { data } = useRecoilValue(contentDetailInfoState);
+  const nullText = "(해당 정보 없음)";
 
   return (
     <Section>
@@ -16,15 +17,22 @@ const ContentDetailInfoSection = () => {
       </div>
       <div className="detailInfoBox">
         <div className="infoBox">
-          <Descript title="원제" value={data.originalTitle} />
-          <Descript title="국가" value={data.country} />
-          <Descript title="장르" value={data.genre.join("/")} />
-          <Descript title="제작 연도" value={data.releaseDate?.slice(0, 4)} />
-          <Descript title="연령 등급" value={data.certification} />
+          <Descript title="원제" value={data.originalTitle || nullText} />
+          <Descript title="국가" value={data.country || nullText} />
+          <Descript title="장르" value={data.genre?.join("/") || nullText} />
+          <Descript
+            title="제작 연도"
+            value={data.releaseDate?.slice(0, 4) || nullText}
+          />
+          <Descript title="연령 등급" value={data.certification || nullText} />
           <Descript title="상영 시간" value={`${data.runtime}분`} />
         </div>
         <div className="overview">
-          <Descript overview title="시놉시스" value={data.overview} />
+          <Descript
+            overview
+            title="시놉시스"
+            value={data.overview || nullText}
+          />
         </div>
       </div>
     </Section>

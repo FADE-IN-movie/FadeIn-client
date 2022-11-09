@@ -14,6 +14,7 @@ const ContentInfoBox = () => {
       .slice(1, 3)
       .map((v) => v.name)
       .join(", ");
+  const nullText = "(해당 정보 없음)";
 
   return (
     <Box>
@@ -21,7 +22,7 @@ const ContentInfoBox = () => {
         <Title>{data.title}</Title>
         <div className="contentDetailInfoBox">
           <span className="year">{data.releaseDate?.slice(0, 4)}</span>
-          <span className="genre">{data.genre.join("/")}</span>
+          <span className="genre">{data.genre?.join("/") || nullText}</span>
           <span className="starRate">★ 6.7</span>
         </div>
         {cast && (
