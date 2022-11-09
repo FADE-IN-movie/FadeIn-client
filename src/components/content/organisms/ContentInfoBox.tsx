@@ -23,7 +23,9 @@ const ContentInfoBox = () => {
         <div className="contentDetailInfoBox">
           <span className="year">{data.releaseDate?.slice(0, 4)}</span>
           <span className="genre">{data.genre?.join("/") || nullText}</span>
-          <span className="starRate">★ 6.7</span>
+          <span className="starRate">
+            ★ {Number(data.rating).toFixed(2) || 0}
+          </span>
         </div>
         {cast && (
           <div className="creditsInfoBox">
