@@ -14,7 +14,7 @@ const SimilarContentsSection = () => {
   return (
     <Section>
       <div className="titleWrap">
-        <CustomTitle>비슷한 영화</CustomTitle>
+        <CustomTitle>비슷한 컨텐츠</CustomTitle>
       </div>
       {similarContent?.length ? (
         <Grid narrow>
