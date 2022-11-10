@@ -23,6 +23,11 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2-nopolyfill.js"
         async
       />
+      <Script
+        src="https://t1.kakaocdn.net/kakao_js_sdk/2.0.1/kakao.min.js"
+        integrity="sha384-eKjgHJ9+vwU/FCSUG3nV1RKFolUXLsc6nLQ2R1tD0t4YFPCvRmkcF8saIfOZNWf/"
+        crossOrigin="anonymous"
+      />
       <RecoilRoot>
         <RecoilNexus />
         <GlobalStyles />
