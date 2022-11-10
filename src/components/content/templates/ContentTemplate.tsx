@@ -76,7 +76,7 @@ const TopContent = styled.div`
     }
     flex-grow: 2;
     align-items: flex-end;
-    margin-bottom: 5rem;
+    margin-bottom: 2rem;
   }
 `;
 
