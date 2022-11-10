@@ -1,6 +1,7 @@
 export interface IContentInfo {
   id: number;
   rank?: number;
+  rating?: string;
   type: string;
   title: string;
   genre?: string[];

@@ -14,17 +14,22 @@ const castInfo = {
 
 const CastSection = () => {
   const { cast } = useRecoilValue(contentDetailInfoState);
+  const nullText = "(해당 정보 없음)";
 
   return (
     <Section>
       <div className="titleWrap">
         <CustomTitle>주요 출연진</CustomTitle>
       </div>
-      <div className="castInfoContainer">
-        {cast?.slice(1).map((info, i) => (
-          <CastInfoBox key={i} info={info} />
-        ))}
-      </div>
+      {cast?.length ? (
+        <div className="castInfoContainer">
+          {cast?.slice(1).map((info, i) => (
+            <CastInfoBox key={i} info={info} />
+          ))}
+        </div>
+      ) : (
+        nullText
+      )}
     </Section>
   );
 };
