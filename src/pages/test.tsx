@@ -2,6 +2,7 @@ import { useRef } from "react";
 import styled from "styled-components";
 
 import ComboBox from "@components/common/ComboBox";
+import SortMenu from "@components/common/SortMenu";
 
 const genreMenuInfo = [
   "장르 전체",
@@ -86,9 +87,14 @@ const ReviewPage = () => {
       <button onClick={copyUrl}>링크 복사하기</button>
       <button onClick={shareKakao}>카카오톡으로 공유하기</button>
       <button onClick={shareNaverBlog}>네이버 블로그로 공유하기</button>
-      <div className="box">
-        <ComboBox info={genreMenuInfo} />
-        <ComboBox info={typeMenuInfo} />
+      <div className="bar">
+        <div className="categoryBox">
+          <ComboBox info={genreMenuInfo} />
+          <ComboBox info={typeMenuInfo} />
+        </div>
+        <div>
+          <SortMenu />
+        </div>
       </div>
     </Wrap>
   );
@@ -100,8 +106,14 @@ const Wrap = styled.div`
   display: flex;
   flex-direction: column;
 
-  .box {
+  .bar {
     display: flex;
-    gap: 2rem;
+    justify-content: space-between;
+    align-items: center;
+
+    .categoryBox {
+      display: flex;
+      gap: 2rem;
+    }
   }
 `;
