@@ -52,7 +52,7 @@ export default ComboBox;
 
 const Box = styled.div`
   position: relative;
-  font-size: 1.8rem;
+  font-size: 1.7rem;
   width: 12rem;
 
   cursor: pointer;
