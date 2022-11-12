@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 import BackDrop from "../atoms/BackDrop";
-import Poster from "../atoms/Poster";
+import Poster from "../../common/Poster";
 import ButtonControlBox from "../organisms/BtnControlBox";
 import CastSection from "../organisms/CastSection";
 import ContentDetailInfoSection from "../organisms/ContentDetailInfoSection";
@@ -15,7 +15,7 @@ const ContentTemplate = () => {
       <Contents>
         <TopContent>
           <div className="posterWrap">
-            <Poster />
+            <Poster outline width="17.5rem" height="25rem" />
           </div>
           <div className="container">
             <ContentInfoBox />

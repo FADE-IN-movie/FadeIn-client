@@ -34,7 +34,6 @@ const StarRating = () => {
 
   return (
     <Box>
-      <span className="desc">별점을 선택해주세요.</span>
       <div className="starRatingBox">
         <StarBox
           onClick={onClickStar}
@@ -83,7 +82,7 @@ const Box = styled.div`
 
     .score {
       font-size: 1.825rem;
-      margin-left: 0.5rem;
+      margin-left: 1.3rem;
     }
   }
 `;

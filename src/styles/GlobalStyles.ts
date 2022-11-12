@@ -60,7 +60,7 @@ export const GlobalStyles = createGlobalStyle`
     }
   }
 
-  input {
+  input, textarea {
     font-family: ${theme.fonts.base};
     outline: none;
     border: none;
