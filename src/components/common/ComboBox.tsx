@@ -1,33 +1,47 @@
-import { useState } from "react";
-
+import { useState, useEffect, useRef } from "react";
 import styled, { css } from "styled-components";
 import { theme } from "@styles/theme";
 
+import { clickOutside } from "@utils/display";
+
+import { Scrollbars } from "react-custom-scrollbars-2";
 import ArrowDownIcon from "@images/down_arrow_icon.svg";
 
 interface IProps {
   info: string[];
 }
 
+type OptBoxPropsType = {
+  isScroll: boolean;
+};
+
 const ComboBox = ({ info }: IProps) => {
   const [selectedMenu, setSelectedMenu] = useState(info[0]);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const boxRef = useRef<HTMLDivElement>(null);
 
   const onToggleMenu = () => setIsMenuOpen((prev) => !prev);
 
+  useEffect(() => {
+    if (!boxRef.current) return;
+    clickOutside(boxRef.current, setIsMenuOpen);
+  }, [boxRef]);
+
   return (
-    <Box onClick={onToggleMenu}>
+    <Box ref={boxRef} onClick={onToggleMenu}>
       <Select>
         <span>{selectedMenu}</span>
         <ArrowIcon isopen={isMenuOpen.toString()} />
       </Select>
       {isMenuOpen && (
-        <OptBox>
-          {info.map((opt, i) => (
-            <Opt key={i} onClick={() => setSelectedMenu(opt)}>
-              {opt}
-            </Opt>
-          ))}
+        <OptBox isScroll={info.length > 4}>
+          <Scrollbars autoHeight>
+            {info.map((opt, i) => (
+              <Opt key={i} onClick={() => setSelectedMenu(opt)}>
+                {opt}
+              </Opt>
+            ))}
+          </Scrollbars>
         </OptBox>
       )}
     </Box>
@@ -58,13 +72,21 @@ const ArrowIcon = styled(ArrowDownIcon)`
     `}
 `;
 
-const OptBox = styled.div`
+const OptBox = styled.div<OptBoxPropsType>`
   position: absolute;
-  top: 4.5rem;
+  top: 3rem;
   width: 100%;
-  max-height: 18rem;
-  overflow-y: scroll;
+  max-height: 16rem;
   z-index: 3;
+
+  & > div > :nth-child(3) {
+    background: ${(props) => (props.isScroll ? "#292929" : "none")};
+    right: 0 !important;
+
+    & > div {
+      background: #4b4b4b !important;
+    }
+  }
 `;
 
 const Opt = styled.div`
