@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { theme } from "@styles/theme";
 
-import useInput from "src/hooks/useInput";
+import useInput from "@hooks/useInput";
 
 interface IProps {
   limit: number;
