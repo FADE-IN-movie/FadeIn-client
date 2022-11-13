@@ -28,7 +28,7 @@ const Form = () => {
           title="같이 본 사람"
           warn="최대 00자로 입력할 수 있는 글자 수가 제한됩니다."
         >
-          <Input />
+          <Input limit={20} />
         </FormItem>
       </Column>
       <Column>
@@ -41,7 +41,7 @@ const Form = () => {
           title="메모"
           warn="최대 00자로 입력할 수 있는 글자 수가 제한됩니다."
         >
-          <Input />
+          <Input limit={30} />
         </FormItem>
       </Column>
       <Column>

@@ -17,7 +17,6 @@ const WriteTemplate = () => {
     const getBackgroundHeight = () => {
       if (!containerRef.current) return;
       setBgHeight(containerRef.current.offsetHeight);
-      console.log(containerRef.current.offsetHeight);
     };
     getBackgroundHeight();
     window.addEventListener("resize", getBackgroundHeight);

@@ -1,8 +1,19 @@
 import styled from "styled-components";
 import { theme } from "@styles/theme";
 
+import useInput from "src/hooks/useInput";
+
 const TextArea = () => {
-  return <StyledTextArea rows={5} spellCheck={false} />;
+  const [value, onChangeValue] = useInput("");
+
+  return (
+    <StyledTextArea
+      rows={5}
+      spellCheck={false}
+      value={value}
+      onChange={onChangeValue}
+    />
+  );
 };
 
 export default TextArea;
