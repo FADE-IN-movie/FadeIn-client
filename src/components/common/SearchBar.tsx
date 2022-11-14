@@ -20,7 +20,8 @@ const SearchBar = ({ main, width }: IProps) => {
 
   const onSearchKeyword = (e?: FormEvent<HTMLFormElement>) => {
     e?.preventDefault();
-    if (keyword.trim() !== "") router.push(`/search?keyword=${keyword}`);
+
+    if (keyword.trim() !== "") router.push(`/search?keyword=${keyword.trim()}`);
   };
 
   const onChangeInput = ({ target }: ChangeEvent<HTMLInputElement>) => {
