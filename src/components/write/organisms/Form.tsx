@@ -6,6 +6,7 @@ import Input from "../molecules/Input";
 import StarRating from "@components/StarRating";
 import TextArea from "../atoms/TextArea";
 import CustomBtn from "@components/common/CustomBtn";
+import DateInput from "../atoms/DateInput";
 
 const Form = () => {
   return (
@@ -17,7 +18,7 @@ const Form = () => {
       </Column>
       <Column>
         <FormItem title="본 날짜 및 시간">
-          <Text>추가 예정</Text>
+          <DateInput />
         </FormItem>
         <FormItem title="장소">
           <Text>추가 예정</Text>
