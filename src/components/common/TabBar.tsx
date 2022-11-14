@@ -1,10 +1,19 @@
-import { useEffect, useState, useRef, useCallback } from "react";
+import {
+  useEffect,
+  useState,
+  useRef,
+  useCallback,
+  Dispatch,
+  SetStateAction,
+} from "react";
 
 import styled, { css } from "styled-components";
 import { theme } from "@styles/theme";
 
 interface IProps {
-  menu: string[];
+  menu: { value: string; text: string }[];
+  selectedMenuIdx: number;
+  setSelectedMenuIdx: Dispatch<SetStateAction<number>>;
 }
 
 type MenuPropsType = {
@@ -16,18 +25,18 @@ type UnderLinePropsType = {
   pos: number;
 };
 
-const TabBar = ({ menu }: IProps) => {
+const TabBar = ({ menu, selectedMenuIdx, setSelectedMenuIdx }: IProps) => {
   const [lineWidth, setLineWidth] = useState(0);
   const [linePos, setLinePos] = useState(0);
-  const [selectedMenuIdx, setSelectedMenuIdx] = useState(0);
   const barRef = useRef(null);
 
   const onChangeMenu = ({
     currentTarget,
   }: React.MouseEvent<HTMLButtonElement>) => {
     const menuName = currentTarget.innerText;
-    const idx = menu.indexOf(menuName);
-    setSelectedMenuIdx(idx);
+    const idx = menu.findIndex((obj) => obj.text === menuName);
+
+    if (idx !== undefined) setSelectedMenuIdx(idx);
   };
 
   const setLineStyle = useCallback(() => {
@@ -53,9 +62,9 @@ const TabBar = ({ menu }: IProps) => {
 
   return (
     <Bar ref={barRef}>
-      {menu.map((text, i) => (
+      {menu.map((info, i) => (
         <Menu key={i} isActive={selectedMenuIdx === i} onClick={onChangeMenu}>
-          {text}
+          {info.text}
         </Menu>
       ))}
       <UnderLine width={lineWidth} pos={linePos} />
