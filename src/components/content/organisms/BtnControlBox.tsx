@@ -14,6 +14,8 @@ const BtnControlBox = () => {
   const [isHeart, setIsHeart] = useState(false);
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
 
+  const openShareModal = () => setIsShareModalOpen(true);
+
   return (
     <>
       <Box>
@@ -30,7 +32,7 @@ const BtnControlBox = () => {
             <OutlineHeartIcon width="3rem" />
           )}
         </ContentActionBtn>
-        <ContentActionBtn text="공유">
+        <ContentActionBtn text="공유" onClickHandler={openShareModal}>
           <ShareIcon width="2.45rem" />
         </ContentActionBtn>
       </Box>
