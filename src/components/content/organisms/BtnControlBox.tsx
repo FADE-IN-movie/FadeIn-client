@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, MouseEvent } from "react";
 import styled from "styled-components";
 
 import ContentActionBtn from "../molecules/ContentActionBtn";
@@ -14,7 +14,10 @@ const BtnControlBox = () => {
   const [isHeart, setIsHeart] = useState(false);
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
 
-  const openShareModal = () => setIsShareModalOpen(true);
+  const openShareModal = (e: MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    setIsShareModalOpen(true);
+  };
 
   return (
     <>

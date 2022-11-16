@@ -1,7 +1,8 @@
-import { ReactNode } from "react";
+import { useEffect, useRef, ReactNode } from "react";
 import styled from "styled-components";
 import { theme } from "@styles/theme";
 
+import { clickOutside } from "@utils/display";
 import CloseIcon from "@images/close_icon.svg";
 
 interface IProps {
@@ -16,12 +17,19 @@ type BoxPropsType = {
 };
 
 const Modal = ({ children, isStatic, isOpen, setIsOpen }: IProps) => {
+  const boxRef = useRef<HTMLDivElement>(null);
+
   const onCloseModal = () => setIsOpen(false);
+
+  useEffect(() => {
+    if (!boxRef.current) return;
+    clickOutside(boxRef.current, setIsOpen);
+  }, [boxRef, isOpen, setIsOpen]);
 
   if (!isOpen) return null;
   return (
     <Background>
-      <Box isStatic={isStatic}>
+      <Box ref={boxRef} isStatic={isStatic}>
         <CloseBtn onClick={onCloseModal}>
           <CloseIcon fill={theme.palette.light_gray} />
         </CloseBtn>

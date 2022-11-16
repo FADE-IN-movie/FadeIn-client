@@ -1,36 +1,39 @@
-import { useRef } from "react";
 import styled from "styled-components";
+
+import { useRecoilValue, useRecoilState } from "recoil";
+import { contentDetailInfoState, isKakaoInitState } from "@states/contents";
 
 import ShareBtn from "../atoms/ShareBtn";
 
 const ShareBox = () => {
+  const { data } = useRecoilValue(contentDetailInfoState);
   const url = "http://www.naver.com"; // 배포한 뒤 수정 필요
-  const isKakaoInit = useRef(false);
   const encodedUrl = encodeURI(encodeURIComponent(url));
+  const [isKakaoInit, setIsKakaoInit] = useRecoilState(isKakaoInitState);
   const naverBlogReqUrl =
     "https://share.naver.com/web/shareView.nhn?url=" +
     encodedUrl +
     "&title=" +
-    "영화 이름"; // 수정
+    `[FADE-IN] ${data.title}`;
 
   const copyUrl = () => {
     navigator.clipboard.writeText(window.location.href);
   };
 
   const shareKakao = () => {
-    if (!isKakaoInit.current) {
+    if (!isKakaoInit) {
       //@ts-ignore
       Kakao.init(process.env.NEXT_PUBLIC_KAKAO_KEY);
-      isKakaoInit.current = true;
+      setIsKakaoInit(true);
     }
 
     //@ts-ignore
     Kakao.Share.sendDefault({
       objectType: "feed",
       content: {
-        title: "Fade-In",
-        description: "설명",
-        imageUrl: "https://avatars.githubusercontent.com/u/115543882?s=200&v=4",
+        title: data.title,
+        description: data.overview || "",
+        imageUrl: data.poster,
         link: {
           webUrl: "http://localhost:3000",
         },
@@ -83,7 +86,7 @@ const Box = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 4rem;
+  gap: 4.5rem;
 
   .title {
     font-size: 1.8rem;
@@ -91,5 +94,7 @@ const Box = styled.div`
 
   .boxContainer {
     display: flex;
+    width: 100%;
+    gap: 1rem;
   }
 `;

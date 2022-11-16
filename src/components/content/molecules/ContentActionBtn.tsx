@@ -1,10 +1,10 @@
-import { ReactNode } from "react";
+import { MouseEvent, ReactNode } from "react";
 import styled from "styled-components";
 
 interface IProps {
   children: ReactNode;
   text: string;
-  onClickHandler?: () => void;
+  onClickHandler?: (e: MouseEvent<HTMLButtonElement>) => void;
 }
 
 const ContentActionBtn = ({ children, text, onClickHandler }: IProps) => {

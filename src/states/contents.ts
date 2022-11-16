@@ -27,3 +27,8 @@ export const contentDetailInfoState = atom<IContentDetailInfo>({
     similarContent: [],
   },
 });
+
+export const isKakaoInitState = atom({
+  key: "isKakaoInitState",
+  default: false,
+});

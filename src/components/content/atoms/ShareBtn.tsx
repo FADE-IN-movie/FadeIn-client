@@ -24,6 +24,8 @@ export default ShareBtn;
 
 const Button = styled.button`
   display: flex;
+  flex: 1;
+
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -36,8 +38,7 @@ const Button = styled.button`
   }
 
   > span {
-    display: inline-block;
-    width: 9rem;
+    width: max-content;
     word-break: keep-all;
     word-wrap: break-word;
   }
