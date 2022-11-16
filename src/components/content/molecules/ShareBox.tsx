@@ -14,7 +14,7 @@ const ShareBox = () => {
     "https://share.naver.com/web/shareView.nhn?url=" +
     encodedUrl +
     "&title=" +
-    `[FADE-IN] ${data.title}`; // 수정
+    `[FADE-IN] ${data.title}`;
 
   const copyUrl = () => {
     navigator.clipboard.writeText(window.location.href);
