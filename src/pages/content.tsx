@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 import { IContentDetailInfo } from "@typings/info";
 
+import { setAuthorizationToken } from "@utils/account";
 import { useSetRecoilState } from "recoil";
 import { contentDetailInfoState } from "@states/contents";
 
@@ -26,7 +27,13 @@ const ContentDetailPage = ({ info }: IProps) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+export const getServerSideProps: GetServerSideProps = async ({
+  query,
+  req,
+}) => {
+  const accessToken = req ? req.cookies.accessToken : null;
+  if (accessToken) setAuthorizationToken(accessToken);
+
   const info = await contents.getDetail(
     query.id as string,
     query.type as string

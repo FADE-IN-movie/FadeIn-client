@@ -54,6 +54,8 @@ export function signIn(info: IUser & ITokenInfo) {
     userImg: userImg,
   });
 
+  setAuthorizationToken(accessToken);
+
   // window.location.replace("/");
   Router.push("/");
 }
@@ -142,7 +144,7 @@ export function verifyTokenErrorHandler() {
   signOut();
 }
 
-export function setAuthorizationToken(accessToken?: ITokenInfo) {
+export function setAuthorizationToken(accessToken?: string) {
   if (accessToken) {
     api.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
   } else {
