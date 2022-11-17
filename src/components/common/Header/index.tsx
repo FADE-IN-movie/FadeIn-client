@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, MouseEvent } from "react";
 
 import styled from "styled-components";
 import { theme } from "@styles/theme";
@@ -19,7 +19,10 @@ const Header = () => {
   const isSignIn = useRecoilValue(isSignInState);
   const [isSignInModalOpen, setIsSignInModalOpen] = useState(false);
 
-  const onOpenSignInModal = () => setIsSignInModalOpen(true);
+  const onOpenSignInModal = (e: MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    setIsSignInModalOpen(true);
+  };
 
   return (
     <>

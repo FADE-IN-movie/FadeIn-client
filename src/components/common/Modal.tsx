@@ -22,9 +22,18 @@ const Modal = ({ children, isStatic, isOpen, setIsOpen }: IProps) => {
   const onCloseModal = () => setIsOpen(false);
 
   useEffect(() => {
-    if (!boxRef.current) return;
-    clickOutside(boxRef.current, setIsOpen);
-  }, [boxRef, isOpen, setIsOpen]);
+    const onClickHandler = ({ target }: Event) => {
+      if (!boxRef.current || !target) return;
+      clickOutside(target, boxRef.current, setIsOpen);
+    };
+
+    document.addEventListener("click", onClickHandler);
+    return () => document.removeEventListener("click", onClickHandler);
+  }, [boxRef, setIsOpen]);
+
+  useEffect(() => {
+    console.log(isOpen);
+  }, [isOpen]);
 
   if (!isOpen) return null;
   return (

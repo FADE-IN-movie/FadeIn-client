@@ -47,8 +47,13 @@ const SearchBar = ({ main, width }: IProps) => {
   }, [keyword, isInputVisible]);
 
   useEffect(() => {
-    if (main || !inputRef.current) return;
-    clickOutside(inputRef.current, setIsInputVisible, true);
+    const onClickHandler = ({ target }: Event) => {
+      if (main || !inputRef.current || !target) return;
+      clickOutside(target, inputRef.current, setIsInputVisible, true);
+    };
+
+    document.addEventListener("click", onClickHandler);
+    return () => document.removeEventListener("click", onClickHandler);
   }, [inputRef, main]);
 
   useEffect(() => {

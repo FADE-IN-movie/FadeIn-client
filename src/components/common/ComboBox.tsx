@@ -23,8 +23,13 @@ const ComboBox = ({ info }: IProps) => {
   const onToggleMenu = () => setIsMenuOpen((prev) => !prev);
 
   useEffect(() => {
-    if (!boxRef.current) return;
-    clickOutside(boxRef.current, setIsMenuOpen);
+    const onClickHandler = ({ target }: Event) => {
+      if (!boxRef.current || !target) return;
+      clickOutside(target, boxRef.current, setIsMenuOpen);
+    };
+
+    document.addEventListener("click", onClickHandler);
+    return () => document.removeEventListener("click", onClickHandler);
   }, [boxRef]);
 
   return (

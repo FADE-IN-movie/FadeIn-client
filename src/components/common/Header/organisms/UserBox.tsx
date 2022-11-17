@@ -13,8 +13,13 @@ const UserBox = () => {
   const onToggleList = () => setIsListOpen((prev) => !prev);
 
   useEffect(() => {
-    if (!boxRef.current) return;
-    clickOutside(boxRef.current, setIsListOpen);
+    const onClickHandler = ({ target }: Event) => {
+      if (!boxRef.current || !target) return;
+      clickOutside(target, boxRef.current, setIsListOpen);
+    };
+
+    document.addEventListener("click", onClickHandler);
+    return () => document.removeEventListener("click", onClickHandler);
   }, [boxRef]);
 
   return (

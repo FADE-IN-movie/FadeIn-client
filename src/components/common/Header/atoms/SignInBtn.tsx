@@ -1,7 +1,8 @@
+import { MouseEvent } from "react";
 import styled from "styled-components";
 
 interface IProps {
-  onOpenSignInModal: () => void;
+  onOpenSignInModal: (e: MouseEvent<HTMLButtonElement>) => void;
 }
 
 const SignInBtn = ({ onOpenSignInModal }: IProps) => {
