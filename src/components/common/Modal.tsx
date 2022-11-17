@@ -31,10 +31,6 @@ const Modal = ({ children, isStatic, isOpen, setIsOpen }: IProps) => {
     return () => document.removeEventListener("click", onClickHandler);
   }, [boxRef, setIsOpen]);
 
-  useEffect(() => {
-    console.log(isOpen);
-  }, [isOpen]);
-
   if (!isOpen) return null;
   return (
     <Background>
