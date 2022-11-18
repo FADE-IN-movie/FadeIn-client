@@ -27,3 +27,9 @@ export interface IContentDetailInfo {
   cast?: ICastInfo[];
   similarContent?: IContentInfo[];
 }
+
+export interface IReviewInfo {
+  id: number;
+  rating?: string;
+  //...
+}
