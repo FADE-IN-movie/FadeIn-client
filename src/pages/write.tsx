@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { IReviewContentInfo } from "@typings/info";
 
 import { useSetRecoilState } from "recoil";
-import { reviewDetailState } from "@states/reviews";
+import { reviewContentState } from "@states/reviews";
 
 import { setAuthorizationToken } from "@utils/account";
 import reviews from "@lib/api/reviewAPI";
@@ -17,7 +17,7 @@ interface IProps {
 }
 
 const WritePage = ({ info }: IProps) => {
-  const setReviewData = useSetRecoilState(reviewDetailState);
+  const setReviewData = useSetRecoilState(reviewContentState);
 
   useEffect(() => setReviewData(info), [info, setReviewData]);
 
