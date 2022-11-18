@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { GetServerSideProps } from "next";
 import styled from "styled-components";
 
-import { IContentInfo } from "@typings/info";
+import { IReviewContentInfo } from "@typings/info";
 
 import { useSetRecoilState } from "recoil";
 import { reviewDetailState } from "@states/reviews";
@@ -13,7 +13,7 @@ import reviews from "@lib/api/reviewAPI";
 import WriteTemplate from "@components/write/templates/WriteTemplate";
 
 interface IProps {
-  info: IContentInfo;
+  info: IReviewContentInfo;
 }
 
 const WritePage = ({ info }: IProps) => {
@@ -45,7 +45,7 @@ export const getServerSideProps: GetServerSideProps = async ({
   console.log(info);
 
   return {
-    props: {},
+    props: { info },
   };
 };
 

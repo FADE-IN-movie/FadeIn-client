@@ -1,7 +1,7 @@
 import { atom } from "recoil";
-import { IReviewInfo } from "@typings/info";
+import { IReviewContentInfo } from "@typings/info";
 
-export const reviewDetailState = atom<IReviewInfo>({
+export const reviewDetailState = atom<IReviewContentInfo>({
   key: "reviewDataState",
-  // default: {},
+  default: { id: 0, title: "", poster: "", backdrop: "", originalTitle: "" },
 });

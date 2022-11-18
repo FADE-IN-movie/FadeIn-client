@@ -28,8 +28,19 @@ export interface IContentDetailInfo {
   similarContent?: IContentInfo[];
 }
 
-export interface IReviewInfo {
+export interface IReviewContentInfo {
   id: number;
-  rating?: string;
-  //...
+  title: string;
+  originalTitle: string;
+  poster?: string;
+  backdrop?: string;
+}
+
+export interface IReviewInfo {
+  watched_at?: string;
+  watched_in?: string;
+  watched_with?: string;
+  rating: number;
+  memo?: string;
+  comment?: string;
 }

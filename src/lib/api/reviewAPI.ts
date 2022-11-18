@@ -4,11 +4,13 @@ const url = "/reviews";
 
 const reviews = {
   getWritePage: async (contentId: number, type: string) => {
-    return api.get(`${url}/${contentId}`, {
+    const res = api.get(`${url}/${contentId}`, {
       params: {
         type: type,
       },
     });
+
+    return (await res).data;
   },
 };
 
