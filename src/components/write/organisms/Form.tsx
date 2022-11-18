@@ -21,7 +21,7 @@ const Form = () => {
           <DateInput />
         </FormItem>
         <FormItem title="장소">
-          <Text>추가 예정</Text>
+          <Input limit={20} />
         </FormItem>
       </Column>
       <Column>
@@ -75,6 +75,13 @@ const Column = styled.div`
 
   > div {
     width: 100%;
+  }
+
+  &:nth-child(2) {
+    @media screen and (max-width: 750px) {
+      flex-direction: column;
+      gap: 4rem;
+    }
   }
 `;
 

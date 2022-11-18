@@ -1,4 +1,5 @@
 import { useState, MouseEvent } from "react";
+import { useRouter } from "next/router";
 import styled from "styled-components";
 
 import ContentActionBtn from "../molecules/ContentActionBtn";
@@ -13,6 +14,12 @@ import ShareBox from "../molecules/ShareBox";
 const BtnControlBox = () => {
   const [isHeart, setIsHeart] = useState(false);
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
+  const router = useRouter();
+
+  const goWritePage = () => {
+    const { type, id } = router.query;
+    router.push(`/write?type=${type}&contentId=${id}`);
+  };
 
   const openShareModal = (e: MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
@@ -23,7 +30,7 @@ const BtnControlBox = () => {
     <>
       <Box>
         <ContentActionBtn text="감상평">
-          <WriteIcon width="3rem" height="2.95rem" />
+          <WriteIcon width="3rem" height="2.95rem" onClick={goWritePage} />
         </ContentActionBtn>
         <ContentActionBtn
           text="찜"

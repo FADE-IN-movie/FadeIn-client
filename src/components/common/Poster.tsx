@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { theme } from "@styles/theme";
 import Image from "next/image";
 
 import { useRecoilValue } from "recoil";
@@ -24,6 +25,7 @@ export default Poster;
 
 const ImageWrap = styled.div<IProps>`
   position: relative;
+  background: ${theme.bg_color};
   border-radius: 5px;
   overflow: hidden;
   width: ${(props) => props.width};
