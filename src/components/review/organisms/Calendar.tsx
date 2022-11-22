@@ -84,7 +84,7 @@ const Calendar = () => {
 export default Calendar;
 
 const StyledCalendar = styled.div`
-  width: 25.5rem; // 수정 필요
+  width: 27.5rem; // 수정 필요
 `;
 
 const Table = styled.table`
