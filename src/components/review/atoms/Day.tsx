@@ -5,9 +5,9 @@ interface IProps {
   children: ReactNode;
 }
 
-const Th({ children }: IProps) => {
+const Th = ({ children }: IProps) => {
   return <StyledTh>{children}</StyledTh>;
-}
+};
 
 export default Th;
 
