@@ -13,7 +13,7 @@ type DatePropsType = {
   isReviewExist?: boolean;
 };
 
-const Date({ children, isToday, isReviewExist }: IProps) => {
+const Date = ({ children, isToday, isReviewExist }: IProps) => {
   return (
     <Td
       isToday={isToday}
@@ -24,7 +24,7 @@ const Date({ children, isToday, isReviewExist }: IProps) => {
       {isReviewExist && <div className="sign" />}
     </Td>
   );
-}
+};
 
 export default Date;
 
