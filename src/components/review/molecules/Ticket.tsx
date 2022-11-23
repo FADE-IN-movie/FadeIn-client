@@ -88,6 +88,12 @@ const Container = styled.div<TicketPropsType>`
     z-index: 1;
     right: -4.7em;
   }
+
+  .ratingWrap {
+    position: absolute;
+    top: 16.8em;
+    right: 9.8em;
+  }
 `;
 
 const ImageWrap = styled.div`
