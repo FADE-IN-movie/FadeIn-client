@@ -25,12 +25,12 @@ const Grid = ({ children, narrow }: IProps) => {
           .getPropertyValue("width")
       );
 
-      setWidth(cardWidth / 10);
+      setWidth(cardWidth);
     };
     getCardWidth();
 
     window.addEventListener("resize", getCardWidth);
-    () => window.removeEventListener("resize", getCardWidth);
+    return () => window.removeEventListener("resize", getCardWidth);
   }, []);
 
   return (
@@ -46,7 +46,7 @@ const Layout = styled.div<LayoutPropsType>`
   display: flex;
   flex-wrap: wrap;
   gap: 3em 1rem;
-  font-size: ${(props) => `${props.width}px`};
+  font-size: ${(props) => `${props.width / 10}px`};
 
   & > div {
     @media screen and (min-width: 1651px) {

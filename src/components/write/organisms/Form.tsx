@@ -3,7 +3,7 @@ import styled from "styled-components";
 import FormItem from "../molecules/FormItem";
 import Text from "../atoms/Text";
 import Input from "../molecules/Input";
-import StarRating from "@components/StarRating";
+import StarRating from "@components/common/StarRating";
 import TextArea from "../atoms/TextArea";
 import CustomBtn from "@components/common/CustomBtn";
 import DateInput from "../atoms/DateInput";
