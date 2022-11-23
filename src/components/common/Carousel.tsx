@@ -61,7 +61,6 @@ const Carousel = ({ children }: IProps) => {
 
     if (containerWidth) {
       const currentCardCnt = Math.floor(containerWidth / itemWidth);
-
       setCurrentItemCnt(currentCardCnt);
     }
   };

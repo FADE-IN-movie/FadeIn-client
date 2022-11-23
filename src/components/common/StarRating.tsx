@@ -1,11 +1,20 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import styled from "styled-components";
 
 import Image from "next/image";
 
-const StarRating = () => {
+interface IProps {
+  fixedScore?: number;
+}
+
+type StarBoxPropsType = {
+  isStatic: boolean;
+};
+
+const StarRating = ({ fixedScore }: IProps) => {
   const [score, setScore] = useState(0);
   const [currentScore, setCurrentScore] = useState(0);
+  const boxRef = useRef<HTMLDivElement>(null);
   const starRef = useRef() as React.MutableRefObject<HTMLDivElement>;
 
   const onResizeStar = (num: number) => {
@@ -13,6 +22,7 @@ const StarRating = () => {
   };
 
   const onMouseMoveStar = (e: React.MouseEvent<HTMLImageElement>) => {
+    if (fixedScore !== undefined) return;
     const width = e.currentTarget.offsetWidth;
     const pos = e.clientX - e.currentTarget.offsetLeft;
     const limit = width / 5;
@@ -24,38 +34,58 @@ const StarRating = () => {
   };
 
   const onClickStar = () => {
+    if (fixedScore !== undefined) return;
     if (currentScore >= 0.5) setScore(currentScore);
   };
 
   const onMouseLeaveStar = (e: React.MouseEvent<HTMLImageElement>) => {
+    if (fixedScore !== undefined) return;
     const width = e.currentTarget.offsetWidth;
     onResizeStar((score * width) / 5);
   };
+
+  useEffect(() => {
+    if (fixedScore === undefined || !boxRef.current) return;
+
+    const handleResponsiveStar = () => {
+      if (fixedScore === undefined || !boxRef.current) return;
+      const boxWidth = boxRef.current.offsetWidth;
+
+      console.log(boxWidth);
+      onResizeStar((fixedScore * boxWidth) / 5);
+    };
+
+    handleResponsiveStar();
+    window.addEventListener("resize", handleResponsiveStar);
+    return () => window.removeEventListener("resize", handleResponsiveStar);
+  }, [fixedScore, boxRef.current]);
 
   return (
     <Box>
       <div className="starRatingBox">
         <StarBox
+          isStatic={fixedScore !== undefined}
+          ref={boxRef}
           onClick={onClickStar}
           onMouseMove={onMouseMoveStar}
           onMouseLeave={onMouseLeaveStar}
         >
-          <ImageWrap>
+          <div className="imageWrap">
             <Background
               src="/assets/images/empty_star_img.png"
               alt="background"
               layout="fill"
             />
-          </ImageWrap>
-          <SizeWrap ref={starRef}>
-            <ImageWrap>
+          </div>
+          <div className="sizeWrap" ref={starRef}>
+            <div className="imageWrap">
               <Star
                 src="/assets/images/colored_star_img.png"
                 alt="star"
                 layout="fill"
               />
-            </ImageWrap>
-          </SizeWrap>
+            </div>
+          </div>
         </StarBox>
         {score > 0 && <span className="score">{score.toFixed(1)}</span>}
       </div>
@@ -69,7 +99,7 @@ const Box = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  width: fit-content; //
+  width: fit-content;
 
   .desc {
     font-size: 1.1rem;
@@ -87,23 +117,24 @@ const Box = styled.div`
   }
 `;
 
-const StarBox = styled.div`
+const StarBox = styled.div<StarBoxPropsType>`
   position: relative;
-  width: 200px;
+  width: ${(props) => (props.isStatic ? "15em" : "200px")};
+  border: 1px solid gray;
   cursor: pointer;
-`;
 
-const SizeWrap = styled.div`
-  position: relative;
-  overflow: hidden !important;
-  width: 0;
-  height: 36px;
-`;
+  .sizeWrap {
+    position: relative;
+    overflow: hidden !important;
+    width: 0;
+    height: ${(props) => (props.isStatic ? "2.8em" : "36px")};
+  }
 
-const ImageWrap = styled.div`
-  position: absolute;
-  width: 200px;
-  height: 36px;
+  .imageWrap {
+    position: absolute;
+    width: ${(props) => (props.isStatic ? "15em" : "200px")};
+    height: ${(props) => (props.isStatic ? "2.8em" : "36px")};
+  }
 `;
 
 const Background = styled(Image)``;
