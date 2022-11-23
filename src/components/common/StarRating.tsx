@@ -9,12 +9,12 @@ interface IProps {
 
 type StarBoxPropsType = {
   isStatic: boolean;
+  score?: number;
 };
 
 const StarRating = ({ fixedScore }: IProps) => {
   const [score, setScore] = useState(0);
   const [currentScore, setCurrentScore] = useState(0);
-  const boxRef = useRef<HTMLDivElement>(null);
   const starRef = useRef() as React.MutableRefObject<HTMLDivElement>;
 
   const onResizeStar = (num: number) => {
@@ -44,28 +44,12 @@ const StarRating = ({ fixedScore }: IProps) => {
     onResizeStar((score * width) / 5);
   };
 
-  useEffect(() => {
-    if (fixedScore === undefined || !boxRef.current) return;
-
-    const handleResponsiveStar = () => {
-      if (fixedScore === undefined || !boxRef.current) return;
-      const boxWidth = boxRef.current.offsetWidth;
-
-      console.log(boxWidth);
-      onResizeStar((fixedScore * boxWidth) / 5);
-    };
-
-    handleResponsiveStar();
-    window.addEventListener("resize", handleResponsiveStar);
-    return () => window.removeEventListener("resize", handleResponsiveStar);
-  }, [fixedScore, boxRef.current]);
-
   return (
     <Box>
       <div className="starRatingBox">
         <StarBox
           isStatic={fixedScore !== undefined}
-          ref={boxRef}
+          score={fixedScore}
           onClick={onClickStar}
           onMouseMove={onMouseMoveStar}
           onMouseLeave={onMouseLeaveStar}
@@ -119,21 +103,23 @@ const Box = styled.div`
 
 const StarBox = styled.div<StarBoxPropsType>`
   position: relative;
-  width: ${(props) => (props.isStatic ? "15em" : "200px")};
-  border: 1px solid gray;
+  width: ${(props) => (props.isStatic ? "13em" : "200px")};
   cursor: pointer;
 
   .sizeWrap {
     position: relative;
     overflow: hidden !important;
-    width: 0;
-    height: ${(props) => (props.isStatic ? "2.8em" : "36px")};
+    width: ${(props) => {
+      const width = props.score !== undefined ? (13 / 5) * props.score : 0;
+      return `${width}em`;
+    }};
+    height: ${(props) => (props.isStatic ? "2.3em" : "36px")};
   }
 
   .imageWrap {
     position: absolute;
-    width: ${(props) => (props.isStatic ? "15em" : "200px")};
-    height: ${(props) => (props.isStatic ? "2.8em" : "36px")};
+    width: ${(props) => (props.isStatic ? "13em" : "200px")};
+    height: ${(props) => (props.isStatic ? "2.3em" : "36px")};
   }
 `;
 
