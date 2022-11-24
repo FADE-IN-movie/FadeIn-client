@@ -1,12 +1,13 @@
-import CustomPageTitle from "@components/common/CustomPageTitle";
 import styled from "styled-components";
+
 import Calendar from "../organisms/Calendar";
+import Header from "../organisms/Header";
 import ReviewSection from "../organisms/ReviewSection";
 
 const ReviewTemplate = () => {
   return (
     <Template>
-      <CustomPageTitle>내 감상평</CustomPageTitle>
+      <Header />
       <Content>
         <SideContent>
           <Calendar />
