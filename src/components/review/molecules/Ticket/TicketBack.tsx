@@ -9,7 +9,7 @@ const TicketBack = () => {
   return (
     <>
       <Image
-        src="/assets/images/ticket_back_img1.png"
+        src="/assets/images/ticket_back_img.png"
         layout="fill"
         alt="ticketBack"
       />
