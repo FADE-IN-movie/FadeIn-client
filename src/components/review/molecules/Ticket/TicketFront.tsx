@@ -7,41 +7,73 @@ import Barcode from "@components/review/atoms/Barcode";
 
 const TicketFront = () => {
   return (
-    <>
-      <Image
-        src="/assets/images/ticket_front_img.png"
-        layout="fill"
-        alt="ticketFront"
-      />
-      <div className="posterWrap">
-        <Poster
-          width="12em"
-          height="17.5em"
-          url="/assets/images/poster_img.jpg"
+    <Container>
+      <div className="ticketWrap">
+        <Image
+          src="/assets/images/ticket_front_img.png"
+          layout="fill"
+          alt="ticketFront"
         />
-      </div>
-
-      <TextBox>
-        <div className="frontTextBox">
-          <span className="title">
-            토르: 러브 앤 썬더 (Thor: Love and Thunder)
-          </span>
-          <span className="date">2022. 10. 20</span>
-          <span className="time">16 : 25 - 18 : 30</span>
-          <span className="place">롯데시네마 잠실점</span>
+        <div className="posterWrap">
+          <Poster
+            width="12em"
+            height="17.5em"
+            url="/assets/images/poster_img.jpg"
+          />
         </div>
-      </TextBox>
-      <div className="barcodeWrap frontBarcode">
-        <Barcode side="front">22-10-12T16:25</Barcode>
+
+        <TextBox>
+          <div className="frontTextBox">
+            <span className="title">
+              토르: 러브 앤 썬더 (Thor: Love and Thunder)
+            </span>
+            <span className="date">2022. 10. 20</span>
+            <span className="time">16 : 25 - 18 : 30</span>
+            <span className="place">롯데시네마 잠실점</span>
+          </div>
+        </TextBox>
+        <div className="barcodeWrap">
+          <Barcode side="front">22-10-12T16:25</Barcode>
+        </div>
+        <div className="ratingWrap">
+          <StarRating fixedScore={3.5} />
+        </div>
       </div>
-      <div className="ratingWrap">
-        <StarRating fixedScore={3.5} />
-      </div>
-    </>
+    </Container>
   );
 };
 
 export default TicketFront;
+
+const Container = styled.div`
+  .ticketWrap {
+    width: 100%;
+    cursor: pointer;
+
+    & > span {
+      position: unset !important;
+
+      img {
+        object-fit: contain !important;
+        position: relative !important;
+        height: auto !important;
+      }
+    }
+  }
+
+  .ratingWrap {
+    position: absolute;
+    top: 16.8em;
+    right: 9.8em;
+  }
+
+  .barcodeWrap {
+    position: absolute;
+    z-index: 1;
+    top: 8.8em;
+    right: -4.7em;
+  }
+`;
 
 const TextBox = styled.div`
   position: absolute;

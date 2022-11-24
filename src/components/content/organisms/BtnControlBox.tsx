@@ -30,7 +30,12 @@ const BtnControlBox = () => {
     <>
       <Box>
         <ContentActionBtn text="감상평">
-          <WriteIcon width="3rem" height="2.95rem" onClick={goWritePage} />
+          <WriteIcon
+            width="3rem"
+            height="2.95rem"
+            fill="white"
+            onClick={goWritePage}
+          />
         </ContentActionBtn>
         <ContentActionBtn
           text="찜"

@@ -7,12 +7,14 @@ import Barcode from "@components/review/atoms/Barcode";
 
 const TicketBack = () => {
   return (
-    <>
-      <Image
-        src="/assets/images/ticket_back_img.png"
-        layout="fill"
-        alt="ticketBack"
-      />
+    <Container>
+      <div className="imageWrap">
+        <Image
+          src="/assets/images/ticket_back_img.png"
+          layout="fill"
+          alt="ticketBack"
+        />
+      </div>
 
       <TextBox>
         <span className="with">상준, 건우</span>
@@ -30,11 +32,35 @@ const TicketBack = () => {
           </Scrollbars>
         </p>
       </TextBox>
-    </>
+    </Container>
   );
 };
 
 export default TicketBack;
+
+const Container = styled.div`
+  .imageWrap {
+    width: 100%;
+    cursor: pointer;
+
+    & > span {
+      position: unset !important;
+
+      img {
+        object-fit: contain !important;
+        position: relative !important;
+        height: auto !important;
+      }
+    }
+  }
+
+  .barcodeWrap {
+    position: absolute;
+    z-index: 1;
+    top: 14em;
+    left: 0.2em;
+  }
+`;
 
 const TextBox = styled.div`
   position: absolute;
