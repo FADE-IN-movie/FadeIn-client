@@ -1,26 +1,21 @@
+import { ChangeEvent, useEffect } from "react";
 import styled from "styled-components";
 import { theme } from "@styles/theme";
 
-import useInput from "src/hooks/useInput";
-import { useEffect } from "react";
-
 interface IProps {
-  initialValue: string;
+  name: string;
+  value: string;
+  handleChange: ({ target }: ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
-const TextArea = ({ initialValue }: IProps) => {
-  const [value, setValue, onChangeValue] = useInput("");
-
-  useEffect(() => {
-    if (initialValue) setValue(initialValue);
-  }, [initialValue, setValue]);
-
+const TextArea = ({ name, value, handleChange }: IProps) => {
   return (
     <StyledTextArea
+      name={name}
       rows={5}
       spellCheck={false}
       value={value}
-      onChange={onChangeValue}
+      onChange={handleChange}
     />
   );
 };

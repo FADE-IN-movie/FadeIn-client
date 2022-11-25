@@ -1,12 +1,12 @@
 import { useState, useCallback, ChangeEvent } from "react";
 
-type UserInputProps = [
+type UseInputProps = [
   string,
   (value: string) => void,
   ({ target }: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void
 ];
 
-const useInput = (initialValue: string): UserInputProps => {
+const useInput = (initialValue: string): UseInputProps => {
   const [value, setValue] = useState(initialValue);
 
   const onChange = useCallback(
