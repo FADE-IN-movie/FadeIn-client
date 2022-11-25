@@ -10,7 +10,7 @@ const contents = {
       },
     });
   },
-  getDetail: async (id: string, type: string) => {
+  getDetail: async (id: number, type: string) => {
     const res = await api.get(`${url}/${id}`, {
       params: {
         type: type,

@@ -1,5 +1,5 @@
 export interface IContentInfo {
-  id: number;
+  tmdbId: number;
   rank?: number;
   rating?: string;
   type: string;
