@@ -15,12 +15,13 @@ const SearchTabBar = () => {
     { value: "tv", text: "TV 프로그램 ( 0 )" },
   ]);
   const [selectedMenuIdx, setSelectedMenuIdx] = useState(0);
-  const { contents: resultCnt } = useRecoilValueLoadable(searchResultCntQuery);
+  const { state, contents: resultCnt } =
+    useRecoilValueLoadable(searchResultCntQuery);
   const setSearchType = useSetRecoilState(searchTypeState);
   const router = useRouter();
 
   useEffect(() => {
-    if (!resultCnt) return;
+    if (!resultCnt || state === "loading") return;
     setMenuInfo((prev) => [
       {
         ...prev[0],
@@ -28,7 +29,7 @@ const SearchTabBar = () => {
       },
       { ...prev[1], text: `TV 프로그램 ( ${resultCnt.tv} )` },
     ]);
-  }, [resultCnt]);
+  }, [resultCnt, state]);
 
   useEffect(
     () => setSearchType(menuInfo[selectedMenuIdx].value),
