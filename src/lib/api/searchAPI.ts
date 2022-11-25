@@ -11,6 +11,19 @@ const search = {
       },
     });
   },
+  getSearchResultCnt: async (keyword: string) => {
+    const { data } = await api.get(`${url}/length`, {
+      params: {
+        keyword: keyword,
+      },
+    });
+
+    return {
+      movie: data.movieLength,
+      tv: data.tvLength,
+      total: data.movieLength + data.tvLength,
+    };
+  },
 };
 
 export default search;
