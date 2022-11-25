@@ -29,7 +29,20 @@ export interface IContentDetailInfo {
 }
 
 export interface IReviewInfo {
-  id: number;
-  rating?: string;
-  //...
+  content: {
+    tmdbId: number;
+    title: string;
+    originalTitle: string;
+    poster?: string;
+    backdrop?: string;
+  };
+  review: {
+    reviewId?: string;
+    watched_at?: string;
+    watched_in?: string;
+    watched_with?: string;
+    rating: number;
+    memo?: string;
+    comment?: string;
+  };
 }

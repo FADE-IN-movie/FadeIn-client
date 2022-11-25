@@ -4,15 +4,17 @@ import styled from "styled-components";
 import Image from "next/image";
 
 interface IProps {
+  initialScore?: number;
   fixedScore?: number;
 }
 
 type StarBoxPropsType = {
   isStatic: boolean;
-  score?: number;
+  fixedScore?: number;
+  initialScore?: number;
 };
 
-const StarRating = ({ fixedScore }: IProps) => {
+const StarRating = ({ initialScore, fixedScore }: IProps) => {
   const [score, setScore] = useState(0);
   const [currentScore, setCurrentScore] = useState(0);
   const starRef = useRef() as React.MutableRefObject<HTMLDivElement>;
@@ -44,12 +46,17 @@ const StarRating = ({ fixedScore }: IProps) => {
     onResizeStar((score * width) / 5);
   };
 
+  useEffect(() => {
+    if (initialScore) setScore(initialScore);
+  }, [initialScore]);
+
   return (
     <Box>
       <div className="starRatingBox">
         <StarBox
           isStatic={fixedScore !== undefined}
-          score={fixedScore}
+          fixedScore={fixedScore}
+          initialScore={initialScore}
           onClick={onClickStar}
           onMouseMove={onMouseMoveStar}
           onMouseLeave={onMouseLeaveStar}
@@ -110,8 +117,13 @@ const StarBox = styled.div<StarBoxPropsType>`
     position: relative;
     overflow: hidden !important;
     width: ${(props) => {
-      const width = props.score !== undefined ? (13 / 5) * props.score : 0;
-      return `${width}em`;
+      if (props.fixedScore) {
+        const width = (13 / 5) * props.fixedScore;
+        return `${width}em`;
+      } else if (props.initialScore) {
+        const width = (200 / 5) * props.initialScore;
+        return `${width}px`;
+      } else return "0px";
     }};
     height: ${(props) => (props.isStatic ? "2.3em" : "36px")};
   }

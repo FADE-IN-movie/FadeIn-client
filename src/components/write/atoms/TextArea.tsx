@@ -2,9 +2,18 @@ import styled from "styled-components";
 import { theme } from "@styles/theme";
 
 import useInput from "src/hooks/useInput";
+import { useEffect } from "react";
 
-const TextArea = () => {
-  const [value, onChangeValue] = useInput("");
+interface IProps {
+  initialValue: string;
+}
+
+const TextArea = ({ initialValue }: IProps) => {
+  const [value, setValue, onChangeValue] = useInput("");
+
+  useEffect(() => {
+    if (initialValue) setValue(initialValue);
+  }, [initialValue, setValue]);
 
   return (
     <StyledTextArea
