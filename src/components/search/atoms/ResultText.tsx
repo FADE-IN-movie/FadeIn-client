@@ -5,13 +5,14 @@ import { useRecoilValueLoadable } from "recoil";
 import { searchResultCntQuery } from "@states/search";
 
 const ResultText = () => {
-  const { contents: resultCnt } = useRecoilValueLoadable(searchResultCntQuery);
+  const { state, contents: resultCnt } =
+    useRecoilValueLoadable(searchResultCntQuery);
   const { query } = useRouter();
 
   return (
     <Text>
       <span className="bold">&apos;{query?.keyword}&apos; </span>검색 결과가{" "}
-      {resultCnt?.total}개 있습니다.
+      {state !== "loading" && resultCnt ? resultCnt.total : 0}개 있습니다.
     </Text>
   );
 };
