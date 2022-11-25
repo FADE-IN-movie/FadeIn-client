@@ -74,6 +74,7 @@ const TextBox = styled.div`
     display: inline-block;
     position: absolute;
     font-size: 1.1em;
+    cursor: pointer;
   }
 
   .with {

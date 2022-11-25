@@ -23,10 +23,14 @@ const Box = styled.div`
   display: flex;
 
   button {
-    background: rgba(53, 53, 53, 0.97);
+    background: rgba(53, 53, 53, 0.85);
     padding: 0.57em 1.8rem 0.4rem 1.8rem;
 
     &:hover {
+      opacity: 0.9 !important;
+    }
+
+    &:active {
       opacity: 1 !important;
     }
 

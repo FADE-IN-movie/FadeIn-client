@@ -50,8 +50,14 @@ const Container = styled.div<TicketPropsType>`
   }
 
   .buttonBoxWrap {
+    opacity: 0;
     position: absolute;
     top: -1.4rem;
     right: 2em;
+  }
+
+  &:hover .buttonBoxWrap {
+    opacity: 1;
+    transition: 0.1s ease-out;
   }
 `;

@@ -33,5 +33,5 @@ const Container = styled.div`
   background: #1d1c1c;
   border-radius: 5px;
   padding: 3rem;
-  gap: 1rem;
+  gap: 2rem;
 `;
