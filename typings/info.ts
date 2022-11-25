@@ -28,6 +28,16 @@ export interface IContentDetailInfo {
   similarContent?: IContentInfo[];
 }
 
+export interface IReviewDataInfo {
+  reviewId?: string;
+  watchedAt?: string;
+  watchedIn?: string;
+  watchedWith?: string;
+  rating: number;
+  memo?: string;
+  comment?: string;
+}
+
 export interface IReviewInfo {
   content: {
     tmdbId: number;
@@ -36,13 +46,5 @@ export interface IReviewInfo {
     poster?: string;
     backdrop?: string;
   };
-  review: {
-    reviewId?: string;
-    watched_at?: string;
-    watched_in?: string;
-    watched_with?: string;
-    rating: number;
-    memo?: string;
-    comment?: string;
-  };
+  review: IReviewDataInfo;
 }

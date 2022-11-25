@@ -1,10 +1,12 @@
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect, SetStateAction, Dispatch } from "react";
 import styled from "styled-components";
-
 import Image from "next/image";
+
+import { IReviewDataInfo } from "@typings/info";
 
 interface IProps {
   initialScore?: number;
+  setValues?: Dispatch<SetStateAction<IReviewDataInfo>>;
   fixedScore?: number;
 }
 
@@ -14,7 +16,7 @@ type StarBoxPropsType = {
   initialScore?: number;
 };
 
-const StarRating = ({ initialScore, fixedScore }: IProps) => {
+const StarRating = ({ setValues, initialScore, fixedScore }: IProps) => {
   const [score, setScore] = useState(0);
   const [currentScore, setCurrentScore] = useState(0);
   const starRef = useRef() as React.MutableRefObject<HTMLDivElement>;
@@ -49,6 +51,14 @@ const StarRating = ({ initialScore, fixedScore }: IProps) => {
   useEffect(() => {
     if (initialScore) setScore(initialScore);
   }, [initialScore]);
+
+  useEffect(() => {
+    if (setValues)
+      setValues((prev) => ({
+        ...prev,
+        rating: score,
+      }));
+  }, [score, setValues]);
 
   return (
     <Box>
