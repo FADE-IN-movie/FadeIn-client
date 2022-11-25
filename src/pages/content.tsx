@@ -31,13 +31,12 @@ export const getServerSideProps: GetServerSideProps = async ({
   query,
   req,
 }) => {
+  const tmdbId = Number(query.id);
+  const type = query.type as string;
   const accessToken = req ? req.cookies.accessToken : null;
   if (accessToken) setAuthorizationToken(accessToken);
 
-  const info = await contents.getDetail(
-    query.id as string,
-    query.type as string
-  );
+  const info = await contents.getDetail(tmdbId, type);
 
   return {
     props: { info },
