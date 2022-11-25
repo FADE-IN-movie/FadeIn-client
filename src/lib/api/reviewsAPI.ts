@@ -1,3 +1,4 @@
+import { IReviewDataInfo } from "@typings/info";
 import api from "./api";
 
 const url = "/reviews";
@@ -17,6 +18,23 @@ const reviews = {
     });
 
     return res.data;
+  },
+
+  createReview: async (
+    reviewId: string,
+    tmdbId: number,
+    type: string,
+    formValues: IReviewDataInfo
+  ) => {
+    const body = {
+      ...formValues,
+      tmdbId: tmdbId,
+      type: type,
+    };
+
+    const res = await api.post(`${url}/${reviewId}`, body);
+
+    return res.status;
   },
 };
 

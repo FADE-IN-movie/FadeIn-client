@@ -27,7 +27,11 @@ const Form = () => {
       },
     });
 
-  useEffect(() => initializeForm(review), [review, initializeForm]);
+  useEffect(() => {
+    let info = { ...review };
+    delete info.reviewId;
+    initializeForm(info);
+  }, [review, initializeForm]);
 
   return (
     <StyledForm>
@@ -90,7 +94,9 @@ const Form = () => {
       </FormItem>
       <BtnBox>
         <CustomBtn color="#3F3F3F">취소</CustomBtn>
-        <CustomBtn color="#4762E5">등록</CustomBtn>
+        <CustomBtn color="#4762E5" onClickHandler={onSubmitForm}>
+          등록
+        </CustomBtn>
       </BtnBox>
     </StyledForm>
   );
