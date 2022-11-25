@@ -1,49 +1,53 @@
 import styled from "styled-components";
 
-import { useRecoilState, useRecoilValue } from "recoil";
-import { reviewContentState, reviewDataState } from "@states/reviews";
+import { useRecoilValue } from "recoil";
+import { reviewDetailState } from "@states/reviews";
 
 import FormItem from "../molecules/FormItem";
 import Text from "../atoms/Text";
 import Input from "../molecules/Input";
-import StarRating from "@components/StarRating";
+import StarRating from "@components/common/StarRating";
 import TextArea from "../atoms/TextArea";
 import CustomBtn from "@components/common/CustomBtn";
 import DateInput from "../atoms/DateInput";
 
 const Form = () => {
-  const [reviewData, setReviewData] = useRecoilState(reviewDataState);
-  const content = useRecoilValue(reviewContentState);
+  const { content, review } = useRecoilValue(reviewDetailState);
 
   return (
     <StyledForm>
       <FormItem title="제목">
-        <Text>{content.title}</Text>
+        <Text>
+          {content.title} ({content.originalTitle})
+        </Text>
       </FormItem>
       <FormItem title="본 날짜 및 시간">
-        <DateInput />
+        <DateInput initialValue={review.watched_at || ""} />
       </FormItem>
-      <FormItem title="장소">
-        <Input limit={20} />
+      <FormItem
+        title="장소"
+        warn="최대 20자로 입력할 수 있는 글자 수가 제한됩니다."
+      >
+        <Input limit={20} initialValue={review.watched_in || ""} />
       </FormItem>
       <FormItem
         title="같이 본 사람"
-        warn="최대 00자로 입력할 수 있는 글자 수가 제한됩니다."
+        warn="최대 12자로 입력할 수 있는 글자 수가 제한됩니다."
       >
-        <Input limit={20} />
+        <Input limit={12} initialValue={review.watched_with || ""} />
       </FormItem>
-      <FormItem title="평점">
-        <StarRating />
+      <FormItem required title="평점">
+        <StarRating initialScore={review.rating} />
       </FormItem>
       <FormItem
         title="메모"
-        warn="최대 00자로 입력할 수 있는 글자 수가 제한됩니다."
+        warn="최대 24자로 입력할 수 있는 글자 수가 제한됩니다."
       >
-        <Input limit={30} />
+        <Input limit={24} initialValue={review.memo || ""} />
       </FormItem>
       <FormItem title="감상평">
         <div className="textAreaWrap">
-          <TextArea />
+          <TextArea initialValue={review.comment || ""} />
         </div>
       </FormItem>
       <BtnBox>
@@ -60,6 +64,7 @@ const StyledForm = styled.div`
   display: flex;
   flex-direction: column;
   gap: 4rem;
+  padding: 0 1rem;
 `;
 
 const BtnBox = styled.div`
