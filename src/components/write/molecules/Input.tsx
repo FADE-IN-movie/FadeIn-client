@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import styled from "styled-components";
 import { theme } from "@styles/theme";
 
@@ -5,10 +6,13 @@ import useInput from "@hooks/useInput";
 
 interface IProps {
   limit: number;
+  initialValue: string;
 }
 
-const Input = ({ limit }: IProps) => {
-  const [value, onChangeValue] = useInput("");
+const Input = ({ limit, initialValue }: IProps) => {
+  const [value, setValue, onChangeValue] = useInput(initialValue);
+
+  useEffect(() => setValue(initialValue), [initialValue, setValue]);
 
   return (
     <Box>

@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Background from "../atoms/Background";
 import CustomPageTitle from "@components/common/CustomPageTitle";
 import Form from "../organisms/Form";
+import WritePoster from "../atoms/WritePoster";
 
 type TemplatePropsType = {
   height: number;
@@ -30,6 +31,9 @@ const WriteTemplate = () => {
         <Layout>
           <CustomPageTitle>감상평 작성</CustomPageTitle>
           <Form />
+          <div className="posterWrap">
+            <WritePoster />
+          </div>
         </Layout>
       </Container>
     </Template>
@@ -54,8 +58,21 @@ const Container = styled.div`
 `;
 
 const Layout = styled.div`
+  position: relative;
   max-width: 1280px;
   width: 100%;
   padding: 4rem;
   background: #141414;
+
+  .posterWrap {
+    position: absolute;
+    top: 12rem;
+    right: 8rem;
+  }
+
+  @media screen and (max-width: 800px) {
+    .posterWrap {
+      display: none;
+    }
+  }
 `;
