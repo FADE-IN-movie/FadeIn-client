@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import TicketFront from "./TicketFront";
 import TicketBack from "./TicketBack";
+import ButtonBox from "./ButtonBox";
 
 type TicketPropsType = {
   width: number;
@@ -26,9 +27,12 @@ const Ticket = () => {
 
   return (
     <Container ref={ticketRef} width={width}>
-      <TicketWrap onClick={onToggleTicket}>
+      <div onClick={onToggleTicket}>
         {isFront ? <TicketFront /> : <TicketBack />}
-      </TicketWrap>
+      </div>
+      <div className="buttonBoxWrap">
+        <ButtonBox />
+      </div>
     </Container>
   );
 };
@@ -45,39 +49,15 @@ const Container = styled.div<TicketPropsType>`
     left: 2em;
   }
 
-  .barcodeWrap {
+  .buttonBoxWrap {
+    opacity: 0;
     position: absolute;
-    z-index: 1;
+    top: -1.4rem;
+    right: 2em;
   }
 
-  .frontBarcode {
-    top: 8.8em;
-    right: -4.7em;
-  }
-
-  .backBarcode {
-    top: 14em;
-    left: 0.2em;
-  }
-
-  .ratingWrap {
-    position: absolute;
-    top: 16.8em;
-    right: 9.8em;
-  }
-`;
-
-const TicketWrap = styled.div`
-  width: 100%;
-  cursor: pointer;
-
-  & > span {
-    position: unset !important;
-
-    img {
-      object-fit: contain !important;
-      position: relative !important;
-      height: auto !important;
-    }
+  &:hover .buttonBoxWrap {
+    opacity: 1;
+    transition: 0.1s ease-out;
   }
 `;
