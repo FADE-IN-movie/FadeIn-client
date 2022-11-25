@@ -1,18 +1,19 @@
 import Image from "next/image";
 import styled from "styled-components";
 
+import { useRecoilValue } from "recoil";
+import { reviewDetailState } from "@states/reviews";
+
 interface IProps {
   height: number;
 }
 
 const Background = ({ height }: IProps) => {
+  const content = useRecoilValue(reviewDetailState);
+
   return (
     <ImageWrap height={height}>
-      <Image
-        src="/assets/images/cover_img.png"
-        layout="fill"
-        alt="backgroundImg"
-      />
+      <Image src={content.backdrop || ""} layout="fill" alt="backgroundImg" />
     </ImageWrap>
   );
 };

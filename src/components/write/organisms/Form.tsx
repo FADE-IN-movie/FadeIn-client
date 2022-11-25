@@ -36,7 +36,7 @@ const Form = () => {
       >
         <Input limit={12} initialValue={review.watched_with || ""} />
       </FormItem>
-      <FormItem title="평점">
+      <FormItem required title="평점">
         <StarRating initialScore={review.rating} />
       </FormItem>
       <FormItem
@@ -65,23 +65,6 @@ const StyledForm = styled.div`
   flex-direction: column;
   gap: 4rem;
   padding: 0 1rem;
-`;
-
-const Column = styled.div`
-  display: flex;
-  width: 100%;
-  gap: 8rem;
-
-  > div {
-    width: 100%;
-  }
-
-  &:nth-child(2) {
-    @media screen and (max-width: 750px) {
-      flex-direction: column;
-      gap: 4rem;
-    }
-  }
 `;
 
 const BtnBox = styled.div`
