@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, MouseEvent } from "react";
 
 import styled from "styled-components";
 import { theme } from "@styles/theme";
@@ -13,7 +13,10 @@ import SignInBox from "@components/auth/SignInBox";
 const IntroSection = () => {
   const [isSignInModalOpen, setIsSignInModalOpen] = useState(false);
 
-  const onOpenSignInModal = () => setIsSignInModalOpen(true);
+  const onOpenSignInModal = (e: MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    setIsSignInModalOpen(true);
+  };
 
   return (
     <>
