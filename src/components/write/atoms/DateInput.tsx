@@ -1,14 +1,22 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 
 import styled from "styled-components";
 import { theme } from "@styles/theme";
 
-const DateInput = () => {
+interface IProps {
+  initialValue: string;
+}
+
+const DateInput = ({ initialValue }: IProps) => {
   const [date, setDate] = useState("");
 
   const onChangeDate = ({ target }: ChangeEvent<HTMLInputElement>) => {
     setDate(target.value);
   };
+
+  useEffect(() => {
+    if (initialValue) setDate(initialValue);
+  }, [initialValue]);
 
   return <Input type="datetime-local" value={date} onChange={onChangeDate} />;
 };

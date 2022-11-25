@@ -13,7 +13,7 @@ type DatePropsType = {
   isReviewExist?: boolean;
 };
 
-const Date({ children, isToday, isReviewExist }: IProps) => {
+const Date = ({ children, isToday, isReviewExist }: IProps) => {
   return (
     <Td
       isToday={isToday}
@@ -24,18 +24,18 @@ const Date({ children, isToday, isReviewExist }: IProps) => {
       {isReviewExist && <div className="sign" />}
     </Td>
   );
-}
+};
 
 export default Date;
 
 const Td = styled.td<DatePropsType>`
   position: relative;
-  font-size: 1.05rem;
+  font-size: 1.2rem;
   padding: 0.3rem 0.4rem 0.2rem 0.4rem;
   border-radius: 50%;
 
   .text {
-    padding: 0.55rem;
+    padding: 0.5rem;
     margin: 0.3rem;
   }
 

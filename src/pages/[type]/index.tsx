@@ -20,6 +20,7 @@ const Home: NextPage = () => {
     if (type === "movie" || type === "tv") setCurrentPage(type as string);
   }, [pathname, type, setCurrentPage]);
 
+  if (type !== "movie" && type !== "tv") return null;
   return (
     <Wrap>
       <SEO />

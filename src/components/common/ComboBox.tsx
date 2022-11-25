@@ -9,14 +9,15 @@ import ArrowDownIcon from "@images/down_arrow_icon.svg";
 
 interface IProps {
   info: string[];
+  selectedMenu: string;
+  setSelectedMenu: (menu: string) => void;
 }
 
 type OptBoxPropsType = {
   isScroll: boolean;
 };
 
-const ComboBox = ({ info }: IProps) => {
-  const [selectedMenu, setSelectedMenu] = useState(info[0]);
+const ComboBox = ({ info, selectedMenu, setSelectedMenu }: IProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const boxRef = useRef<HTMLDivElement>(null);
 

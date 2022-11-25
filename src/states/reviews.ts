@@ -1,19 +1,16 @@
 import { atom } from "recoil";
-import { IReviewContentInfo, IReviewInfo } from "@typings/info";
+import { IReviewInfo } from "@typings/info";
 
-export const reviewContentState = atom<IReviewContentInfo>({
-  key: "reviewContentState",
-  default: { id: 0, title: "", poster: "", backdrop: "", originalTitle: "" },
-});
-
-export const reviewDataState = atom<IReviewInfo>({
-  key: "reviewDataState",
+export const reviewDetailState = atom<IReviewInfo>({
+  key: "reviewDetailState",
   default: {
-    watched_at: "",
-    watched_in: "",
-    watched_with: "",
-    rating: 0,
-    memo: "",
-    comment: "",
+    content: {
+      tmdbId: 0,
+      title: "",
+      originalTitle: "",
+    },
+    review: {
+      rating: 0,
+    },
   },
 });
