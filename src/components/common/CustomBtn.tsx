@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, MouseEvent } from "react";
 import styled, { css } from "styled-components";
 
 interface IProps {
@@ -6,7 +6,7 @@ interface IProps {
   outline?: boolean;
   color: string;
   textColor?: string;
-  onClickHandler?: () => void;
+  onClickHandler?: (e: MouseEvent<HTMLButtonElement>) => void;
 }
 
 type ButtonPropsType = {
