@@ -8,7 +8,7 @@ import { useSetRecoilState } from "recoil";
 import { reviewDetailState } from "@states/reviews";
 
 import { setAuthorizationToken } from "@utils/account";
-import reviews from "@lib/api/reviewAPI";
+import reviews from "@lib/api/reviewsAPI";
 
 import WriteTemplate from "@components/write/templates/WriteTemplate";
 
@@ -34,18 +34,16 @@ export const getServerSideProps: GetServerSideProps = async ({
   query,
   req,
 }) => {
+  const reviewId = null;
+  const tmdbId = Number(query.contentId);
+  const type = query.type as string;
   const accessToken = req ? req.cookies.accessToken : null;
   if (accessToken) setAuthorizationToken(accessToken);
 
-  const info = await reviews.getWritePage(
-    Number(query.contentId),
-    query.type as string
-  );
-
-  console.log(info);
+  const info = await reviews.getWritePage(reviewId, tmdbId, type);
 
   return {
-    props: {},
+    props: { info },
   };
 };
 

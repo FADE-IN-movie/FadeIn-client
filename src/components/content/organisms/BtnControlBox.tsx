@@ -29,13 +29,8 @@ const BtnControlBox = () => {
   return (
     <>
       <Box>
-        <ContentActionBtn text="감상평">
-          <WriteIcon
-            width="3rem"
-            height="2.95rem"
-            fill="white"
-            onClick={goWritePage}
-          />
+        <ContentActionBtn text="감상평" onClickHandler={goWritePage}>
+          <WriteIcon width="3rem" height="2.95rem" fill="white" />
         </ContentActionBtn>
         <ContentActionBtn
           text="찜"
