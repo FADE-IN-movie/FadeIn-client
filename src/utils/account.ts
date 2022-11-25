@@ -57,7 +57,7 @@ export function signIn(info: IUser & ITokenInfo) {
   setAuthorizationToken(accessToken);
 
   // window.location.replace("/");
-  Router.push("/");
+  window.location.reload();
 }
 
 export function signOut() {
