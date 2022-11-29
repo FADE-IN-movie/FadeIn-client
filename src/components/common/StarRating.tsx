@@ -28,9 +28,13 @@ const StarRating = ({ setValues, initialScore, fixedScore }: IProps) => {
   const onMouseMoveStar = (e: React.MouseEvent<HTMLImageElement>) => {
     if (fixedScore !== undefined) return;
     const width = e.currentTarget.offsetWidth;
-    const pos = e.clientX - e.currentTarget.offsetLeft;
+    const pos = e.clientX - e.currentTarget.getBoundingClientRect().left;
     const limit = width / 5;
+
+    console.log(e.currentTarget.offsetLeft);
     const currentScore = Math.ceil((pos / limit) * 2) / 2;
+    console.log(pos);
+
     if (currentScore >= 0.5) {
       setCurrentScore(currentScore);
       onResizeStar((currentScore * width) / 5);
