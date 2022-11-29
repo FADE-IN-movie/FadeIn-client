@@ -63,4 +63,8 @@ const Container = styled.div`
   border-radius: 5px;
   padding: 3rem;
   gap: 2rem;
+
+  @media screen and (max-width: 1100px) {
+    margin-top: 1rem;
+  }
 `;
