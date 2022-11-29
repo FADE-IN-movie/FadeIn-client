@@ -1,24 +1,35 @@
-import { ReactNode } from "react";
+import { ReactNode, MouseEvent } from "react";
 import styled, { css } from "styled-components";
 
 interface IProps {
   children: ReactNode;
   isToday?: boolean;
+  isSelected?: boolean;
   isReviewExist?: boolean;
+  onSelectDay: (e: MouseEvent) => void;
 }
 
 type DatePropsType = {
   isToday?: boolean;
+  isSelected?: boolean;
   isValid?: boolean;
   isReviewExist?: boolean;
 };
 
-const Date = ({ children, isToday, isReviewExist }: IProps) => {
+const Date = ({
+  children,
+  isToday,
+  isSelected,
+  isReviewExist,
+  onSelectDay,
+}: IProps) => {
   return (
     <Td
       isToday={isToday}
+      isSelected={children !== "" && isSelected}
       isValid={children !== ""}
       isReviewExist={isReviewExist}
+      onClick={onSelectDay}
     >
       <div className="text">{children}</div>
       {isReviewExist && <div className="sign" />}
@@ -31,7 +42,7 @@ export default Date;
 const Td = styled.td<DatePropsType>`
   position: relative;
   font-size: 1.2rem;
-  padding: 0.3rem 0.4rem 0.2rem 0.4rem;
+  padding: 0.3rem 0.4rem 0.25rem 0.25rem;
   border-radius: 50%;
 
   .text {
@@ -41,8 +52,6 @@ const Td = styled.td<DatePropsType>`
 
   .sign {
     position: absolute;
-    /* left: 45%;
-    bottom: 0.3rem; */
     left: 69%;
     top: 10%;
     border-radius: 50%;
@@ -60,13 +69,28 @@ const Td = styled.td<DatePropsType>`
       }
     `}
 
-  ${(props) =>
-    props.isToday &&
-    css`
-      .text {
-        background: #ffd255;
-        border-radius: 50%;
-        color: white;
+  .text {
+    ${(props) => {
+      if (props.isSelected) {
+        if (props.isToday) {
+          return css`
+            background: #ffd255;
+            color: white;
+            border-radius: 50%;
+          `;
+        } else {
+          return css`
+            background: white;
+            border-radius: 50%;
+            color: black;
+          `;
+        }
+      } else {
+        if (props.isToday)
+          return css`
+            color: #ffd255;
+          `;
       }
-    `}
+    }}
+  }
 `;

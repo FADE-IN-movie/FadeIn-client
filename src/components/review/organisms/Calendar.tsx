@@ -3,6 +3,9 @@ import styled from "styled-components";
 
 import { IDate } from "@typings/date";
 
+import { useRecoilState } from "recoil";
+import { selectedDateState, todayDateState } from "@states/reviews";
+
 import Thead from "../molecules/Thead";
 import Tbody from "../molecules/Tbody";
 import Control from "../molecules/Control";
@@ -10,33 +13,23 @@ import Control from "../molecules/Control";
 const reviewDateArr = ["4", "5", "11", "16", "17", "30"];
 
 const Calendar = () => {
-  const [todayInfo, setTodayInfo] = useState<IDate>();
-  const [selectedDateInfo, setSelectedDateInfo] = useState<IDate>();
+  const [todayDate, setTodayDate] = useRecoilState(todayDateState);
+  const [selectedDate, setSelectedDate] = useRecoilState(selectedDateState);
 
   const onClickPrev = () => {
-    setSelectedDateInfo((prev: IDate | undefined) => {
-      if (prev !== undefined) {
-        return {
-          year: prev.month === 1 ? prev.year - 1 : prev.year,
-          month: prev.month === 1 ? 12 : prev.month - 1,
-          date: prev.date,
-          day: prev.day,
-        };
-      }
-    });
+    setSelectedDate((prev: IDate) => ({
+      year: prev.month === 1 ? prev.year - 1 : prev.year,
+      month: prev.month === 1 ? 12 : prev.month - 1,
+      date: 0,
+    }));
   };
 
   const onClickNext = () => {
-    setSelectedDateInfo((prev: IDate | undefined) => {
-      if (prev !== undefined) {
-        return {
-          year: prev.month === 12 ? prev.year + 1 : prev.year,
-          month: prev.month === 12 ? 1 : prev.month + 1,
-          date: prev.date,
-          day: prev.day,
-        };
-      }
-    });
+    setSelectedDate((prev: IDate) => ({
+      year: prev.month === 12 ? prev.year + 1 : prev.year,
+      month: prev.month === 12 ? 1 : prev.month + 1,
+      date: 0,
+    }));
   };
 
   useEffect(() => {
@@ -45,37 +38,30 @@ const Calendar = () => {
     const year = today.getFullYear();
     const month = today.getMonth() + 1;
     const date = today.getDate();
-    const day = today.getDay();
 
-    setTodayInfo({
+    setTodayDate({
       year: year,
       month: month,
       date: date,
-      day: day,
     });
 
-    setSelectedDateInfo({
+    setSelectedDate({
       year: year,
       month: month,
-      date: 0,
-      day: 0,
+      date: date,
     });
-  }, []);
+  }, [setSelectedDate, setTodayDate]);
 
   return (
     <StyledCalendar>
       <Control
-        currentYM={`${selectedDateInfo?.year}. ${selectedDateInfo?.month}`}
+        currentYM={`${selectedDate?.year}. ${selectedDate?.month}`}
         onClickPrev={onClickPrev}
         onClickNext={onClickNext}
       />
       <Table>
         <Thead />
-        <Tbody
-          today={todayInfo}
-          selectedDate={selectedDateInfo}
-          reviewDateArr={reviewDateArr}
-        />
+        <Tbody today={todayDate} reviewDateArr={reviewDateArr} />
       </Table>
     </StyledCalendar>
   );
@@ -84,7 +70,10 @@ const Calendar = () => {
 export default Calendar;
 
 const StyledCalendar = styled.div`
-  width: 27.5rem; // 수정 필요
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 `;
 
 const Table = styled.table`
