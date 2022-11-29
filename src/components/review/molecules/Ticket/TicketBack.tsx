@@ -23,7 +23,7 @@ const TicketBack = () => {
           <Barcode side="back">22-10-12T16:25</Barcode>
         </div>
         <p className="review">
-          <Scrollbars autoHide>
+          <Scrollbars autoHide onClick={(e) => e.stopPropagation()}>
             리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다
             리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다
             리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다
@@ -74,7 +74,6 @@ const TextBox = styled.div`
     display: inline-block;
     position: absolute;
     font-size: 1.1em;
-    cursor: pointer;
   }
 
   .with {
@@ -99,5 +98,6 @@ const TextBox = styled.div`
     top: -0.3em;
     left: 15.6em;
     word-break: break-all;
+    z-index: 3;
   }
 `;
