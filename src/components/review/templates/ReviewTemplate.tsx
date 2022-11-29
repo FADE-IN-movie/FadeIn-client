@@ -10,7 +10,9 @@ const ReviewTemplate = () => {
       <Header />
       <Content>
         <SideContent>
-          <Calendar />
+          <div className="calendarWrap">
+            <Calendar />
+          </div>
         </SideContent>
         <MainContent>
           <ReviewSection />
@@ -22,23 +24,32 @@ const ReviewTemplate = () => {
 
 export default ReviewTemplate;
 
-const Template = styled.div``;
+const Template = styled.div`
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+`;
 
 const Content = styled.div`
   display: flex;
+  gap: 8rem;
 `;
 
 const SideContent = styled.div`
   display: none;
+
   @media screen and (min-width: 1100px) {
-    width: 40%;
+    display: block;
+    width: fit-content;
+  }
+
+  .calendarWrap {
+    position: sticky;
+    top: 8rem;
   }
 `;
 
 const MainContent = styled.div`
   width: 100%;
-
-  @media screen and (min-width: 1100px) {
-    width: 60%;
-  }
+  max-width: 1000px;
 `;
