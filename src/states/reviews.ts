@@ -33,3 +33,8 @@ export const selectedDateState = atom<IDate>({
     date: 0,
   },
 });
+
+export const isCalendarOpenState = atom({
+  key: "isCalendarOpenState",
+  default: true,
+});

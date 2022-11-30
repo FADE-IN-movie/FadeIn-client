@@ -1,18 +1,27 @@
+import styled, { css } from "styled-components";
 import { theme } from "@styles/theme";
-import styled from "styled-components";
+
+import { useRecoilValue } from "recoil";
+import { isCalendarOpenState } from "@states/reviews";
 
 import Calendar from "../organisms/Calendar";
 import Header from "../organisms/Header";
 import ReviewSection from "../organisms/ReviewSection";
 
+type SideContentPropsType = {
+  isOpen: boolean;
+};
+
 const ReviewTemplate = () => {
+  const isCalendarOpen = useRecoilValue(isCalendarOpenState);
+
   return (
     <Template>
       <div className="headerWrap">
         <Header />
       </div>
       <Content>
-        <SideContent>
+        <SideContent isOpen={isCalendarOpen}>
           <div className="calendarWrap">
             <Calendar />
           </div>
@@ -53,13 +62,25 @@ const Content = styled.div`
   margin-top: 11rem;
 `;
 
-const SideContent = styled.div`
-  display: none;
+const SideContent = styled.div<SideContentPropsType>`
+  display: block;
+  width: fit-content;
   z-index: 5;
 
-  @media screen and (min-width: 1100px) {
-    display: block;
-    width: fit-content;
+  @media screen and (max-width: 1100px) {
+    position: fixed;
+    top: 20rem;
+    left: -50rem;
+    transition: 0.2s ease-out;
+    background: ${theme.bg_color};
+    border-radius: 5px;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1);
+
+    ${(props) =>
+      props.isOpen &&
+      css`
+        left: 4rem;
+      `};
   }
 
   .calendarWrap {

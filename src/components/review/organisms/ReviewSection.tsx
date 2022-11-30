@@ -1,19 +1,26 @@
+import { MouseEvent } from "react";
 import styled from "styled-components";
 
-import { useRecoilValue } from "recoil";
-import { selectedDateState } from "@states/reviews";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { selectedDateState, isCalendarOpenState } from "@states/reviews";
 
 import CalendarIcon from "@images/calendar_icon.svg";
 import Ticket from "../molecules/Ticket";
 
 const ReviewSection = () => {
   const { year, month, date } = useRecoilValue(selectedDateState);
+  const setIsCalendarOpen = useSetRecoilState(isCalendarOpenState);
   const selectedDateText = `${year}. ${month}${date ? `. ${date}` : ""}`;
+
+  const onToggleCalendar = (e: MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    setIsCalendarOpen((prev) => !prev);
+  };
 
   return (
     <Section>
       <div className="dateBox">
-        <button className="calendarBtn">
+        <button className="calendarBtn" onClick={onToggleCalendar}>
           <CalendarIcon width="2rem" fill="#c1c6df" />
         </button>
         <span className="selectedDate">{selectedDateText}</span>
@@ -63,4 +70,8 @@ const Container = styled.div`
   border-radius: 5px;
   padding: 3rem;
   gap: 2rem;
+
+  @media screen and (max-width: 1100px) {
+    margin-top: 1rem;
+  }
 `;
