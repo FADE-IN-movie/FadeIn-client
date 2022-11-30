@@ -1,3 +1,4 @@
+import { MouseEvent } from "react";
 import styled from "styled-components";
 
 import { useRecoilValue, useSetRecoilState } from "recoil";
@@ -11,7 +12,10 @@ const ReviewSection = () => {
   const setIsCalendarOpen = useSetRecoilState(isCalendarOpenState);
   const selectedDateText = `${year}. ${month}${date ? `. ${date}` : ""}`;
 
-  const onToggleCalendar = () => setIsCalendarOpen((prev) => !prev);
+  const onToggleCalendar = (e: MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    setIsCalendarOpen((prev) => !prev);
+  };
 
   return (
     <Section>
