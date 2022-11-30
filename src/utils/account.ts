@@ -1,7 +1,6 @@
 import { AxiosRequestConfig } from "axios";
 import { getCookie, removeCookie, setCookie } from "./cookie";
 import { setRecoil, resetRecoil } from "recoil-nexus";
-import Router from "next/router";
 import moment from "moment";
 import { loggedUserState } from "@states/users";
 import { IUser } from "@typings/user";
@@ -56,8 +55,9 @@ export function signIn(info: IUser & ITokenInfo) {
 
   setAuthorizationToken(accessToken);
 
-  // window.location.replace("/");
-  window.location.reload();
+  window.location.pathname === "/auth/callback/naver"
+    ? window.location.replace("/")
+    : window.location.reload();
 }
 
 export function signOut() {
@@ -121,6 +121,8 @@ export async function verifyToken(config: AxiosRequestConfig<any>) {
     "YYYY-MM-DD HH:mm:ss.SSSS"
   );
   const currentTime = moment().format("YYYY-MM-DD HH:mm:ss.SSSS");
+
+  console.log(accessTokenExp, refreshTokenExp);
 
   if (refreshTokenExp < currentTime) {
     signOut();

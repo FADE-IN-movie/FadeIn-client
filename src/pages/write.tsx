@@ -1,25 +1,33 @@
 import { useEffect } from "react";
-import { GetServerSideProps } from "next";
+import { useRouter } from "next/router";
+// import { GetServerSideProps } from "next";
 import styled from "styled-components";
-
-import { IReviewInfo } from "@typings/info";
 
 import { useSetRecoilState } from "recoil";
 import { reviewDetailState } from "@states/reviews";
 
-import { setAuthorizationToken } from "@utils/account";
 import reviews from "@lib/api/reviewsAPI";
 
 import WriteTemplate from "@components/write/templates/WriteTemplate";
 
-interface IProps {
-  info: IReviewInfo;
-}
+// interface IProps {
+//   info: IReviewInfo;
+// }
 
-const WritePage = ({ info }: IProps) => {
+const WritePage = () => {
   const setReviewData = useSetRecoilState(reviewDetailState);
+  const { query } = useRouter();
 
-  useEffect(() => setReviewData(info), [info, setReviewData]);
+  useEffect(() => {
+    (async () => {
+      const reviewId = null;
+      const tmdbId = Number(query.contentId);
+      const type = query.type as string;
+      await reviews.getWritePage(reviewId, tmdbId, type).then((res) => {
+        setReviewData(res);
+      });
+    })();
+  }, [query, setReviewData]);
 
   return (
     <Wrap>
@@ -30,22 +38,22 @@ const WritePage = ({ info }: IProps) => {
 
 export default WritePage;
 
-export const getServerSideProps: GetServerSideProps = async ({
-  query,
-  req,
-}) => {
-  const reviewId = null;
-  const tmdbId = Number(query.contentId);
-  const type = query.type as string;
-  const accessToken = req ? req.cookies.accessToken : null;
-  if (accessToken) setAuthorizationToken(accessToken);
+// export const getServerSideProps: GetServerSideProps = async ({
+//   query,
+//   req,
+// }) => {
+//   const reviewId = null;
+//   const tmdbId = Number(query.contentId);
+//   const type = query.type as string;
+//   const accessToken = req ? req.cookies.accessToken : null;
+//   if (accessToken) setAuthorizationToken(accessToken);
 
-  const info = await reviews.getWritePage(reviewId, tmdbId, type);
-  console.log(info);
+//   const info = await reviews.getWritePage(reviewId, tmdbId, type);
+//   console.log(info);
 
-  return {
-    props: { info },
-  };
-};
+//   return {
+//     props: { info },
+//   };
+// };
 
 const Wrap = styled.div``;
