@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-import WriteBtn from "../atoms/WriteBtn";
-
 const Header = () => {
   return (
     <Box>

@@ -74,6 +74,9 @@ const StyledCalendar = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  padding: 0.6rem 2rem 2rem 2rem;
+  border: 2px solid white;
+  border-radius: 5px;
 `;
 
 const Table = styled.table`
