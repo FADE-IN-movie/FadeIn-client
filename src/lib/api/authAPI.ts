@@ -1,3 +1,4 @@
+import axios from "axios";
 import api from "./api";
 import { signIn } from "@utils/account";
 
@@ -7,11 +8,13 @@ const auth = {
   signIn: async (provider: string, token: string) => {
     const { data, status } = await api.post(`${url}/${provider}`, token);
 
-    console.log(data);
     if (status === 200) signIn(data);
   },
   getNewToken: async (refreshToken: string) => {
-    const res = await api.post(`${url}/refresh`, refreshToken);
+    const res = await axios.post(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}${url}/refresh`,
+      refreshToken
+    );
     return res.data;
   },
 };
