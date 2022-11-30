@@ -4,24 +4,34 @@ import styled from "styled-components";
 
 import { clickOutside } from "@utils/display";
 
+import { useSetRecoilState } from "recoil";
+import { writeSearchKeywordState } from "@states/reviews";
+
 import CustomInput from "@components/common/CustomInput";
 import SearchIcon from "@images/search_icon.svg";
 
 interface IProps {
+  isStatic?: boolean;
   main?: boolean;
+  write?: boolean;
   width: string;
 }
 
-const SearchBar = ({ main, width }: IProps) => {
+const SearchBar = ({ isStatic, main, write, width }: IProps) => {
   const [keyword, setKeyword] = useState("");
+  const setWriteKeyword = useSetRecoilState(writeSearchKeywordState);
   const [isInputVisible, setIsInputVisible] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
 
   const onSearchKeyword = (e?: FormEvent<HTMLFormElement>) => {
     e?.preventDefault();
+    const trimedKeyword = keyword.trim();
 
-    if (keyword.trim() !== "") router.push(`/search?keyword=${keyword.trim()}`);
+    if (trimedKeyword !== "") {
+      if (!write) router.push(`/search?keyword=${trimedKeyword}`);
+      else setWriteKeyword(trimedKeyword);
+    }
   };
 
   const onChangeInput = ({ target }: ChangeEvent<HTMLInputElement>) => {
@@ -48,13 +58,13 @@ const SearchBar = ({ main, width }: IProps) => {
 
   useEffect(() => {
     const onClickHandler = ({ target }: Event) => {
-      if (main || !inputRef.current || !target) return;
+      if (isStatic || !inputRef.current || !target) return;
       clickOutside(target, inputRef.current, setIsInputVisible, true);
     };
 
     document.addEventListener("click", onClickHandler);
     return () => document.removeEventListener("click", onClickHandler);
-  }, [inputRef, main]);
+  }, [inputRef, isStatic]);
 
   useEffect(() => {
     if (!inputRef.current) return;
@@ -71,13 +81,20 @@ const SearchBar = ({ main, width }: IProps) => {
     }
   }, [router, inputRef]);
 
+  useEffect(() => {
+    if (!write) return;
+    return () => setWriteKeyword("");
+  }, [write, setWriteKeyword]);
+
   return (
     <Form onSubmit={onSearchKeyword}>
       <CustomInput
         inputRef={inputRef}
         isVisible={isInputVisible}
         search
+        isStatic={isStatic}
         main={main}
+        write={write}
         width={width}
         placeholderText="영화, TV 프로그램 검색"
         value={keyword}
@@ -94,6 +111,8 @@ const Form = styled.form`
   width: fit-content;
   display: flex;
   align-items: center;
+  width: 100%;
+  justify-content: center;
 `;
 
 const StyledSearchIcon = styled(SearchIcon)`

@@ -47,9 +47,11 @@ const BtnControlBox = () => {
         </ContentActionBtn>
       </Box>
 
-      <Modal isOpen={isShareModalOpen} setIsOpen={setIsShareModalOpen}>
-        <ShareBox />
-      </Modal>
+      {isShareModalOpen && (
+        <Modal setIsOpen={setIsShareModalOpen}>
+          <ShareBox />
+        </Modal>
+      )}
     </>
   );
 };

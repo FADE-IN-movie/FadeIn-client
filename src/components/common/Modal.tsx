@@ -8,7 +8,6 @@ import CloseIcon from "@images/close_icon.svg";
 interface IProps {
   children: ReactNode;
   isStatic?: boolean;
-  isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
 }
 
@@ -16,7 +15,7 @@ type BoxPropsType = {
   isStatic?: boolean;
 };
 
-const Modal = ({ children, isStatic, isOpen, setIsOpen }: IProps) => {
+const Modal = ({ children, isStatic, setIsOpen }: IProps) => {
   const boxRef = useRef<HTMLDivElement>(null);
 
   const onCloseModal = () => setIsOpen(false);
@@ -31,7 +30,6 @@ const Modal = ({ children, isStatic, isOpen, setIsOpen }: IProps) => {
     return () => document.removeEventListener("click", onClickHandler);
   }, [boxRef, setIsOpen]);
 
-  if (!isOpen) return null;
   return (
     <Background>
       <Box ref={boxRef} isStatic={isStatic}>
@@ -56,7 +54,7 @@ const Background = styled.div`
   align-items: center;
   width: 100%;
   height: 100vh;
-  z-index: 20;
+  z-index: 1000;
 `;
 
 const Box = styled.div<BoxPropsType>`
@@ -65,12 +63,12 @@ const Box = styled.div<BoxPropsType>`
   align-items: center;
   width: fit-content;
   height: fit-content;
+  margin: 4rem;
   min-width: ${(props) => !props.isStatic && "34rem"};
   min-height: ${(props) => !props.isStatic && "18rem"};
   background: ${theme.palette.dark_gray};
   padding: 3rem 4rem;
   border-radius: 5px;
-  z-index: 21;
 
   .content {
     width: 100%;
