@@ -20,7 +20,11 @@ const ReviewSection = () => {
   return (
     <Section>
       <div className="dateBox">
-        <button className="calendarBtn" onClick={onToggleCalendar}>
+        <button
+          title="캘린더 보기"
+          className="calendarBtn"
+          onClick={onToggleCalendar}
+        >
           <CalendarIcon width="2rem" fill="#c1c6df" />
         </button>
         <span className="selectedDate">{selectedDateText}</span>

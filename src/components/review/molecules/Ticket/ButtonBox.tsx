@@ -6,11 +6,11 @@ import DeleteIcon from "@images/delete_icon.svg";
 const ButtonBox = () => {
   return (
     <Box>
-      <button>
+      <button title="수정">
         <EditIcon width="1.5rem" fill="#E4E4E4" />
       </button>
       <div className="dividingLine" />
-      <button>
+      <button title="삭제">
         <DeleteIcon width="1.2rem" fill="#E4E4E4" />
       </button>
     </Box>
