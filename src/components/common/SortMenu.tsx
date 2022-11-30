@@ -1,16 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import styled from "styled-components";
 import { theme } from "@styles/theme";
 
 const menu = ["인기순", "평점순", "최신순"];
 
+interface IProps {
+  selectedMenu: string;
+  setSelectedMenu: (menu: string) => void;
+}
+
 type ButtonProps = {
   isActive: boolean;
 };
 
-const SortMenu = () => {
-  const [selectedMenu, setSelectedMenu] = useState(menu[0]);
+const SortMenu = ({ selectedMenu, setSelectedMenu }: IProps) => {
+  useEffect(() => setSelectedMenu(menu[0]), []);
 
   return (
     <Box>

@@ -20,13 +20,15 @@ const Auth = () => {
   useEffect(() => {
     const userInfo = getUserInfo();
     if (userInfo.accessToken === undefined) return;
+
     const { accessToken, userEmail, userName, userImg } = userInfo;
+
+    setAuthorizationToken(accessToken);
     setLoggedUser({
       userName: userName,
       userEmail: userEmail,
       userImg: userImg,
     });
-    setAuthorizationToken(accessToken);
   }, [setLoggedUser]);
 
   return <div></div>;

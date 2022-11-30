@@ -1,23 +1,24 @@
+import { ChangeEvent } from "react";
 import styled from "styled-components";
 import { theme } from "@styles/theme";
 
-import useInput from "@hooks/useInput";
-
 interface IProps {
+  name: string;
+  value: string;
   limit: number;
+  handleChange: ({ target }: ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Input = ({ limit }: IProps) => {
-  const [value, onChangeValue] = useInput("");
-
+const Input = ({ name, value, limit, handleChange }: IProps) => {
   return (
     <Box>
       <input
         type="text"
+        name={name}
         spellCheck={false}
         maxLength={limit}
         value={value}
-        onChange={onChangeValue}
+        onChange={handleChange}
       />
       <span className="limit">
         ( {value.length} / {limit} )

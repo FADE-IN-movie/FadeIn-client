@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, MouseEvent } from "react";
 import styled, { css } from "styled-components";
 
 interface IProps {
@@ -6,7 +6,7 @@ interface IProps {
   outline?: boolean;
   color: string;
   textColor?: string;
-  onClickHandler?: () => void;
+  onClickHandler?: (e: MouseEvent<HTMLButtonElement>) => void;
 }
 
 type ButtonPropsType = {
@@ -39,7 +39,7 @@ export default CustomBtn;
 const Button = styled.button<ButtonPropsType>`
   padding: 1.1rem 2.3rem;
   min-width: 11.5rem;
-  line-height: 1;
+  line-height: 1.3;
   border-radius: 30px;
   font-size: 1.5rem;
 

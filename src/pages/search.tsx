@@ -10,17 +10,18 @@ import { useEffect } from "react";
 
 const SearchPage = () => {
   const setSearchKeyword = useSetRecoilState(searchKeywordState);
-  const { query } = useRouter();
+  const router = useRouter();
 
   useEffect(() => {
-    if (query.keyword !== "" && query.keyword !== undefined) {
-      setSearchKeyword(query.keyword as string);
+    const { keyword } = router.query;
+    if (keyword !== "" && keyword !== undefined) {
+      setSearchKeyword(keyword as string);
     }
-  }, [query, setSearchKeyword]);
+  }, [router, setSearchKeyword]);
 
   return (
     <Wrap>
-      <SEO title={query.keyword as string} />
+      <SEO title={router.query.keyword as string} />
       <SearchPageTemplate />
     </Wrap>
   );

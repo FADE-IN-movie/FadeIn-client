@@ -1,17 +1,21 @@
+import { ChangeEvent, useEffect } from "react";
 import styled from "styled-components";
 import { theme } from "@styles/theme";
 
-import useInput from "src/hooks/useInput";
+interface IProps {
+  name: string;
+  value: string;
+  handleChange: ({ target }: ChangeEvent<HTMLTextAreaElement>) => void;
+}
 
-const TextArea = () => {
-  const [value, onChangeValue] = useInput("");
-
+const TextArea = ({ name, value, handleChange }: IProps) => {
   return (
     <StyledTextArea
+      name={name}
       rows={5}
       spellCheck={false}
       value={value}
-      onChange={onChangeValue}
+      onChange={handleChange}
     />
   );
 };

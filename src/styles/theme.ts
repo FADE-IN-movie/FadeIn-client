@@ -1,6 +1,7 @@
 export const theme = {
   bg_color: "#141414",
   text_color: "#E5E5E5",
+  dark_text_color: "#2D2D2D",
   logo_color: "#A9B2DD",
   palette: {
     dark_gray: "#1D1D1D",

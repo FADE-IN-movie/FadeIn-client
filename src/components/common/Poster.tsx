@@ -1,21 +1,18 @@
 import styled from "styled-components";
+import { theme } from "@styles/theme";
 import Image from "next/image";
-
-import { useRecoilValue } from "recoil";
-import { contentDetailInfoState } from "@states/contents";
 
 interface IProps {
   width: string;
   height: string;
   outline?: boolean;
+  url?: string;
 }
 
-const Poster = ({ width, height, outline }: IProps) => {
-  const { data } = useRecoilValue(contentDetailInfoState);
-
+const Poster = ({ width, height, outline, url }: IProps) => {
   return (
     <ImageWrap outline={outline} width={width} height={height}>
-      <Image src={data.poster} alt="posterImg" layout="fill" />
+      <Image src={url || ""} alt="posterImg" layout="fill" />
     </ImageWrap>
   );
 };
@@ -24,6 +21,7 @@ export default Poster;
 
 const ImageWrap = styled.div<IProps>`
   position: relative;
+  background: ${theme.bg_color};
   border-radius: 5px;
   overflow: hidden;
   width: ${(props) => props.width};
