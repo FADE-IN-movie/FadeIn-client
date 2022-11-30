@@ -1,6 +1,8 @@
-import { atom } from "recoil";
+import { atom, selector } from "recoil";
 import { IReviewInfo } from "@typings/info";
 import { IDate } from "@typings/date";
+
+import reviews from "@lib/api/reviewsAPI";
 
 export const reviewDetailState = atom<IReviewInfo>({
   key: "reviewDetailState",
@@ -37,4 +39,19 @@ export const selectedDateState = atom<IDate>({
 export const isCalendarOpenState = atom({
   key: "isCalendarOpenState",
   default: true,
+});
+
+export const writeSearchKeywordState = atom({
+  key: "writeSearchKeywordState",
+  default: "",
+});
+
+export const writeSearchKeywordQuery = selector({
+  key: "writeSearchKeywordQuery",
+  get: async ({ get }) => {
+    const keyword = get(writeSearchKeywordState);
+
+    if (keyword === "") return null;
+    return await reviews.searchWriteKeyword(keyword, 1);
+  },
 });

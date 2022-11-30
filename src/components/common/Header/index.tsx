@@ -46,13 +46,11 @@ const Header = () => {
         </div>
       </Container>
 
-      <Modal
-        isStatic
-        isOpen={isSignInModalOpen}
-        setIsOpen={setIsSignInModalOpen}
-      >
-        <SignInBox />
-      </Modal>
+      {isSignInModalOpen && (
+        <Modal isStatic setIsOpen={setIsSignInModalOpen}>
+          <SignInBox />
+        </Modal>
+      )}
     </>
   );
 };
@@ -65,7 +63,7 @@ const Background = styled.div`
   left: 0;
   width: 100%;
   height: 6rem;
-  z-index: 9;
+  z-index: 99;
   background: ${theme.bg_color};
   opacity: 0.95;
 `;
@@ -80,7 +78,7 @@ const Container = styled.div`
   width: 100%;
   padding: 0 4rem;
   height: 6rem;
-  z-index: 10;
+  z-index: 100;
 
   .box {
     display: flex;
