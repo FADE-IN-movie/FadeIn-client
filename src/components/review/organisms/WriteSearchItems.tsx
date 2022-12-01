@@ -35,7 +35,7 @@ const WriteSearchItems = () => {
 };
 
 const Wrap = styled.div`
-  height: calc(100% - 8rem);
+  height: calc(100% - 7rem);
 
   & > div > :nth-child(3) {
     right: 0px !important;
