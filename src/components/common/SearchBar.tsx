@@ -10,6 +10,10 @@ import { writeSearchKeywordState } from "@states/reviews";
 import CustomInput from "@components/common/CustomInput";
 import SearchIcon from "@images/search_icon.svg";
 
+type FormPropsType = {
+  wide?: boolean;
+};
+
 interface IProps {
   isStatic?: boolean;
   main?: boolean;
@@ -87,7 +91,7 @@ const SearchBar = ({ isStatic, main, write, width }: IProps) => {
   }, [write, setWriteKeyword]);
 
   return (
-    <Form onSubmit={onSearchKeyword}>
+    <Form wide={write} onSubmit={onSearchKeyword}>
       <CustomInput
         inputRef={inputRef}
         isVisible={isInputVisible}
@@ -107,11 +111,10 @@ const SearchBar = ({ isStatic, main, write, width }: IProps) => {
 
 export default SearchBar;
 
-const Form = styled.form`
-  width: fit-content;
+const Form = styled.form<FormPropsType>`
+  width: ${(props) => (props.wide ? "100%" : "max-content")};
   display: flex;
   align-items: center;
-  width: 100%;
   justify-content: center;
 `;
 

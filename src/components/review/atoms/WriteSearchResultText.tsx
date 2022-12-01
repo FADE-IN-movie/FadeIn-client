@@ -7,16 +7,14 @@ import {
 } from "@states/reviews";
 
 const WriteSearchResultText = () => {
-  const { state, contents: resultCnt } = useRecoilValueLoadable(
-    writeSearchKeywordQuery
-  );
+  // const { state, contents } = useRecoilValueLoadable(writeSearchKeywordQuery);
   const writeSearchKeyword = useRecoilValue(writeSearchKeywordState);
 
   if (!writeSearchKeyword) return null;
   return (
     <Text>
       <span className="bold">&apos;{writeSearchKeyword}&apos; </span>검색 결과가{" "}
-      {/* {state !== "loading" && resultCnt ? resultCnt.total : 0}개 있습니다. */}
+      {/* {state !== "loading" && contents ? contents.total : 0}개 있습니다. */}
     </Text>
   );
 };
