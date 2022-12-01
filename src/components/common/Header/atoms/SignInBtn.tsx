@@ -13,6 +13,7 @@ export default SignInBtn;
 
 const Button = styled.button`
   font-size: 1.5rem;
+  flex-basis: auto;
 
   &:hover {
     text-decoration: underline;
