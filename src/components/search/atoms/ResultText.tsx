@@ -11,8 +11,15 @@ const ResultText = () => {
 
   return (
     <Text>
-      <span className="bold">&apos;{query?.keyword}&apos; </span>검색 결과가{" "}
-      {state !== "loading" && resultCnt ? resultCnt.total : 0}개 있습니다.
+      {state !== "loading" && resultCnt ? (
+        <>
+          {" "}
+          <span className="bold">&apos;{query.keyword}&apos;</span> 검색 결과가{" "}
+          {resultCnt.total}개 있습니다.
+        </>
+      ) : (
+        <>검색 중입니다.</>
+      )}
     </Text>
   );
 };

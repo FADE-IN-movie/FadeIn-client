@@ -13,8 +13,15 @@ const WriteSearchResultText = () => {
   if (!writeSearchKeyword) return null;
   return (
     <Text>
-      <span className="bold">&apos;{writeSearchKeyword}&apos; </span>검색 결과가{" "}
-      {state !== "loading" && contents ? contents.total : 0}개 있습니다.
+      {state !== "loading" && contents ? (
+        <>
+          {" "}
+          <span className="bold">&apos;{writeSearchKeyword}&apos;</span> 검색
+          결과가 {contents.total}개 있습니다.
+        </>
+      ) : (
+        <>검색 중입니다.</>
+      )}
     </Text>
   );
 };
@@ -22,8 +29,8 @@ const WriteSearchResultText = () => {
 export default WriteSearchResultText;
 
 const Text = styled.p`
-  font-size: 2.8rem;
-  margin: 3rem 0 5rem 0;
+  font-size: 2.5rem;
+  margin: 3rem 0 3rem 0;
 
   .bold {
     font-weight: 700;
