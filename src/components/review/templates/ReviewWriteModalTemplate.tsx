@@ -3,6 +3,7 @@ import styled from "styled-components";
 import SearchBar from "@components/common/SearchBar";
 import WriteSearchResultText from "../atoms/WriteSearchResultText";
 import SearchItems from "../../search/organisms/SearchItems";
+import WriteSearchItems from "../organisms/WriteSearchItems";
 
 const ReviewWriteModalTemplate = () => {
   return (
@@ -11,6 +12,7 @@ const ReviewWriteModalTemplate = () => {
       <Content>
         <WriteSearchResultText />
         <SearchItems />
+        <WriteSearchItems />
       </Content>
     </Template>
   );
