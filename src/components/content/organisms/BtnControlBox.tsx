@@ -2,6 +2,9 @@ import { useState, MouseEvent } from "react";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 
+import { useRecoilState } from "recoil";
+import { isShareModalOpenState } from "@states/contents";
+
 import ContentActionBtn from "../molecules/ContentActionBtn";
 import Modal from "@components/common/Modal";
 
@@ -13,7 +16,9 @@ import ShareBox from "../molecules/ShareBox";
 
 const BtnControlBox = () => {
   const [isHeart, setIsHeart] = useState(false);
-  const [isShareModalOpen, setIsShareModalOpen] = useState(false);
+  const [isShareModalOpen, setIsShareModalOpen] = useRecoilState(
+    isShareModalOpenState
+  );
   const router = useRouter();
 
   const goWritePage = () => {

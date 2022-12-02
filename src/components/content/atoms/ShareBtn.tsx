@@ -1,7 +1,9 @@
 import { ReactNode } from "react";
 import Image from "next/image";
-
 import styled from "styled-components";
+
+import { useSetRecoilState } from "recoil";
+import { isShareModalOpenState } from "@states/contents";
 
 interface IProps {
   children: ReactNode;
@@ -10,8 +12,15 @@ interface IProps {
 }
 
 const ShareBtn = ({ children, imgUrl, handleClick }: IProps) => {
+  const setIsShareModalOpen = useSetRecoilState(isShareModalOpenState);
+
+  const onClickBtn = () => {
+    handleClick();
+    setIsShareModalOpen(false);
+  };
+
   return (
-    <Button onClick={handleClick}>
+    <Button onClick={onClickBtn}>
       <div className="imageWrap">
         <Image src={imgUrl} layout="fill" alt="shareIcon" />
       </div>
