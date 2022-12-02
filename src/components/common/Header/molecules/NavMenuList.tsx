@@ -5,7 +5,7 @@ import styled from "styled-components";
 import NavMenu from "../atoms/NavMenu";
 
 const NavMenuList = () => {
-  const { query } = useRouter();
+  const { query, asPath } = useRouter();
 
   return (
     <List>
@@ -21,7 +21,7 @@ const NavMenuList = () => {
       </Link>
       <Link href="/rank">
         <a>
-          <NavMenu isActive={query.type === "rank"}>랭킹</NavMenu>
+          <NavMenu isActive={asPath === "/rank"}>랭킹</NavMenu>
         </a>
       </Link>
     </List>
