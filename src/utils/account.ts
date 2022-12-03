@@ -122,8 +122,6 @@ export async function verifyToken(config: AxiosRequestConfig<any>) {
   );
   const currentTime = moment().format("YYYY-MM-DD HH:mm:ss.SSSS");
 
-  console.log(accessTokenExp, refreshTokenExp);
-
   if (refreshTokenExp < currentTime) {
     signOut();
   } else if (accessTokenExp < currentTime && refreshToken) {
