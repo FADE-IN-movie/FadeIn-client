@@ -1,12 +1,14 @@
 import styled from "styled-components";
 
 import { useRecoilValue, useRecoilState } from "recoil";
-import { contentDetailInfoState, isKakaoInitState } from "@states/contents";
+import { isKakaoInitState } from "@states/contents";
+
+import useContentDetail from "@hooks/useContentDetail";
 
 import ShareBtn from "../atoms/ShareBtn";
 
 const ShareBox = () => {
-  const { data } = useRecoilValue(contentDetailInfoState);
+  const { data } = useContentDetail();
   const url = "http://www.naver.com"; // 배포한 뒤 수정 필요
   const encodedUrl = encodeURI(encodeURIComponent(url));
   const [isKakaoInit, setIsKakaoInit] = useRecoilState(isKakaoInitState);
