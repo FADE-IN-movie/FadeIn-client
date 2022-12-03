@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import styled from "styled-components";
 
 import { useRecoilValue, useRecoilValueLoadable } from "recoil";
+import { isSignInState } from "@states/users";
 import { recommendContentsQuery } from "@states/contents";
 import { loggedUserState } from "@states/users";
 
@@ -21,14 +22,15 @@ const ListSection = () => {
   const { state, contents: content } = useRecoilValueLoadable(
     recommendContentsQuery
   );
+  const isSignIn = useRecoilValue(isSignInState);
   const type = query.type === "movie" ? "영화" : "TV 프로그램";
 
   const listTitles: ListTitlesType = {
     popular: `실시간 ${type} Top 10`,
-    topRate: `역대 ${type} Top`,
+    topRate: `역대 ${type} Top 10`,
     nowPlaying:
       query.type === "movie" ? `현재 상영 중인 ${type}` : `방영 중인 ${type}`,
-    preference: `${userName}님이 좋아할 만한 ${type}`,
+    preference: `${isSignIn ? `${userName}님이 ` : ""}` + `좋아할 만한 ${type}`,
     recommend: `FADE-IN 추천 ${type}`,
   };
 
