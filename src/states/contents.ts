@@ -13,21 +13,6 @@ export const recommendContentsQuery = selector({
   },
 });
 
-export const contentDetailInfoState = atom<IContentDetailInfo>({
-  key: "contentDetailInfoState",
-  default: {
-    data: {
-      id: 0,
-      type: "",
-      title: "",
-      genre: [],
-      poster: "",
-    },
-    cast: [],
-    similarContent: [],
-  },
-});
-
 export const isKakaoInitState = atom({
   key: "isKakaoInitState",
   default: false,

@@ -1,19 +1,13 @@
 import styled from "styled-components";
 
-import { useRecoilValue } from "recoil";
-import { contentDetailInfoState } from "@states/contents";
+import useContentDetail from "@hooks/useContentDetail";
+import { IContentDetailInfo } from "@typings/info";
 
 import CustomTitle from "@components/common/CustomTitle";
 import CastInfoBox from "../molecules/CastInfoBox";
 
-const castInfo = {
-  imgUrl: "/assets/images/cast_img.jpg",
-  name: "Chris Hemswroth",
-  role: "Thor Odinson",
-};
-
 const CastSection = () => {
-  const { cast } = useRecoilValue(contentDetailInfoState);
+  const { cast } = useContentDetail();
   const nullText = "(해당 정보 없음)";
 
   return (
@@ -23,7 +17,7 @@ const CastSection = () => {
       </div>
       {cast?.length ? (
         <div className="castInfoContainer">
-          {cast?.slice(1).map((info, i) => (
+          {cast?.slice(1).map((info: IContentDetailInfo, i: number) => (
             <CastInfoBox key={i} info={info} />
           ))}
         </div>
