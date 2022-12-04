@@ -2,8 +2,6 @@ import { atom, selector } from "recoil";
 import { currentPageState } from "./pages";
 import contents from "@lib/api/contentsAPI";
 
-import { IContentDetailInfo } from "@typings/info";
-
 export const recommendContentsQuery = selector({
   key: "recommendContentsQuery",
   get: async ({ get }) => {

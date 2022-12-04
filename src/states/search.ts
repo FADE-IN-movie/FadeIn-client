@@ -1,5 +1,4 @@
 import { atom, selector } from "recoil";
-import { IContentInfo } from "@typings/info";
 import search from "@lib/api/searchAPI";
 
 export const searchTypeState = atom({
