@@ -1,15 +1,15 @@
 import CustomTitle from "@components/common/CustomTitle";
 import styled from "styled-components";
 
-import { useRecoilValue } from "recoil";
-import { contentDetailInfoState } from "@states/contents";
+import useContentDetail from "@hooks/useContentDetail";
 
 import Descript from "../molecules/Descript";
 
 const ContentDetailInfoSection = () => {
-  const { data } = useRecoilValue(contentDetailInfoState);
+  const { data, isLoading } = useContentDetail();
   const nullText = "(해당 정보 없음)";
 
+  if (isLoading) return null;
   return (
     <Section>
       <div className="titleWrap">

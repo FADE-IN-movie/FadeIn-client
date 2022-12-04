@@ -1,14 +1,14 @@
 import styled from "styled-components";
 
-import { useRecoilValue } from "recoil";
-import { contentDetailInfoState } from "@states/contents";
+import useContentDetail from "@hooks/useContentDetail";
+import { IContentInfo } from "@typings/info";
 
 import ContentCard from "@components/common/ContentCard";
 import CustomTitle from "@components/common/CustomTitle";
 import Grid from "@components/layouts/Grid";
 
 const SimilarContentsSection = () => {
-  const { similarContent } = useRecoilValue(contentDetailInfoState);
+  const { similarContent } = useContentDetail();
   const nullText = "(해당 정보 없음)";
 
   return (
@@ -18,7 +18,7 @@ const SimilarContentsSection = () => {
       </div>
       {similarContent?.length ? (
         <Grid narrow>
-          {similarContent?.map((info, i) => (
+          {similarContent?.map((info: IContentInfo, i: number) => (
             <ContentCard key={i} responsive info={info} />
           ))}
         </Grid>

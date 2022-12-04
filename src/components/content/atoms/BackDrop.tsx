@@ -1,16 +1,15 @@
 import Image from "next/image";
 import styled from "styled-components";
 
-import { useRecoilValue } from "recoil";
-import { contentDetailInfoState } from "@states/contents";
+import useContentDetail from "@hooks/useContentDetail";
 
 const BackDrop = () => {
-  const { data } = useRecoilValue(contentDetailInfoState);
+  const { data } = useContentDetail();
 
   return (
     <Box>
       <ImageWrap>
-        {data.backdrop && (
+        {data?.backdrop && (
           <Image
             src={data.backdrop}
             className="autoImg"
