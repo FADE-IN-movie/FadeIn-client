@@ -7,9 +7,28 @@ const useContentDetail = () => {
   const { query } = useRouter();
   const tmdbId = Number(query.id);
   const type = query.type as string;
-  const { data, error } = useSWR("contentDetail", () =>
+  const { data, error, mutate } = useSWR("contentDetail", () =>
     contents.getDetail(tmdbId, type)
   );
+
+  const toggleLike = () => {
+    const { currentLike } = data;
+
+    contents
+      .toggleLike(currentLike, tmdbId, type)
+      .then(() => {
+        mutate(
+          {
+            ...data,
+            currentLike: !currentLike,
+          },
+          false
+        );
+      })
+      .catch((err) => {
+        console.dir(err);
+      });
+  };
 
   return {
     data: data ? data.data : null,
@@ -18,6 +37,7 @@ const useContentDetail = () => {
     currentLike: data ? data.currentLike : null,
     isLoading: !data,
     isError: error,
+    toggleLike,
   };
 };
 

@@ -5,6 +5,8 @@ import styled from "styled-components";
 import { useRecoilState } from "recoil";
 import { isShareModalOpenState } from "@states/contents";
 
+import useContentDetail from "@hooks/useContentDetail";
+
 import ContentActionBtn from "../molecules/ContentActionBtn";
 import Modal from "@components/common/Modal";
 
@@ -15,11 +17,16 @@ import ShareIcon from "@images/share_icon.svg";
 import ShareBox from "../molecules/ShareBox";
 
 const BtnControlBox = () => {
+  const { currentLike, toggleLike } = useContentDetail();
   const [isHeart, setIsHeart] = useState(false);
   const [isShareModalOpen, setIsShareModalOpen] = useRecoilState(
     isShareModalOpenState
   );
   const router = useRouter();
+
+  const onToggleHeart = () => {
+    toggleLike();
+  };
 
   const goWritePage = () => {
     const { type, id } = router.query;
@@ -37,11 +44,8 @@ const BtnControlBox = () => {
         <ContentActionBtn text="감상평" onClickHandler={goWritePage}>
           <WriteIcon width="3rem" height="2.95rem" fill="white" />
         </ContentActionBtn>
-        <ContentActionBtn
-          text="찜"
-          onClickHandler={() => setIsHeart((prev) => !prev)}
-        >
-          {isHeart ? (
+        <ContentActionBtn text="찜" onClickHandler={onToggleHeart}>
+          {currentLike ? (
             <FillHeartIcon width="3rem" />
           ) : (
             <OutlineHeartIcon width="3rem" />
