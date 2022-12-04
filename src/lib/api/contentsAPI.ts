@@ -19,6 +19,17 @@ const contents = {
 
     return res.data;
   },
+  toggleLike: async (currentState: boolean, tmdbId: number, type: string) => {
+    const body = {
+      currentState: currentState,
+      tmdbId: tmdbId,
+      type: type,
+    };
+
+    const res = await api.post(`${url}/like`, body);
+
+    return res.data;
+  },
 };
 
 export default contents;
