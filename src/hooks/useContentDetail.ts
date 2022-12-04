@@ -7,8 +7,9 @@ const useContentDetail = () => {
   const { query } = useRouter();
   const tmdbId = Number(query.id);
   const type = query.type as string;
-  const { data, error, mutate } = useSWR("contentDetail", () =>
-    contents.getDetail(tmdbId, type)
+  const { data, error, mutate } = useSWR(
+    tmdbId && type ? "contentDetail" : null,
+    () => contents.getDetail(tmdbId, type)
   );
 
   const toggleLike = () => {

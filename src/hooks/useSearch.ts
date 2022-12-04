@@ -1,5 +1,3 @@
-import { useState, useEffect } from "react";
-
 import useSWR from "swr";
 import search from "@lib/api/searchAPI";
 
@@ -7,17 +5,12 @@ import { useRecoilValue } from "recoil";
 import { searchTypeState, searchKeywordState } from "@states/search";
 
 const useSearch = () => {
-  const [shouldFetch, setShouldFetch] = useState(false);
   const type = useRecoilValue(searchTypeState);
   const keyword = useRecoilValue(searchKeywordState);
   const { data, error } = useSWR(
-    shouldFetch ? ["search", type, keyword] : null,
+    type && keyword ? ["search", type, keyword] : null,
     () => search.searchKeyword(type, keyword)
   );
-
-  useEffect(() => {
-    type && keyword ? setShouldFetch(true) : setShouldFetch(false);
-  }, [type, keyword]);
 
   return {
     search: data ? data.search : null,
