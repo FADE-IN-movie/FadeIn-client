@@ -1,17 +1,14 @@
+import useSearch from "@hooks/useSearch";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 
-import { useRecoilValueLoadable } from "recoil";
-import { searchResultCntQuery } from "@states/search";
-
 const ResultText = () => {
-  const { state, contents: resultCnt } =
-    useRecoilValueLoadable(searchResultCntQuery);
+  const { resultCnt } = useSearch();
   const { query } = useRouter();
 
   return (
     <Text>
-      {state !== "loading" && resultCnt ? (
+      {resultCnt ? (
         <>
           {" "}
           <span className="bold">&apos;{query.keyword}&apos;</span> 검색 결과가{" "}
