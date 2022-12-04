@@ -1,11 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import useSWR from "swr";
 import search from "@lib/api/searchAPI";
 
 import { useRecoilValue } from "recoil";
 import { searchTypeState, searchKeywordState } from "@states/search";
-import { useEffect } from "react";
 
 const useSearch = () => {
   const [shouldFetch, setShouldFetch] = useState(false);

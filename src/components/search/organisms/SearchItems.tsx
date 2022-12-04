@@ -8,7 +8,7 @@ import ContentCard from "@components/common/ContentCard";
 const SearchItems = () => {
   const { search, isLoading } = useSearch();
 
-  if (isLoading) return null;
+  if (!search || !search.length || isLoading) return null;
   return (
     <Grid>
       {search?.map((result: IContentInfo, i: number) => (
