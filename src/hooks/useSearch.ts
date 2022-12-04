@@ -11,9 +11,14 @@ const useSearch = () => {
     type && keyword ? ["search", type, keyword] : null,
     () => search.searchKeyword(type, keyword)
   );
+  const { data: resultCnt } = useSWR(
+    keyword ? ["searchResultCnt", keyword] : null,
+    () => search.getSearchResultCnt(keyword)
+  );
 
   return {
     search: data ? data.search : null,
+    resultCnt: resultCnt || null,
     isLoading: !data,
     isError: error,
   };
