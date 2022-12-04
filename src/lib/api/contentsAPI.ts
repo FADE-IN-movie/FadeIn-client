@@ -4,11 +4,13 @@ const url = "/contents";
 
 const contents = {
   getRecommendContents: async (type: string) => {
-    return api.get(`${url}`, {
+    const res = await api.get(`${url}`, {
       params: {
         type: type,
       },
     });
+
+    return res.data;
   },
   getDetail: async (id: number, type: string) => {
     const res = await api.get(`${url}/${id}`, {
