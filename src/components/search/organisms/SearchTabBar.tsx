@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 
-import { useSetRecoilState, useRecoilValueLoadable } from "recoil";
-import { searchTypeState, searchResultCntQuery } from "@states/search";
+import useSearch from "@hooks/useSearch";
+import { useSetRecoilState } from "recoil";
+import { searchTypeState } from "@states/search";
 
 import TabBar from "@components/common/TabBar";
 
@@ -15,13 +16,12 @@ const SearchTabBar = () => {
     { value: "tv", text: "TV 프로그램 ( 0 )" },
   ]);
   const [selectedMenuIdx, setSelectedMenuIdx] = useState(0);
-  const { state, contents: resultCnt } =
-    useRecoilValueLoadable(searchResultCntQuery);
+  const { resultCnt } = useSearch();
   const setSearchType = useSetRecoilState(searchTypeState);
   const router = useRouter();
 
   useEffect(() => {
-    if (!resultCnt || state === "loading") return;
+    if (!resultCnt) return;
     setMenuInfo((prev) => [
       {
         ...prev[0],
@@ -29,7 +29,7 @@ const SearchTabBar = () => {
       },
       { ...prev[1], text: `TV 프로그램 ( ${resultCnt.tv} )` },
     ]);
-  }, [resultCnt, state]);
+  }, [resultCnt]);
 
   useEffect(
     () => setSearchType(menuInfo[selectedMenuIdx].value),
