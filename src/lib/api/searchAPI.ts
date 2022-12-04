@@ -4,12 +4,14 @@ const url = "/search";
 
 const search = {
   searchKeyword: async (type: string, keyword: string) => {
-    return await api.get(`${url}`, {
+    const res = await api.get(`${url}`, {
       params: {
         type: type,
         keyword: keyword,
       },
     });
+
+    return res.data;
   },
   getSearchResultCnt: async (keyword: string) => {
     const { data } = await api.get(`${url}/length`, {
