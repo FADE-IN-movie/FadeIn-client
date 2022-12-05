@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useRouter } from "next/router";
 
 import useWriteSearch from "@hooks/useWriteSearch";
 import { IContentInfo } from "@typings/info";
@@ -8,6 +9,7 @@ import ContentCard from "@components/common/ContentCard";
 import { Scrollbars } from "react-custom-scrollbars-2";
 
 const WriteSearchItems = () => {
+  const router = useRouter();
   const { search, isLoading } = useWriteSearch();
 
   if (!search || !search.length || isLoading) return null;
@@ -16,8 +18,18 @@ const WriteSearchItems = () => {
       <Wrap>
         <Scrollbars autoHide style={{ height: "100%" }}>
           <Grid>
-            {search?.map((result: IContentInfo, i: number) => (
-              <ContentCard key={i} responsive info={result} />
+            {search?.map((info: IContentInfo, i: number) => (
+              <div
+                key={i}
+                onClick={() =>
+                  router.push({
+                    pathname: `/write`,
+                    query: { type: info.type, contentId: info.id },
+                  })
+                }
+              >
+                <ContentCard key={i} responsive info={info} />
+              </div>
             ))}
           </Grid>
         </Scrollbars>

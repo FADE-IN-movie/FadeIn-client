@@ -19,16 +19,18 @@ type ListTitlesType = {
 
 const ListSection = () => {
   const { userName } = useRecoilValue(loggedUserState);
-  const { query } = useRouter();
+  const router = useRouter();
   const { data, isLoading } = useContents();
   const isSignIn = useRecoilValue(isSignInState);
-  const type = query.type === "movie" ? "영화" : "TV 프로그램";
+  const type = router.query.type === "movie" ? "영화" : "TV 프로그램";
 
   const listTitles: ListTitlesType = {
     popular: `실시간 ${type} Top 10`,
     topRate: `역대 ${type} Top 10`,
     nowPlaying:
-      query.type === "movie" ? `현재 상영 중인 ${type}` : `방영 중인 ${type}`,
+      router.query.type === "movie"
+        ? `현재 상영 중인 ${type}`
+        : `방영 중인 ${type}`,
     preference: `${isSignIn ? `${userName}님이 ` : ""}` + `좋아할 만한 ${type}`,
     recommend: `FADE-IN 추천 ${type}`,
   };
@@ -43,7 +45,17 @@ const ListSection = () => {
           </TitleWrap>
           <Carousel>
             {data[title]?.map((info: IContentInfo, i: number) => (
-              <ContentCard key={i} info={info} />
+              <div
+                key={i}
+                onClick={() =>
+                  router.push({
+                    pathname: `/content`,
+                    query: { type: info.type, id: info.id },
+                  })
+                }
+              >
+                <ContentCard info={info} />
+              </div>
             ))}
           </Carousel>
         </div>

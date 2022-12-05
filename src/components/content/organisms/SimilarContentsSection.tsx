@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useRouter } from "next/router";
 
 import useContentDetail from "@hooks/useContentDetail";
 import { IContentInfo } from "@typings/info";
@@ -8,6 +9,7 @@ import CustomTitle from "@components/common/CustomTitle";
 import Grid from "@components/layouts/Grid";
 
 const SimilarContentsSection = () => {
+  const router = useRouter();
   const { similarContent } = useContentDetail();
   const nullText = "(해당 정보 없음)";
 
@@ -19,7 +21,17 @@ const SimilarContentsSection = () => {
       {similarContent?.length ? (
         <Grid narrow>
           {similarContent?.map((info: IContentInfo, i: number) => (
-            <ContentCard key={i} responsive info={info} />
+            <div
+              key={i}
+              onClick={() =>
+                router.push({
+                  pathname: `/content`,
+                  query: { type: info.type, id: info.id },
+                })
+              }
+            >
+              <ContentCard responsive info={info} />
+            </div>
           ))}
         </Grid>
       ) : (

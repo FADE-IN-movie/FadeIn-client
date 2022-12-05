@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import Image from "next/image";
-import { useRouter } from "next/router";
 
 import { IContentInfo } from "@typings/info";
 
@@ -23,18 +22,8 @@ type CardBackPropsType = {
 };
 
 const ContentCard = ({ info, responsive }: IProps) => {
-  const router = useRouter();
-
   return (
-    <Container
-      responsive={responsive}
-      onClick={() =>
-        router.push({
-          pathname: `/content`,
-          query: { type: info.type, id: info.id },
-        })
-      }
-    >
+    <Container responsive={responsive}>
       <div>
         <CardFront>
           <ImageWrap>
