@@ -1,13 +1,12 @@
 import styled from "styled-components";
 
-import { useRecoilValue } from "recoil";
-import { contentDetailInfoState } from "@states/contents";
+import useContentDetail from "@hooks/useContentDetail";
 
 import Title from "../atoms/Title";
 import Descript from "../molecules/Descript";
 
 const ContentInfoBox = () => {
-  const { data, cast } = useRecoilValue(contentDetailInfoState);
+  const { data, cast, isLoading } = useContentDetail();
   const formattedCast =
     cast &&
     [...cast]
@@ -16,6 +15,7 @@ const ContentInfoBox = () => {
       .join(", ");
   const nullText = "(해당 정보 없음)";
 
+  if (isLoading) return null;
   return (
     <Box>
       <div className="contentInfoBox">

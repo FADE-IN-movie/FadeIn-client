@@ -36,6 +36,19 @@ const reviews = {
 
     return res.status;
   },
+
+  searchWriteKeyword: async (keyword: string, page: number) => {
+    const params = {
+      keyword: keyword,
+      page: page,
+    };
+
+    const res = await api.get(`${url}/search`, {
+      params: params,
+    });
+
+    return res.data;
+  },
 };
 
 export default reviews;

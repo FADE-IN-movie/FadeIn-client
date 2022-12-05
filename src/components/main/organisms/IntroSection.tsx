@@ -26,7 +26,7 @@ const IntroSection = () => {
           <MainText />
           <div className="bottomBox">
             <div className="searchBarWrap">
-              <SearchBar main width="43rem" />
+              <SearchBar isStatic main width="43rem" />
             </div>
             <div className="btnBox">
               <CustomBtn outline color="#8E9EEE" textColor={theme.logo_color}>
@@ -44,13 +44,11 @@ const IntroSection = () => {
         </div>
       </Section>
 
-      <Modal
-        isStatic
-        isOpen={isSignInModalOpen}
-        setIsOpen={setIsSignInModalOpen}
-      >
-        <SignInBox />
-      </Modal>
+      {isSignInModalOpen && (
+        <Modal isStatic setIsOpen={setIsSignInModalOpen}>
+          <SignInBox />
+        </Modal>
+      )}
     </>
   );
 };

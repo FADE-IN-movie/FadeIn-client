@@ -1,8 +1,10 @@
 import { useRouter } from "next/router";
 import styled from "styled-components";
 
-import { useRecoilValue, useRecoilValueLoadable } from "recoil";
-import { recommendContentsQuery } from "@states/contents";
+import useContents from "@hooks/useContents";
+
+import { useRecoilValue } from "recoil";
+import { isSignInState } from "@states/users";
 import { loggedUserState } from "@states/users";
 
 import { IContentInfo } from "@typings/info";
@@ -18,30 +20,29 @@ type ListTitlesType = {
 const ListSection = () => {
   const { userName } = useRecoilValue(loggedUserState);
   const { query } = useRouter();
-  const { state, contents: content } = useRecoilValueLoadable(
-    recommendContentsQuery
-  );
+  const { data, isLoading } = useContents();
+  const isSignIn = useRecoilValue(isSignInState);
   const type = query.type === "movie" ? "영화" : "TV 프로그램";
 
   const listTitles: ListTitlesType = {
     popular: `실시간 ${type} Top 10`,
-    topRate: `역대 ${type} Top`,
+    topRate: `역대 ${type} Top 10`,
     nowPlaying:
       query.type === "movie" ? `현재 상영 중인 ${type}` : `방영 중인 ${type}`,
-    preference: `${userName}님이 좋아할 만한 ${type}`,
+    preference: `${isSignIn ? `${userName}님이 ` : ""}` + `좋아할 만한 ${type}`,
     recommend: `FADE-IN 추천 ${type}`,
   };
 
-  if (state === "loading") return null;
+  if (isLoading) return null;
   return (
     <Section>
-      {Object.keys(content)?.map((title, i) => (
+      {Object.keys(data)?.map((title, i) => (
         <div key={i}>
           <TitleWrap>
             <CustomTitle>{listTitles[title]}</CustomTitle>
           </TitleWrap>
           <Carousel>
-            {content[title]?.map((info: IContentInfo, i: number) => (
+            {data[title]?.map((info: IContentInfo, i: number) => (
               <ContentCard key={i} info={info} />
             ))}
           </Carousel>
