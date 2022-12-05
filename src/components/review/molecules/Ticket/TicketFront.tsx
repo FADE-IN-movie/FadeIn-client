@@ -1,11 +1,46 @@
 import Image from "next/image";
 import styled from "styled-components";
 
+import { IReviewInfo } from "@typings/info";
+
 import Poster from "@components/common/Poster";
 import StarRating from "@components/common/StarRating";
 import Barcode from "@components/review/atoms/Barcode";
 
-const TicketFront = () => {
+interface IProps {
+  review: IReviewInfo;
+}
+
+const TicketFront = ({ review }: IProps) => {
+  const {
+    title,
+    poster,
+    watchedDate,
+    watchedTime,
+    watchedIn,
+    rating,
+    runtime,
+  } = review;
+  const formattedDate = watchedDate ? watchedDate.replaceAll("-", ". ") : "";
+  const formattedTime = (() => {
+    const [startH, startM] = watchedTime
+      ? watchedTime.split(":").map(Number)
+      : [0, 0];
+    const startDate = watchedDate && new Date(`${watchedDate} ${watchedTime}`);
+    startDate &&
+      runtime &&
+      startDate.setMinutes(startDate.getMinutes() + runtime);
+    const [endH, endM] = startDate
+      ? [startDate.getHours(), startDate.getMinutes()]
+      : [0, 0];
+
+    return `${startH} : ${startM} - ${endH} : ${endM}`;
+  })();
+  const formattedBarcode =
+    watchedDate &&
+    watchedTime &&
+    watchedTime.slice(0, 5) + watchedDate.slice(5);
+
   return (
     <Container>
       <div className="ticketWrap">
@@ -15,28 +50,22 @@ const TicketFront = () => {
           alt="ticketFront"
         />
         <div className="posterWrap">
-          <Poster
-            width="12em"
-            height="17.5em"
-            url="/assets/images/poster_img.jpg"
-          />
+          <Poster width="12em" height="17.5em" url={poster || ""} />
         </div>
 
         <TextBox>
           <div className="frontTextBox">
-            <span className="title">
-              토르: 러브 앤 썬더 (Thor: Love and Thunder)
-            </span>
-            <span className="date">2022. 10. 20</span>
-            <span className="time">16 : 25 - 18 : 30</span>
-            <span className="place">롯데시네마 잠실점</span>
+            <span className="title">{title}</span>
+            <span className="date">{formattedDate}</span>
+            <span className="time">{formattedTime}</span>
+            <span className="place">{watchedIn}</span>
           </div>
         </TextBox>
         <div className="barcodeWrap">
-          <Barcode side="front">22-10-12T16:25</Barcode>
+          <Barcode side="front">{formattedBarcode}</Barcode>
         </div>
         <div className="ratingWrap">
-          <StarRating fixedScore={3.5} />
+          <StarRating fixedScore={rating} />
         </div>
       </div>
     </Container>
