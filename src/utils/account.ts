@@ -71,6 +71,8 @@ export function signOut() {
 
   resetRecoil(loggedUserState);
   setAuthorizationToken();
+
+  window.location.href = "/";
 }
 
 export function googleSignIn() {

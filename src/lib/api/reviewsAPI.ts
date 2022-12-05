@@ -49,6 +49,19 @@ const reviews = {
 
     return res.data;
   },
+
+  getReviews: async (year: number, month: number) => {
+    const params = {
+      year: year,
+      month: month,
+    };
+
+    const res = await api.get(`${url}/list`, {
+      params: params,
+    });
+
+    return res.data;
+  },
 };
 
 export default reviews;

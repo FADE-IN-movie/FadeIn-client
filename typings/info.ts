@@ -30,21 +30,20 @@ export interface IContentDetailInfo {
 
 export interface IReviewDataInfo {
   reviewId?: string;
-  watchedAt?: string;
+  watchedDate?: string;
   watchedIn?: string;
+  watchedTime?: string;
   watchedWith?: string;
+  runtime?: number;
   rating: number;
   memo?: string;
   comment?: string;
 }
 
-export interface IReviewInfo {
-  content: {
-    tmdbId: number;
-    title: string;
-    originalTitle: string;
-    poster?: string;
-    backdrop?: string;
-  };
-  review: IReviewDataInfo;
+export interface IReviewInfo extends IReviewDataInfo {
+  tmdbId: number;
+  title: string;
+  originalTitle: string;
+  poster?: string;
+  backdrop?: string;
 }

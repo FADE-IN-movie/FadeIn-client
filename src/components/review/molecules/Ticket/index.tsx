@@ -1,15 +1,21 @@
 import { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 
+import { IReviewInfo } from "@typings/info";
+
 import TicketFront from "./TicketFront";
 import TicketBack from "./TicketBack";
 import ButtonBox from "./ButtonBox";
+
+interface IProps {
+  review: IReviewInfo;
+}
 
 type TicketPropsType = {
   width: number;
 };
 
-const Ticket = () => {
+const Ticket = ({ review }: IProps) => {
   const [isFront, setIsFront] = useState(true);
   const [width, setWidth] = useState(0);
   const ticketRef = useRef<HTMLDivElement>(null);
@@ -28,7 +34,11 @@ const Ticket = () => {
   return (
     <Container ref={ticketRef} width={width}>
       <div onClick={onToggleTicket}>
-        {isFront ? <TicketFront /> : <TicketBack />}
+        {isFront ? (
+          <TicketFront review={review} />
+        ) : (
+          <TicketBack review={review} />
+        )}
       </div>
       <div className="buttonBoxWrap">
         <ButtonBox />

@@ -4,11 +4,15 @@ import styled from "styled-components";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { selectedDateState, isCalendarOpenState } from "@states/reviews";
 
+import useReviews from "@hooks/useReviews";
+import { IReviewInfo } from "@typings/info";
+
 import CalendarIcon from "@images/calendar_icon.svg";
 import Ticket from "../molecules/Ticket";
 
 const ReviewSection = () => {
   const { year, month, date } = useRecoilValue(selectedDateState);
+  const { reviews, isLoading } = useReviews();
   const setIsCalendarOpen = useSetRecoilState(isCalendarOpenState);
   const selectedDateText = `${year}. ${month}${date ? `. ${date}` : ""}`;
 
@@ -29,11 +33,13 @@ const ReviewSection = () => {
         </button>
         <span className="selectedDate">{selectedDateText}</span>
       </div>
-      <Container>
-        {[1, 2, 3, 4].map((i) => (
-          <Ticket key={i} />
-        ))}
-      </Container>
+      {!isLoading && (
+        <Container>
+          {reviews.map((review: IReviewInfo, i: number) => (
+            <Ticket review={review} key={i} />
+          ))}
+        </Container>
+      )}
     </Section>
   );
 };
