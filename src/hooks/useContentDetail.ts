@@ -9,7 +9,10 @@ const useContentDetail = () => {
   const type = query.type as string;
   const { data, error, mutate } = useSWR(
     tmdbId && type ? "contentDetail" : null,
-    () => contents.getDetail(tmdbId, type)
+    () => contents.getDetail(tmdbId, type),
+    {
+      revalidateOnFocus: false,
+    }
   );
 
   const toggleLike = () => {

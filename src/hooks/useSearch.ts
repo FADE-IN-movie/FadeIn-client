@@ -9,11 +9,17 @@ const useSearch = () => {
   const keyword = useRecoilValue(searchKeywordState);
   const { data, error } = useSWR(
     type && keyword ? ["search", type, keyword] : null,
-    () => search.searchKeyword(type, keyword)
+    () => search.searchKeyword(type, keyword),
+    {
+      revalidateOnFocus: false,
+    }
   );
   const { data: resultCnt } = useSWR(
     keyword ? ["searchResultCnt", keyword] : null,
-    () => search.getSearchResultCnt(keyword)
+    () => search.getSearchResultCnt(keyword),
+    {
+      revalidateOnFocus: false,
+    }
   );
 
   return {

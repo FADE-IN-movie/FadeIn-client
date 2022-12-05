@@ -8,8 +8,12 @@ import { writeSearchKeywordState } from "@states/reviews";
 
 const useSearch = () => {
   const keyword = useRecoilValue(writeSearchKeywordState);
-  const { data, error } = useSWR(keyword ? ["search", keyword] : null, () =>
-    reviews.searchWriteKeyword(keyword, 1)
+  const { data, error } = useSWR(
+    keyword ? ["search", keyword] : null,
+    () => reviews.searchWriteKeyword(keyword, 1),
+    {
+      revalidateOnFocus: false,
+    }
   );
 
   console.log(data);
