@@ -10,9 +10,7 @@ const UserMenuList = () => {
   return (
     <List>
       <UserMenu>찜 목록</UserMenu>
-      <UserMenu handleClick={() => router.push("/review")}>
-        내가 감상평
-      </UserMenu>
+      <UserMenu handleClick={() => router.push("/review")}>내 감상평</UserMenu>
       <UserMenu handleClick={signOut}>로그아웃</UserMenu>
     </List>
   );
