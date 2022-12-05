@@ -37,8 +37,7 @@ const Ticket = ({ review }: IProps) => {
         {isFront ? (
           <TicketFront review={review} />
         ) : (
-          // <TicketBack review={review} />
-          <></>
+          <TicketBack review={review} />
         )}
       </div>
       <div className="buttonBoxWrap">

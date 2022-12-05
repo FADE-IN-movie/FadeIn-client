@@ -2,10 +2,22 @@ import Image from "next/image";
 import styled from "styled-components";
 import { theme } from "@styles/theme";
 
+import { IReviewInfo } from "@typings/info";
+
 import { Scrollbars } from "react-custom-scrollbars-2";
 import Barcode from "@components/review/atoms/Barcode";
 
-const TicketBack = () => {
+interface IProps {
+  review: IReviewInfo;
+}
+
+const TicketBack = ({ review }: IProps) => {
+  const { watchedDate, watchedTime, watchedWith, memo, comment } = review;
+  const formattedBarcode =
+    watchedDate &&
+    watchedTime &&
+    watchedTime.slice(0, 5) + watchedDate.slice(5);
+
   return (
     <Container>
       <div className="imageWrap">
@@ -17,19 +29,13 @@ const TicketBack = () => {
       </div>
 
       <TextBox>
-        <span className="with">상준, 건우</span>
-        <p className="memo">메모입니다</p>
+        <span className="with">{watchedWith}</span>
+        <p className="memo">{memo}</p>
         <div className="barcodeWrap backBarcode">
-          <Barcode side="back">22-10-12T16:25</Barcode>
+          <Barcode side="back">{formattedBarcode}</Barcode>
         </div>
         <p className="review">
-          <Scrollbars autoHide>
-            리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다
-            리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다
-            리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다
-            리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰
-            리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰입니다리뷰
-          </Scrollbars>
+          <Scrollbars autoHide>{comment}</Scrollbars>
         </p>
       </TextBox>
     </Container>
