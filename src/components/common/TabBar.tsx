@@ -53,7 +53,7 @@ const TabBar = ({ menu, selectedMenuIdx, setSelectedMenuIdx }: IProps) => {
 
   useEffect(() => {
     setLineStyle();
-  }, [selectedMenuIdx, setLineStyle]);
+  }, [menu, selectedMenuIdx, setLineStyle]);
 
   useEffect(() => {
     window.addEventListener("resize", setLineStyle);
