@@ -41,7 +41,7 @@ const Ticket = ({ review }: IProps) => {
         )}
       </div>
       <div className="buttonBoxWrap">
-        <ButtonBox />
+        <ButtonBox reviewId={review.reviewId} />
       </div>
     </Container>
   );

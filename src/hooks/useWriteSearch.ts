@@ -16,7 +16,6 @@ const useSearch = () => {
     }
   );
 
-  console.log(data);
   return {
     search: data ? data.search : null,
     total: data ? data.total : 0,
