@@ -14,6 +14,7 @@ interface IProps {
 const TicketFront = ({ review }: IProps) => {
   const {
     title,
+    originalTitle,
     poster,
     watchedDate,
     watchedTime,
@@ -52,7 +53,9 @@ const TicketFront = ({ review }: IProps) => {
 
         <TextBox>
           <div className="frontTextBox">
-            <span className="title">{title}</span>
+            <span className="title">
+              {title} ({originalTitle})asdfasdfasdfadsfadfadf
+            </span>
             <span className="date">{formattedDate}</span>
             {watchedTime && <span className="time">{formattedTime}</span>}
             <span className="place">{watchedIn}</span>
@@ -115,6 +118,11 @@ const TextBox = styled.div`
   }
 
   .title {
+    display: block;
+    width: 28.5em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     top: 4.9em;
     left: 15em;
   }
