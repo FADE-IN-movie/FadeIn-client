@@ -28,22 +28,26 @@ export interface IContentDetailInfo {
   similarContent?: IContentInfo[];
 }
 
+export interface IReviewContentInfo {
+  tmdbId: number;
+  title: string;
+  reviewId?: string;
+  originalTitle: string;
+  poster?: string;
+  backdrop?: string;
+}
+
 export interface IReviewDataInfo {
   reviewId?: string;
   watchedDate?: string;
   watchedIn?: string;
   watchedTime?: string;
   watchedWith?: string;
+  watchedAt?: string;
   runtime?: number;
   rating: number;
   memo?: string;
   comment?: string;
 }
 
-export interface IReviewInfo extends IReviewDataInfo {
-  tmdbId: number;
-  title: string;
-  originalTitle: string;
-  poster?: string;
-  backdrop?: string;
-}
+export interface IReviewInfo extends IReviewContentInfo, IReviewDataInfo {}

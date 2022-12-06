@@ -30,6 +30,8 @@ const Form = () => {
   useEffect(() => {
     let info = { ...review };
     delete info.reviewId;
+
+    console.log(info);
     initializeForm(info);
   }, [review, initializeForm]);
 
@@ -37,7 +39,7 @@ const Form = () => {
     <StyledForm>
       <FormItem title="제목">
         <Text>
-          {content.title} ({content.originalTitle})
+          {content.title && `${content.title} (${content.originalTitle})`}
         </Text>
       </FormItem>
       <FormItem title="본 날짜 및 시간">

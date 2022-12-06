@@ -1,8 +1,11 @@
 import { atom } from "recoil";
-import { IReviewInfo } from "@typings/info";
+import { IReviewDataInfo, IReviewContentInfo } from "@typings/info";
 import { IDate } from "@typings/date";
 
-export const reviewDetailState = atom<IReviewInfo>({
+export const reviewDetailState = atom<{
+  review: IReviewDataInfo;
+  content: IReviewContentInfo;
+}>({
   key: "reviewDetailState",
   default: {
     content: {
