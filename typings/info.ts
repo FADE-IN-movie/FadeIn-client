@@ -43,7 +43,6 @@ export interface IReviewDataInfo {
   watchedIn?: string;
   watchedTime?: string;
   watchedWith?: string;
-  watchedAt?: string;
   runtime?: number;
   rating: number;
   memo?: string;

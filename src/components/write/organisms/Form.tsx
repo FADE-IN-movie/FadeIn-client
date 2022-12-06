@@ -12,13 +12,15 @@ import StarRating from "@components/common/StarRating";
 import TextArea from "../atoms/TextArea";
 import CustomBtn from "@components/common/CustomBtn";
 import DateInput from "../atoms/DateInput";
+import TimeInput from "../atoms/TimeInput";
 
 const Form = () => {
   const { content, review } = useRecoilValue(reviewDetailState);
   const { values, setValues, initializeForm, onChangeForm, onSubmitForm } =
     useForm({
       initialValues: {
-        watchedAt: "",
+        watchedDate: "",
+        watchedTime: "",
         watchedIn: "",
         watchedWith: "",
         rating: 0,
@@ -40,15 +42,22 @@ const Form = () => {
           {content.title && `${content.title} (${content.originalTitle})`}
         </Text>
       </FormItem>
-      <FormItem title="본 날짜 및 시간">
+      <FormItem required title="본 날짜">
         <DateInput
-          name="watchedAt"
-          value={values.watchedAt || ""}
+          name="watchedDate"
+          value={values.watchedDate || ""}
+          handleChange={onChangeForm}
+        />
+      </FormItem>
+      <FormItem title="본 시간">
+        <TimeInput
+          name="watchedTime"
+          value={values.watchedTime || ""}
           handleChange={onChangeForm}
         />
       </FormItem>
       <FormItem
-        title="장소"
+        title="본 장소"
         warn="최대 20자로 입력할 수 있는 글자 수가 제한됩니다."
       >
         <Input

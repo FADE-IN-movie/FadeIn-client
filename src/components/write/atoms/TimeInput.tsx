@@ -9,13 +9,13 @@ interface IProps {
   handleChange: ({ target }: ChangeEvent<HTMLInputElement>) => void;
 }
 
-const DateInput = ({ name, value, handleChange }: IProps) => {
+const TimeInput = ({ name, value, handleChange }: IProps) => {
   return (
-    <Input type="date" name={name} value={value} onChange={handleChange} />
+    <Input type="time" name={name} value={value} onChange={handleChange} />
   );
 };
 
-export default DateInput;
+export default TimeInput;
 
 const Input = styled.input`
   width: 25rem;
