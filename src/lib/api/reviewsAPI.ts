@@ -62,6 +62,10 @@ const reviews = {
 
     return res.data;
   },
+
+  deleteReview: async (reviewId: string) => {
+    api.delete(`${url}/${reviewId}`);
+  },
 };
 
 export default reviews;

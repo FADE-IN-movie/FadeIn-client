@@ -31,7 +31,6 @@ const useForm = ({ initialValues }: UseFormProps) => {
   const onSubmitForm = async () => {
     const { query } = router;
     const reviewId = uuidv4();
-    console.log(reviewId);
     const tmdbId = Number(query.contentId);
     const type = query.type as string;
 

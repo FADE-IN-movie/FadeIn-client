@@ -1,16 +1,24 @@
 import styled from "styled-components";
 
+import useReviews from "@hooks/useReviews";
+
 import EditIcon from "@images/write_icon.svg";
 import DeleteIcon from "@images/delete_icon.svg";
 
-const ButtonBox = () => {
+interface IProps {
+  reviewId?: string;
+}
+
+const ButtonBox = ({ reviewId }: IProps) => {
+  const { deleteReview } = useReviews();
+
   return (
     <Box>
       <button title="수정">
         <EditIcon width="1.5rem" fill="#E4E4E4" />
       </button>
       <div className="dividingLine" />
-      <button title="삭제">
+      <button title="삭제" onClick={() => deleteReview(reviewId || "")}>
         <DeleteIcon width="1.2rem" fill="#E4E4E4" />
       </button>
     </Box>

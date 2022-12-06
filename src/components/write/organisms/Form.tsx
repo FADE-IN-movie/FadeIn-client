@@ -30,8 +30,6 @@ const Form = () => {
   useEffect(() => {
     let info = { ...review };
     delete info.reviewId;
-
-    console.log(info);
     initializeForm(info);
   }, [review, initializeForm]);
 

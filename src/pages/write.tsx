@@ -23,11 +23,13 @@ const WritePage = () => {
       const reviewId = null;
       const tmdbId = Number(query.contentId);
       const type = query.type as string;
+
+      if (!tmdbId || !type) return;
       await reviews.getWritePage(reviewId, tmdbId, type).then((res) => {
         setReviewData(res);
       });
     })();
-  }, [query, setReviewData]);
+  }, [query]);
 
   return (
     <Wrap>
