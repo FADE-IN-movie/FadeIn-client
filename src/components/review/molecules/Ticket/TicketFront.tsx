@@ -20,6 +20,7 @@ const TicketFront = ({ review }: IProps) => {
     watchedIn,
     rating,
     runtime,
+    reviewId,
   } = review;
   const formattedDate = watchedDate ? watchedDate.replaceAll("-", ". ") : "";
   const formattedTime = (() => {
@@ -36,10 +37,6 @@ const TicketFront = ({ review }: IProps) => {
 
     return `${startH} : ${startM} - ${endH} : ${endM}`;
   })();
-  const formattedBarcode =
-    watchedDate &&
-    watchedTime &&
-    watchedTime.slice(0, 5) + watchedDate.slice(5);
 
   return (
     <Container>
@@ -57,12 +54,12 @@ const TicketFront = ({ review }: IProps) => {
           <div className="frontTextBox">
             <span className="title">{title}</span>
             <span className="date">{formattedDate}</span>
-            <span className="time">{formattedTime}</span>
+            {watchedTime && <span className="time">{formattedTime}</span>}
             <span className="place">{watchedIn}</span>
           </div>
         </TextBox>
         <div className="barcodeWrap">
-          <Barcode side="front">{formattedBarcode}</Barcode>
+          <Barcode side="front">{reviewId}</Barcode>
         </div>
         <div className="ratingWrap">
           <StarRating fixedScore={rating} />

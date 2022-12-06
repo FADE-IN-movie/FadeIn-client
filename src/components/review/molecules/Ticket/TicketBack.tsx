@@ -12,11 +12,7 @@ interface IProps {
 }
 
 const TicketBack = ({ review }: IProps) => {
-  const { watchedDate, watchedTime, watchedWith, memo, comment } = review;
-  const formattedBarcode =
-    watchedDate &&
-    watchedTime &&
-    watchedTime.slice(0, 5) + watchedDate.slice(5);
+  const { watchedWith, memo, comment, reviewId } = review;
 
   return (
     <Container>
@@ -32,7 +28,7 @@ const TicketBack = ({ review }: IProps) => {
         <span className="with">{watchedWith}</span>
         <p className="memo">{memo}</p>
         <div className="barcodeWrap backBarcode">
-          <Barcode side="back">{formattedBarcode}</Barcode>
+          <Barcode side="back">{reviewId}</Barcode>
         </div>
         <p className="review">
           <Scrollbars autoHide>{comment}</Scrollbars>
