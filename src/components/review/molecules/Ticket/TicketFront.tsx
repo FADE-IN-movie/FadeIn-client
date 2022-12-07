@@ -54,7 +54,7 @@ const TicketFront = ({ review }: IProps) => {
         <TextBox>
           <div className="frontTextBox">
             <span className="title">
-              {title} ({originalTitle})asdfasdfasdfadsfadfadf
+              {title} ({originalTitle})
             </span>
             <span className="date">{formattedDate}</span>
             {watchedTime && <span className="time">{formattedTime}</span>}
