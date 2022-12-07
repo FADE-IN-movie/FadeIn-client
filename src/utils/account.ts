@@ -47,13 +47,13 @@ export function signIn(info: IUser & ITokenInfo) {
   setCookie("userEmail", userEmail);
   setCookie("userImg", userImg);
 
+  setAuthorizationToken(accessToken);
+
   setRecoil(loggedUserState, {
     userName: userName,
     userEmail: userEmail,
     userImg: userImg,
   });
-
-  setAuthorizationToken(accessToken);
 
   window.location.pathname === "/auth/callback/naver"
     ? window.location.replace("/")
