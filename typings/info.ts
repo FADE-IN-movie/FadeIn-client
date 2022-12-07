@@ -40,7 +40,7 @@ export interface IReviewContentInfo {
 
 export interface IReviewDataInfo {
   reviewId?: string;
-  watchedDate?: string;
+  watchedDate: string;
   watchedIn?: string;
   watchedTime?: string;
   watchedWith?: string;

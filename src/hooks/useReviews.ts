@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+
 import useSWR from "swr";
 import reviews from "@lib/api/reviewsAPI";
 
