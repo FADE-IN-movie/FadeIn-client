@@ -3,6 +3,7 @@ import reviews from "@lib/api/reviewsAPI";
 
 import { useRecoilValue } from "recoil";
 import { selectedDateState } from "@states/reviews";
+import { IReviewInfo } from "@typings/info";
 
 const useReviews = () => {
   const { year, month } = useRecoilValue(selectedDateState);
@@ -17,7 +18,11 @@ const useReviews = () => {
     reviews
       .deleteReview(reviewId)
       .then(() => {
-        mutate(); //
+        const newData = data.review.filter(
+          (review: IReviewInfo) => review.reviewId !== reviewId
+        );
+
+        mutate({ review: newData }, false);
       })
       .catch((err) => {
         console.dir(err);
