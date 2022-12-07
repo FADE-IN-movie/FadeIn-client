@@ -12,7 +12,7 @@ const useReviews = () => {
     () => reviews.getReviews(year, month)
   );
 
-  const deleteReview = (reviewId: string) => {
+  const onDeleteReview = (reviewId: string) => {
     if (reviewId === "") return;
 
     reviews
@@ -33,7 +33,7 @@ const useReviews = () => {
     reviews: data ? data.review : null,
     isLoading: !data,
     isError: error,
-    deleteReview,
+    onDeleteReview,
   };
 };
 

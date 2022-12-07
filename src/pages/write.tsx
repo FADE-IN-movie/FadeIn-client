@@ -20,7 +20,7 @@ const WritePage = () => {
 
   useEffect(() => {
     (async () => {
-      const reviewId = null;
+      const reviewId = (query.reviewId as string) || null;
       const tmdbId = Number(query.contentId);
       const type = query.type as string;
 

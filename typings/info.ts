@@ -30,6 +30,7 @@ export interface IContentDetailInfo {
 
 export interface IReviewContentInfo {
   tmdbId: number;
+  type?: string;
   title: string;
   reviewId?: string;
   originalTitle: string;

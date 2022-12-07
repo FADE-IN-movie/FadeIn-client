@@ -143,7 +143,7 @@ const TextBox = styled.div`
   .place {
     display: inline-block;
     width: 20.5em;
-    top: 10.7em;
+    top: 10.6em;
     left: 22.8em;
     white-space: nowrap;
     overflow: hidden;

@@ -41,7 +41,11 @@ const Ticket = ({ review }: IProps) => {
         )}
       </div>
       <div className="buttonBoxWrap">
-        <ButtonBox reviewId={review.reviewId} />
+        <ButtonBox
+          type={review.type}
+          contentId={review.tmdbId}
+          reviewId={review.reviewId}
+        />
       </div>
     </Container>
   );
