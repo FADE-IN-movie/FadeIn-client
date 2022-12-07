@@ -1,5 +1,6 @@
-import { MouseEvent } from "react";
+import { MouseEvent, useEffect, useState } from "react";
 import styled from "styled-components";
+import { theme } from "@styles/theme";
 
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { selectedDateState, isCalendarOpenState } from "@states/reviews";
@@ -13,6 +14,7 @@ import Ticket from "../molecules/Ticket";
 const ReviewSection = () => {
   const { year, month, date } = useRecoilValue(selectedDateState);
   const { reviews, isLoading } = useReviews();
+  const [filteredReviews, setFilteredReviews] = useState([]);
   const setIsCalendarOpen = useSetRecoilState(isCalendarOpenState);
   const selectedDateText = `${year}. ${month}${date ? `. ${date}` : ""}`;
 
@@ -20,6 +22,25 @@ const ReviewSection = () => {
     e.stopPropagation();
     setIsCalendarOpen((prev) => !prev);
   };
+
+  useEffect(() => {
+    (() => {
+      if (!reviews) return;
+      const newArr = reviews.filter((review: IReviewInfo) => {
+        const [rYear, rMonth, rDate] = review.watchedDate
+          .split("-")
+          .map(Number);
+
+        const isSameYear = rYear === year;
+        const isSameMonth = rMonth === month;
+        const isSameDate = date ? rDate === date : true;
+
+        return isSameYear && isSameMonth && isSameDate;
+      });
+
+      setFilteredReviews(newArr);
+    })();
+  }, [reviews, year, month, date]);
 
   return (
     <Section>
@@ -33,13 +54,18 @@ const ReviewSection = () => {
         </button>
         <span className="selectedDate">{selectedDateText}</span>
       </div>
-      {!isLoading && (
-        <Container>
-          {reviews.map((review: IReviewInfo, i: number) => (
-            <Ticket review={review} key={i} />
-          ))}
-        </Container>
-      )}
+      {!isLoading &&
+        (filteredReviews.length ? (
+          <Container>
+            {filteredReviews?.map((review: IReviewInfo, i: number) => (
+              <Ticket review={review} key={i} />
+            ))}
+          </Container>
+        ) : (
+          <p className="warnText">
+            ( 선택된 날짜에 작성한 감상평이 존재하지 않습니다. )
+          </p>
+        ))}
     </Section>
   );
 };
@@ -70,6 +96,12 @@ const Section = styled.section`
       font-size: 1.8rem;
       font-weight: 600;
     }
+  }
+
+  .warnText {
+    color: ${theme.palette.light_gray};
+    font-size: 1.4rem;
+    padding-top: 3rem;
   }
 `;
 
