@@ -8,7 +8,7 @@ import Td from "../atoms/Date";
 
 interface IProps {
   today: IDate | undefined;
-  reviewDateArr: string[];
+  reviewDateArr?: string[];
 }
 
 const Tbody = ({ today, reviewDateArr }: IProps) => {
@@ -76,7 +76,7 @@ const Tbody = ({ today, reviewDateArr }: IProps) => {
             key={i}
             isToday={isToday}
             isSelected={selectedDate.date === Number(dayText)}
-            isReviewExist={reviewDateArr.includes(dayText)}
+            isReviewExist={reviewDateArr?.includes(dayText) || false}
             onSelectDay={onSelectDay}
           >
             {dayText}
@@ -93,6 +93,7 @@ const Tbody = ({ today, reviewDateArr }: IProps) => {
     selectedDate,
     today,
     setSelectedDate,
+    setIsCalendarOpen,
   ]);
 
   if (!today) return null;
