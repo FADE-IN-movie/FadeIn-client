@@ -1,7 +1,7 @@
 import { useState, useEffect, MouseEvent } from "react";
 
-import { useRecoilState } from "recoil";
-import { selectedDateState } from "@states/reviews";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { selectedDateState, isCalendarOpenState } from "@states/reviews";
 
 import { IDate } from "@typings/date";
 import Td from "../atoms/Date";
@@ -16,6 +16,7 @@ const Tbody = ({ today, reviewDateArr }: IProps) => {
   const [dateArr, setDateArr] = useState<JSX.Element[][]>();
   const [totalDate, setTotalDate] = useState<number>();
   const [startDay, setStartDay] = useState<number>();
+  const setIsCalendarOpen = useSetRecoilState(isCalendarOpenState);
 
   useEffect(() => {
     if (!selectedDate) return;
@@ -45,6 +46,7 @@ const Tbody = ({ today, reviewDateArr }: IProps) => {
         ...prev,
         date: prev.date === date ? 0 : date,
       }));
+      setIsCalendarOpen(false);
     };
 
     // fillDate

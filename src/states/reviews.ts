@@ -14,6 +14,7 @@ export const reviewDetailState = atom<{
       originalTitle: "",
     },
     review: {
+      watchedDate: "",
       rating: 0,
     },
   },
