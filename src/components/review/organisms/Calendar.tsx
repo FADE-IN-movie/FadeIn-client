@@ -1,7 +1,9 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
 import { IDate } from "@typings/date";
+import { IReviewInfo } from "@typings/info";
+import useReviews from "@hooks/useReviews";
 
 import { useRecoilState, useSetRecoilState } from "recoil";
 import {
@@ -16,9 +18,9 @@ import Thead from "../molecules/Thead";
 import Tbody from "../molecules/Tbody";
 import Control from "../molecules/Control";
 
-const reviewDateArr = ["4", "5", "11", "16", "17", "30"];
-
 const Calendar = () => {
+  const { reviews } = useReviews();
+  const [reviewDateArr, setReviewDateArr] = useState<string[]>();
   const calendarRef = useRef<HTMLDivElement>(null);
   const [todayDate, setTodayDate] = useRecoilState(todayDateState);
   const [selectedDate, setSelectedDate] = useRecoilState(selectedDateState);
@@ -69,6 +71,26 @@ const Calendar = () => {
     document.addEventListener("click", onClickHandler);
     return () => document.removeEventListener("click", onClickHandler);
   }, [calendarRef, setIsCalendarOpen]);
+
+  useEffect(() => {
+    if (!reviews) return;
+    const set = new Set<string>();
+
+    reviews.forEach((review: IReviewInfo) => {
+      const [rYear, rMonth, rDate] = review.watchedDate.split("-");
+      const { year, month } = selectedDate;
+
+      const isSameYear = year.toString() === rYear;
+      const isSameMonth = month.toString() === rMonth;
+
+      if (isSameYear && isSameMonth && rDate !== undefined)
+        set.add(Number(rDate).toString());
+    });
+
+    const filteredArr: string[] = Array.from(set);
+
+    setReviewDateArr(filteredArr);
+  }, [selectedDate, reviews]);
 
   return (
     <StyledCalendar ref={calendarRef}>
