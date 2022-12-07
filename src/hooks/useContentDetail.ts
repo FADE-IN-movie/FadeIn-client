@@ -15,7 +15,7 @@ const useContentDetail = () => {
     }
   );
 
-  const toggleLike = () => {
+  const onToggleLike = () => {
     const { currentLike } = data;
 
     contents
@@ -41,7 +41,7 @@ const useContentDetail = () => {
     currentLike: data ? data.currentLike : null,
     isLoading: !data,
     isError: error,
-    toggleLike,
+    onToggleLike,
   };
 };
 

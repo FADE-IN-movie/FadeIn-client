@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { useRouter } from "next/router";
 import styled from "styled-components";
 
 import Background from "../atoms/Background";
@@ -13,6 +14,8 @@ type TemplatePropsType = {
 const WriteTemplate = () => {
   const [bgHeight, setBgHeight] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
+  const { query } = useRouter();
+  const type = query.reviewId ? "edit" : "write";
 
   useEffect(() => {
     const getBackgroundHeight = () => {
@@ -29,7 +32,9 @@ const WriteTemplate = () => {
       <Background height={bgHeight} />
       <Container ref={containerRef}>
         <Layout>
-          <CustomPageTitle>감상평 작성</CustomPageTitle>
+          <CustomPageTitle>
+            감상평 {type === "write" ? "작성" : "수정"}
+          </CustomPageTitle>
           <Form />
           <div className="posterWrap">
             <WritePoster />

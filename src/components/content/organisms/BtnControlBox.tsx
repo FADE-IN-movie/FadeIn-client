@@ -17,7 +17,7 @@ import ShareIcon from "@images/share_icon.svg";
 import ShareBox from "../molecules/ShareBox";
 
 const BtnControlBox = () => {
-  const { currentLike, toggleLike } = useContentDetail();
+  const { currentLike, onToggleLike } = useContentDetail();
   const [isHeart, setIsHeart] = useState(false);
   const [isShareModalOpen, setIsShareModalOpen] = useRecoilState(
     isShareModalOpenState
@@ -25,7 +25,7 @@ const BtnControlBox = () => {
   const router = useRouter();
 
   const onToggleHeart = () => {
-    toggleLike();
+    onToggleLike();
   };
 
   const goWritePage = () => {

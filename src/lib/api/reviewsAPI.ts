@@ -66,6 +66,23 @@ const reviews = {
   deleteReview: async (reviewId: string) => {
     api.delete(`${url}/${reviewId}`);
   },
+
+  editReview: async (
+    reviewId: string,
+    tmdbId: number,
+    type: string,
+    formValues: IReviewDataInfo
+  ) => {
+    const body = {
+      ...formValues,
+      tmdbId: tmdbId,
+      type: type,
+    };
+
+    const res = await api.patch(`${url}/${reviewId}`, body);
+
+    return res.status;
+  },
 };
 
 export default reviews;

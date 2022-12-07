@@ -12,6 +12,9 @@ type UseFormProps = {
 const useForm = ({ initialValues }: UseFormProps) => {
   const [values, setValues] = useState(initialValues);
   const router = useRouter();
+  const { query } = router;
+  const tmdbId = Number(query.contentId);
+  const type = query.type as string;
 
   const initializeForm = useCallback((info: IReviewDataInfo) => {
     setValues(info);
@@ -28,21 +31,39 @@ const useForm = ({ initialValues }: UseFormProps) => {
     }));
   };
 
-  const onSubmitForm = async () => {
-    const { query } = router;
+  const onSubmitForm = () => {
     const reviewId = uuidv4();
-    const tmdbId = Number(query.contentId);
-    const type = query.type as string;
-
-    const status = await reviews.createReview(reviewId, tmdbId, type, values);
-
-    if (status === 201) router.push("/review");
-    else {
-      // error popup
-    }
+    reviews.createReview(reviewId, tmdbId, type, values).then((status) => {
+      switch (status) {
+        case 201:
+          router.push("/review");
+          break;
+        default:
+          break;
+      }
+    });
   };
 
-  return { values, setValues, initializeForm, onChangeForm, onSubmitForm };
+  const onEditForm = async (reviewId: string) => {
+    reviews.editReview(reviewId, tmdbId, type, values).then((status) => {
+      switch (status) {
+        case 202:
+          router.push("/review");
+          break;
+        default:
+          break;
+      }
+    });
+  };
+
+  return {
+    values,
+    setValues,
+    initializeForm,
+    onChangeForm,
+    onSubmitForm,
+    onEditForm,
+  };
 };
 
 export default useForm;

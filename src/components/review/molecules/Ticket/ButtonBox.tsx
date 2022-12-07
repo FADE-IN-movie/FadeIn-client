@@ -1,3 +1,5 @@
+import { useRouter } from "next/router";
+
 import styled from "styled-components";
 
 import useReviews from "@hooks/useReviews";
@@ -6,19 +8,31 @@ import EditIcon from "@images/write_icon.svg";
 import DeleteIcon from "@images/delete_icon.svg";
 
 interface IProps {
+  type?: string;
+  contentId: number;
   reviewId?: string;
 }
 
-const ButtonBox = ({ reviewId }: IProps) => {
-  const { deleteReview } = useReviews();
+const ButtonBox = ({ type, contentId, reviewId }: IProps) => {
+  const router = useRouter();
+  const { onDeleteReview } = useReviews();
 
   return (
     <Box>
       <button title="수정">
-        <EditIcon width="1.5rem" fill="#E4E4E4" />
+        <EditIcon
+          width="1.5rem"
+          fill="#E4E4E4"
+          onClick={() =>
+            router.push({
+              pathname: `/write`,
+              query: { type: type, contentId: contentId, reviewId: reviewId },
+            })
+          }
+        />
       </button>
       <div className="dividingLine" />
-      <button title="삭제" onClick={() => deleteReview(reviewId || "")}>
+      <button title="삭제" onClick={() => onDeleteReview(reviewId || "")}>
         <DeleteIcon width="1.2rem" fill="#E4E4E4" />
       </button>
     </Box>

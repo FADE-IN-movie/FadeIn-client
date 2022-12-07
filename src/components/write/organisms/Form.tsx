@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useRouter } from "next/router";
 import styled from "styled-components";
 
 import { useRecoilValue } from "recoil";
@@ -16,18 +17,30 @@ import TimeInput from "../atoms/TimeInput";
 
 const Form = () => {
   const { content, review } = useRecoilValue(reviewDetailState);
-  const { values, setValues, initializeForm, onChangeForm, onSubmitForm } =
-    useForm({
-      initialValues: {
-        watchedDate: "",
-        watchedTime: "",
-        watchedIn: "",
-        watchedWith: "",
-        rating: 0,
-        memo: "",
-        comment: "",
-      },
-    });
+  const {
+    values,
+    setValues,
+    initializeForm,
+    onChangeForm,
+    onSubmitForm,
+    onEditForm,
+  } = useForm({
+    initialValues: {
+      watchedDate: "",
+      watchedTime: "",
+      watchedIn: "",
+      watchedWith: "",
+      rating: 0,
+      memo: "",
+      comment: "",
+    },
+  });
+  const { query } = useRouter();
+  const type = query.reviewId ? "edit" : "write";
+
+  const onClickSubmitBtn = () => {
+    type === "write" ? onSubmitForm() : onEditForm(query.reviewId as string);
+  };
 
   useEffect(() => {
     let info = { ...review };
@@ -103,8 +116,8 @@ const Form = () => {
       </FormItem>
       <BtnBox>
         <CustomBtn color="#3F3F3F">취소</CustomBtn>
-        <CustomBtn color="#4762E5" onClickHandler={onSubmitForm}>
-          등록
+        <CustomBtn color="#4762E5" onClickHandler={onClickSubmitBtn}>
+          {type === "write" ? "등록" : "수정"}
         </CustomBtn>
       </BtnBox>
     </StyledForm>
