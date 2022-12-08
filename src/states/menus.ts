@@ -12,7 +12,7 @@ export const selectedGenreState = atom({
 
 export const selectedTypeState = atom({
   key: "selectedTypeState",
-  default: { value: "", text: "분류 전체" },
+  default: { value: "movie", text: "영화" },
 });
 
 export const selectedSortMenuState = atom({
