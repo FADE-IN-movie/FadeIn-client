@@ -4,7 +4,7 @@ import useLike from "@hooks/useLike";
 import { IContentInfo } from "@typings/info";
 
 import { useRecoilValue } from "recoil";
-import { selectedMenuState } from "@states/mylist";
+import { selectedMenuState } from "@states/menus";
 
 import Grid from "@components/layouts/Grid";
 import ContentCard from "@components/common/ContentCard";

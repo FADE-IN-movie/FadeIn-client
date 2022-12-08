@@ -8,13 +8,22 @@ import { Scrollbars } from "react-custom-scrollbars-2";
 import ArrowDownIcon from "@images/down_arrow_icon.svg";
 
 interface IProps {
-  info: string[];
-  selectedMenu: string;
-  setSelectedMenu: (menu: string) => void;
+  info: MenuPropsType[];
+  selectedMenu: MenuPropsType;
+  setSelectedMenu: (opt: MenuPropsType) => void;
 }
+
+type MenuPropsType = {
+  value: string;
+  text: string;
+};
 
 type OptBoxPropsType = {
   isScroll: boolean;
+};
+
+type OptPropsType = {
+  isActive: boolean;
 };
 
 const ComboBox = ({ info, selectedMenu, setSelectedMenu }: IProps) => {
@@ -34,17 +43,24 @@ const ComboBox = ({ info, selectedMenu, setSelectedMenu }: IProps) => {
   }, [boxRef]);
 
   return (
-    <Box ref={boxRef} onClick={onToggleMenu}>
-      <Select>
-        <span>{selectedMenu}</span>
+    <Box ref={boxRef}>
+      <Select onClick={onToggleMenu}>
+        <span>{selectedMenu.text}</span>
         <ArrowIcon isopen={isMenuOpen.toString()} />
       </Select>
       {isMenuOpen && (
         <OptBox isScroll={info.length > 4}>
           <Scrollbars autoHeight>
             {info.map((opt, i) => (
-              <Opt key={i} onClick={() => setSelectedMenu(opt)}>
-                {opt}
+              <Opt
+                key={i}
+                isActive={opt.value === selectedMenu.value}
+                onClick={() => {
+                  setSelectedMenu(opt);
+                  onToggleMenu();
+                }}
+              >
+                {opt.text}
               </Opt>
             ))}
           </Scrollbars>
@@ -95,10 +111,11 @@ const OptBox = styled.div<OptBoxPropsType>`
   }
 `;
 
-const Opt = styled.div`
+const Opt = styled.div<OptPropsType>`
   font-size: 1.3rem;
   padding: 1.6rem;
-  background: ${theme.palette.dark_gray};
+  background: ${(props) =>
+    props.isActive ? "#4e4d4d" : `${theme.palette.dark_gray}`};
 
   &:hover {
     background: ${theme.palette.gray};

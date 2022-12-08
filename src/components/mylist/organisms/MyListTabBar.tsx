@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { useSetRecoilState } from "recoil";
-import { selectedMenuState } from "@states/mylist";
+import { selectedMenuState } from "@states/menus";
 
 import TabBar from "@components/common/TabBar";
 
