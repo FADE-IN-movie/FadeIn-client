@@ -4,6 +4,7 @@ import { IReviewDataInfo } from "@typings/info";
 import reviews from "@lib/api/reviewsAPI";
 
 import { v4 as uuidv4 } from "uuid";
+import { toast } from "react-toastify";
 
 type UseFormProps = {
   initialValues: IReviewDataInfo;
@@ -33,15 +34,21 @@ const useForm = ({ initialValues }: UseFormProps) => {
 
   const onSubmitForm = () => {
     const reviewId = uuidv4();
-    reviews.createReview(reviewId, tmdbId, type, values).then((status) => {
-      switch (status) {
-        case 201:
-          router.push("/review");
-          break;
-        default:
-          break;
-      }
-    });
+    reviews
+      .createReview(reviewId, tmdbId, type, values)
+      .then((status) => {
+        switch (status) {
+          case 201:
+            toast.success("리뷰가 등록되었습니다.");
+            router.push("/review");
+            break;
+          default:
+            break;
+        }
+      })
+      .catch(() => {
+        toast.error("리뷰를 등록하지 못했습니다. 다시 시도해주세요.");
+      });
   };
 
   const onEditForm = async (reviewId: string) => {
