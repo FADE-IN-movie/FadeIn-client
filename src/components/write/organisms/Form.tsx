@@ -1,6 +1,7 @@
-import { useEffect } from "react";
+import { useEffect, useState, MouseEvent } from "react";
 import { useRouter } from "next/router";
 import styled from "styled-components";
+import { theme } from "@styles/theme";
 
 import { useRecoilValue } from "recoil";
 import { reviewDetailState } from "@states/reviews";
@@ -17,6 +18,7 @@ import TextArea from "../atoms/TextArea";
 import CustomBtn from "@components/common/CustomBtn";
 import DateInput from "../atoms/DateInput";
 import TimeInput from "../atoms/TimeInput";
+import ConfirmModal from "@components/common/ConfirmModal";
 
 const Form = () => {
   const { content, review } = useRecoilValue(reviewDetailState);
@@ -38,12 +40,21 @@ const Form = () => {
       comment: "",
     },
   });
-  const { query } = useRouter();
+  const [isCacelModalOpen, setIsCancelModalOpen] = useState(false);
+  const router = useRouter();
+  const { query } = router;
   const type = query.reviewId ? "edit" : "write";
 
   const onClickSubmitBtn = () => {
     type === "write" ? onSubmitForm() : onEditForm(query.reviewId as string);
   };
+
+  const onClickCancelBtn = (e: MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    setIsCancelModalOpen(true);
+  };
+
+  const onClickAcceptBtn = () => router.back();
 
   useEffect(() => {
     let info = { ...review };
@@ -120,13 +131,26 @@ const Form = () => {
             </div>
           </FormItem>
           <BtnBox>
-            <CustomBtn color="#3F3F3F">취소</CustomBtn>
-            <CustomBtn color="#4762E5" onClickHandler={onClickSubmitBtn}>
+            <CustomBtn color="#3F3F3F" onClickHandler={onClickCancelBtn}>
+              취소
+            </CustomBtn>
+            <CustomBtn
+              color={theme.primary_color}
+              onClickHandler={onClickSubmitBtn}
+            >
               {type === "write" ? "등록" : "수정"}
             </CustomBtn>
           </BtnBox>
         </StyledForm>
 
+        {isCacelModalOpen && (
+          <ConfirmModal
+            mainText="작성 중인 내용을 취소하시겠습니까?"
+            subText="확인 선택 시, 작성한 내용은 저장되지 않습니다."
+            setIsOpen={setIsCancelModalOpen}
+            onClickAccept={onClickAcceptBtn}
+          />
+        )}
         <ToastContainer className="toast" theme="dark" position="top-right" />
       </Container>
     </>
