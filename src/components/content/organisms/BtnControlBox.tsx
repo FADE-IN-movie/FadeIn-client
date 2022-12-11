@@ -1,10 +1,12 @@
-import { MouseEvent, useState } from "react";
+import { MouseEvent, useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 
 import { useRecoilState, useRecoilValue } from "recoil";
 import { isShareModalOpenState } from "@states/contents";
 import { isSignInState } from "@states/users";
+
+import { getCookie, setCookie } from "@utils/cookie";
 
 import useContentDetail from "@hooks/useContentDetail";
 
@@ -35,10 +37,19 @@ const BtnControlBox = () => {
     else onToggleLike();
   };
 
-  const goWritePage = () => {
-    const { type, id } = router.query;
-    router.push(`/write?type=${type}&contentId=${id}`);
+  const onClickWriteBtn = (e: MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    if (!isSignIn) {
+      setIsSignInAlertModalOpen(true);
+      setCookie("write", "true");
+    } else goWritePage();
   };
+
+  const goWritePage = useCallback(() => {
+    const { type, id } = router.query;
+    if (!type || !id) return;
+    router.push(`/write?type=${type}&contentId=${id}`);
+  }, [router]);
 
   const openSignInModal = (e: MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
@@ -51,10 +62,17 @@ const BtnControlBox = () => {
     setIsShareModalOpen(true);
   };
 
+  useEffect(() => {
+    const isGoWrite = getCookie("write");
+    if (isSignIn && isGoWrite === "true") {
+      goWritePage();
+    }
+  }, [isSignIn, goWritePage]);
+
   return (
     <>
       <Box>
-        <ContentActionBtn text="감상평" onClickHandler={goWritePage}>
+        <ContentActionBtn text="감상평" onClickHandler={onClickWriteBtn}>
           <WriteIcon width="3rem" height="2.95rem" fill="white" />
         </ContentActionBtn>
         <ContentActionBtn text="찜" onClickHandler={onToggleHeart}>
@@ -72,7 +90,7 @@ const BtnControlBox = () => {
       {isSignInAlertModalOpen && (
         <ConfirmModal
           setIsOpen={setIsSignInAlertModalOpen}
-          mainText="찜 목록에 추가하려면 로그인이 필요합니다"
+          mainText="해당 서비스를 위해 로그인이 필요합니다"
           onClickAccept={openSignInModal}
           acceptText="로그인"
         />
