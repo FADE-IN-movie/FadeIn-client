@@ -1,3 +1,5 @@
+import { MouseEvent } from "react";
+
 import styled from "styled-components";
 import { theme } from "@styles/theme";
 
@@ -8,13 +10,15 @@ import { Dispatch, SetStateAction } from "react";
 interface IProps {
   mainText: string;
   subText?: string;
+  acceptText?: string;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
-  onClickAccept: () => void;
+  onClickAccept: (e: MouseEvent<HTMLButtonElement>) => void | (() => void);
 }
 
 const ConfirmModal = ({
   mainText,
   subText,
+  acceptText,
   setIsOpen,
   onClickAccept,
 }: IProps) => {
@@ -32,7 +36,7 @@ const ConfirmModal = ({
             취소
           </CustomBtn>
           <CustomBtn color={theme.primary_color} onClickHandler={onClickAccept}>
-            확인
+            {acceptText ? acceptText : "확인"}
           </CustomBtn>
         </div>
       </ModalBox>
