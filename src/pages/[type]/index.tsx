@@ -21,7 +21,8 @@ const Home: NextPage = () => {
     if (type === "movie" || type === "tv") setCurrentPage(type as string);
   }, [pathname, type, setCurrentPage]);
 
-  if (type !== "movie" && type !== "tv") return <NotFoundTemplate />;
+  if (type !== undefined && type !== "movie" && type !== "tv")
+    return <NotFoundTemplate />;
   return (
     <Wrap>
       <SEO />
