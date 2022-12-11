@@ -3,18 +3,23 @@ import { useRouter } from "next/router";
 // import { GetServerSideProps } from "next";
 import styled from "styled-components";
 
-import { useSetRecoilState } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { reviewDetailState } from "@states/reviews";
+import { isSignInState } from "@states/users";
+
+import { setCookie } from "@utils/cookie";
 
 import reviews from "@lib/api/reviewsAPI";
 
 import WriteTemplate from "@components/write/templates/WriteTemplate";
+import NotFoundTemplate from "@components/404/templates/NotFoundTemplate";
 
 // interface IProps {
 //   info: IReviewInfo;
 // }
 
 const WritePage = () => {
+  const isSignIn = useRecoilValue(isSignInState);
   const setReviewData = useSetRecoilState(reviewDetailState);
   const { query } = useRouter();
 
@@ -31,6 +36,9 @@ const WritePage = () => {
     })();
   }, [query]);
 
+  useEffect(() => setCookie("write", "false"), []);
+
+  if (!isSignIn) return <NotFoundTemplate />;
   return (
     <Wrap>
       <WriteTemplate />
