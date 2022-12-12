@@ -3,14 +3,18 @@ import { useRouter } from "next/router";
 import { IReviewDataInfo } from "@typings/info";
 import reviews from "@lib/api/reviewsAPI";
 
+import { useSetRecoilState } from "recoil";
+import { successAlertState, errorAlertState } from "@states/alert";
+
 import { v4 as uuidv4 } from "uuid";
-import { toast } from "react-toastify";
 
 type UseFormProps = {
   initialValues: IReviewDataInfo;
 };
 
 const useForm = ({ initialValues }: UseFormProps) => {
+  const setSuccessAlert = useSetRecoilState(successAlertState);
+  const setErrorAlert = useSetRecoilState(errorAlertState);
   const [values, setValues] = useState(initialValues);
   const router = useRouter();
   const { query } = router;
@@ -39,7 +43,7 @@ const useForm = ({ initialValues }: UseFormProps) => {
       .then((status) => {
         switch (status) {
           case 201:
-            toast.success("리뷰가 등록되었습니다.");
+            setSuccessAlert("리뷰를 등록하였습니다.");
             router.push("/review");
             break;
           default:
@@ -47,7 +51,7 @@ const useForm = ({ initialValues }: UseFormProps) => {
         }
       })
       .catch(() => {
-        toast.error("리뷰를 등록하지 못했습니다. 다시 시도해주세요.");
+        setErrorAlert("리뷰를 등록하지 못했습니다. 다시 시도해주세요.");
       });
   };
 

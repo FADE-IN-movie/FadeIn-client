@@ -7,6 +7,7 @@ import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "../styles/GlobalStyles";
 import { theme } from "../styles/theme";
 
+import Alert from "@components/common/Alert";
 import Auth from "@components/auth/Auth";
 import Header from "@components/common/Header";
 import Layout from "@components/common/Layout";
@@ -33,6 +34,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         <GlobalStyles />
         <ThemeProvider theme={theme}>
           <Auth />
+          <Alert />
           <Header />
           <Layout>
             <Component {...pageProps} />

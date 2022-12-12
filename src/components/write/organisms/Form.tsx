@@ -6,9 +6,6 @@ import { theme } from "@styles/theme";
 import { useRecoilValue } from "recoil";
 import { reviewDetailState } from "@states/reviews";
 
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
 import useForm from "@hooks/useForm";
 import FormItem from "../molecules/FormItem";
 import Text from "../atoms/Text";
@@ -151,7 +148,6 @@ const Form = () => {
             onClickAccept={onClickAcceptBtn}
           />
         )}
-        <ToastContainer className="toast" theme="dark" position="top-right" />
       </Container>
     </>
   );
@@ -159,17 +155,7 @@ const Form = () => {
 
 export default Form;
 
-const Container = styled.div`
-  .toast {
-    font-size: 1.2rem;
-    width: max-content;
-    margin-top: 5rem;
-
-    .Toastify__toast-theme--dark {
-      background: #202020 !important;
-    }
-  }
-`;
+const Container = styled.div``;
 
 const StyledForm = styled.div`
   display: flex;
