@@ -6,7 +6,7 @@ import SEO from "@components/common/SEO";
 const MyListPage = () => {
   return (
     <Wrap>
-      <SEO title="내 감상평" />
+      <SEO title="내가 찜한 목록" />
       <MyListTemplate />
     </Wrap>
   );
