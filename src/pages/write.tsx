@@ -13,6 +13,7 @@ import reviews from "@lib/api/reviewsAPI";
 
 import WriteTemplate from "@components/write/templates/WriteTemplate";
 import NotFoundTemplate from "@components/404/templates/NotFoundTemplate";
+import SEO from "@components/common/SEO";
 
 // interface IProps {
 //   info: IReviewInfo;
@@ -41,6 +42,7 @@ const WritePage = () => {
   if (!isSignIn) return <NotFoundTemplate />;
   return (
     <Wrap>
+      <SEO title="감상평 작성" />
       <WriteTemplate />
     </Wrap>
   );
