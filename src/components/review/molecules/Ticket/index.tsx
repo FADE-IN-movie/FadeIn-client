@@ -1,11 +1,13 @@
 import { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 
+import useReviews from "@hooks/useReviews";
 import { IReviewInfo } from "@typings/info";
 
 import TicketFront from "./TicketFront";
 import TicketBack from "./TicketBack";
 import ButtonBox from "./ButtonBox";
+import ConfirmModal from "@components/common/ConfirmModal";
 
 interface IProps {
   review: IReviewInfo;
@@ -16,14 +18,21 @@ type TicketPropsType = {
 };
 
 const Ticket = ({ review }: IProps) => {
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isFront, setIsFront] = useState(true);
   const [width, setWidth] = useState(0);
   const ticketRef = useRef<HTMLDivElement>(null);
+  const { onDeleteReview } = useReviews();
 
   const onToggleTicket = () => setIsFront((prev) => !prev);
 
   const calculateTicketWidth = () =>
     setWidth(ticketRef.current ? ticketRef.current.offsetWidth : 0);
+
+  const onDeleteAccept = () => {
+    onDeleteReview(review.reviewId || "");
+    setIsDeleteModalOpen(false);
+  };
 
   useEffect(() => {
     calculateTicketWidth();
@@ -32,22 +41,34 @@ const Ticket = ({ review }: IProps) => {
   }, []);
 
   return (
-    <Container ref={ticketRef} width={width}>
-      <div onClick={onToggleTicket}>
-        {isFront ? (
-          <TicketFront review={review} />
-        ) : (
-          <TicketBack review={review} />
-        )}
-      </div>
-      <div className="buttonBoxWrap">
-        <ButtonBox
-          type={review.type}
-          contentId={review.tmdbId}
-          reviewId={review.reviewId}
+    <>
+      <Container ref={ticketRef} width={width}>
+        <div onClick={onToggleTicket}>
+          {isFront ? (
+            <TicketFront review={review} />
+          ) : (
+            <TicketBack review={review} />
+          )}
+        </div>
+        <div className="buttonBoxWrap">
+          <ButtonBox
+            type={review.type}
+            contentId={review.tmdbId}
+            reviewId={review.reviewId}
+            setIsDeleteModalOpen={setIsDeleteModalOpen}
+          />
+        </div>
+      </Container>
+
+      {isDeleteModalOpen && (
+        <ConfirmModal
+          mainText="감상평을 삭제하시겠습니까?"
+          acceptText="삭제"
+          setIsOpen={setIsDeleteModalOpen}
+          onClickAccept={onDeleteAccept}
         />
-      </div>
-    </Container>
+      )}
+    </>
   );
 };
 
