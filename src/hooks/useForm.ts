@@ -1,9 +1,10 @@
-import { ChangeEvent, useCallback, useState } from "react";
+import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { IReviewDataInfo } from "@typings/info";
 import reviews from "@lib/api/reviewsAPI";
 
 import { useSetRecoilState } from "recoil";
+import { nullErrorCntState } from "@states/write";
 import { successAlertState, errorAlertState } from "@states/alert";
 
 import { v4 as uuidv4 } from "uuid";
@@ -13,6 +14,7 @@ type UseFormProps = {
 };
 
 const useForm = ({ initialValues }: UseFormProps) => {
+  const setNullErrorCnt = useSetRecoilState(nullErrorCntState);
   const setSuccessAlert = useSetRecoilState(successAlertState);
   const setErrorAlert = useSetRecoilState(errorAlertState);
   const [values, setValues] = useState(initialValues);
@@ -37,6 +39,10 @@ const useForm = ({ initialValues }: UseFormProps) => {
   };
 
   const onSubmitForm = () => {
+    if (values.rating === 0) {
+      setNullErrorCnt((prev) => prev + 1);
+      return setErrorAlert("필수 값을 입력해주세요.");
+    }
     const reviewId = uuidv4();
     reviews
       .createReview(reviewId, tmdbId, type, values)
@@ -66,6 +72,10 @@ const useForm = ({ initialValues }: UseFormProps) => {
       }
     });
   };
+
+  useEffect(() => {
+    if (values.rating > 0) setNullErrorCnt(0);
+  }, [values, setNullErrorCnt]);
 
   return {
     values,

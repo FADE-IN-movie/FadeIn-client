@@ -4,7 +4,8 @@ import styled from "styled-components";
 import { theme } from "@styles/theme";
 
 import { useRecoilValue } from "recoil";
-import { reviewDetailState, todayDateState } from "@states/reviews";
+import { reviewDetailState } from "@states/reviews";
+import { nullErrorCntState } from "@states/write";
 import { getToday } from "@utils/date";
 
 import useForm from "@hooks/useForm";
@@ -39,10 +40,11 @@ const Form = () => {
     },
   });
   const { year, month, date } = getToday();
-  const formmatedToday = `${year.toString().padStart(4, "0")}-${month
+  const formattedToday = `${year.toString().padStart(4, "0")}-${month
     .toString()
     .padStart(2, "0")}-${date.toString().padStart(2, "0")}`;
   const [isCacelModalOpen, setIsCancelModalOpen] = useState(false);
+  const nullErrorCnt = useRecoilValue(nullErrorCntState);
   const router = useRouter();
   const { query } = router;
   const type = query.reviewId ? "edit" : "write";
@@ -60,9 +62,10 @@ const Form = () => {
 
   useEffect(() => {
     let info = { ...review };
+    if (info.watchedDate === "") info.watchedDate = formattedToday;
     delete info.reviewId;
     initializeForm(info);
-  }, [review, initializeForm]);
+  }, [review, initializeForm, formattedToday]);
 
   return (
     <>
@@ -76,7 +79,7 @@ const Form = () => {
           <FormItem required title="본 날짜">
             <DateInput
               name="watchedDate"
-              value={values.watchedDate || formmatedToday}
+              value={values.watchedDate}
               handleChange={onChangeForm}
             />
           </FormItem>
@@ -109,7 +112,12 @@ const Form = () => {
               handleChange={onChangeForm}
             />
           </FormItem>
-          <FormItem required title="평점">
+          <FormItem
+            required
+            isNullError={nullErrorCnt > 0}
+            errorCnt={nullErrorCnt}
+            title="평점"
+          >
             <StarRating initialScore={values.rating} setValues={setValues} />
           </FormItem>
           <FormItem

@@ -9,6 +9,7 @@ export const theme = {
     gray: "#2B2B2B",
     muted_gray: "#565656",
     light_gray: "#B9B9B9",
+    red: "#FF8888",
   },
   fonts: {
     logo: "'SF_HambakSnow', 'serif'",
