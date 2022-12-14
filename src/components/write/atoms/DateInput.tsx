@@ -1,5 +1,4 @@
-import { ChangeEvent } from "react";
-
+import { ChangeEvent, useEffect } from "react";
 import styled from "styled-components";
 import { theme } from "@styles/theme";
 
@@ -10,6 +9,10 @@ interface IProps {
 }
 
 const DateInput = ({ name, value, handleChange }: IProps) => {
+  useEffect(() => {
+    console.log(value);
+  }, [value]);
+
   return (
     <Input type="date" name={name} value={value} onChange={handleChange} />
   );
