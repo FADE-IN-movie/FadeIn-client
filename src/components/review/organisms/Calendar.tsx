@@ -12,6 +12,7 @@ import {
   isCalendarOpenState,
 } from "@states/reviews";
 
+import { getToday } from "@utils/date";
 import { clickOutside } from "@utils/display";
 
 import Thead from "../molecules/Thead";
@@ -43,11 +44,7 @@ const Calendar = () => {
   };
 
   useEffect(() => {
-    const today = new Date();
-
-    const year = today.getFullYear();
-    const month = today.getMonth() + 1;
-    const date = today.getDate();
+    const { year, month, date } = getToday();
 
     setTodayDate({
       year: year,

@@ -4,7 +4,8 @@ import styled from "styled-components";
 import { theme } from "@styles/theme";
 
 import { useRecoilValue } from "recoil";
-import { reviewDetailState } from "@states/reviews";
+import { reviewDetailState, todayDateState } from "@states/reviews";
+import { getToday } from "@utils/date";
 
 import useForm from "@hooks/useForm";
 import FormItem from "../molecules/FormItem";
@@ -37,6 +38,10 @@ const Form = () => {
       comment: "",
     },
   });
+  const { year, month, date } = getToday();
+  const formmatedToday = `${year.toString().padStart(4, "0")}-${month
+    .toString()
+    .padStart(2, "0")}-${date.toString().padStart(2, "0")}`;
   const [isCacelModalOpen, setIsCancelModalOpen] = useState(false);
   const router = useRouter();
   const { query } = router;
@@ -71,7 +76,7 @@ const Form = () => {
           <FormItem required title="본 날짜">
             <DateInput
               name="watchedDate"
-              value={values.watchedDate || ""}
+              value={values.watchedDate || formmatedToday}
               handleChange={onChangeForm}
             />
           </FormItem>
