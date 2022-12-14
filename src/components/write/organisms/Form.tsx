@@ -4,7 +4,8 @@ import styled from "styled-components";
 import { theme } from "@styles/theme";
 
 import { useRecoilValue } from "recoil";
-import { reviewDetailState, todayDateState } from "@states/reviews";
+import { reviewDetailState } from "@states/reviews";
+import { nullErrorCntState } from "@states/write";
 import { getToday } from "@utils/date";
 
 import useForm from "@hooks/useForm";
@@ -43,6 +44,7 @@ const Form = () => {
     .toString()
     .padStart(2, "0")}-${date.toString().padStart(2, "0")}`;
   const [isCacelModalOpen, setIsCancelModalOpen] = useState(false);
+  const nullErrorCnt = useRecoilValue(nullErrorCntState);
   const router = useRouter();
   const { query } = router;
   const type = query.reviewId ? "edit" : "write";
@@ -109,7 +111,12 @@ const Form = () => {
               handleChange={onChangeForm}
             />
           </FormItem>
-          <FormItem required title="평점">
+          <FormItem
+            required
+            isNullError={nullErrorCnt > 0}
+            errorCnt={nullErrorCnt}
+            title="평점"
+          >
             <StarRating initialScore={values.rating} setValues={setValues} />
           </FormItem>
           <FormItem
