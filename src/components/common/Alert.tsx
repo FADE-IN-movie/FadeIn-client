@@ -21,9 +21,9 @@ const Alert = () => {
   useEffect(() => {
     if (errorAlert !== "") {
       toast.error(errorAlert);
-      setSuccessAlert("");
+      setErrorAlert("");
     }
-  }, [errorAlert, setSuccessAlert]);
+  }, [errorAlert, setErrorAlert]);
 
   return (
     <StyledToastContainer className="toast" theme="dark" position="top-right" />
