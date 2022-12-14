@@ -40,7 +40,7 @@ const Form = () => {
     },
   });
   const { year, month, date } = getToday();
-  const formmatedToday = `${year.toString().padStart(4, "0")}-${month
+  const formattedToday = `${year.toString().padStart(4, "0")}-${month
     .toString()
     .padStart(2, "0")}-${date.toString().padStart(2, "0")}`;
   const [isCacelModalOpen, setIsCancelModalOpen] = useState(false);
@@ -62,9 +62,10 @@ const Form = () => {
 
   useEffect(() => {
     let info = { ...review };
+    if (info.watchedDate === "") info.watchedDate = formattedToday;
     delete info.reviewId;
     initializeForm(info);
-  }, [review, initializeForm]);
+  }, [review, initializeForm, formattedToday]);
 
   return (
     <>
@@ -78,7 +79,7 @@ const Form = () => {
           <FormItem required title="본 날짜">
             <DateInput
               name="watchedDate"
-              value={values.watchedDate || formmatedToday}
+              value={values.watchedDate}
               handleChange={onChangeForm}
             />
           </FormItem>
