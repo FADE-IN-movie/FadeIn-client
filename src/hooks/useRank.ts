@@ -15,12 +15,10 @@ const useRank = () => {
   const genre = useRecoilValue(selectedGenreState);
   const type = useRecoilValue(selectedTypeState);
   const sortBy = useRecoilValue(selectedSortMenuState);
-  const { data, isValidating, mutate, size, setSize } = useSWRInfinite<
-    IContentInfo[]
-  >(
+  const { data, isValidating, size, setSize } = useSWRInfinite<IContentInfo[]>(
     (pageIdx) => {
-      if (isReachingEnd) return null;
-      return [pageIdx];
+      if (isReachingEnd || !genre || !type || !sortBy) return null;
+      return [pageIdx, genre, type, sortBy];
     },
     (pageIdx) => ranking.getRank(genre.value, type.value, sortBy, pageIdx + 1),
     {
@@ -40,11 +38,6 @@ const useRank = () => {
     if (!data) return;
     setRankingData(() => data.flat());
   }, [data]);
-
-  useEffect(() => {
-    console.log(genre, type);
-    mutate();
-  }, [genre, type, sortBy, mutate]);
 
   return {
     ranking: rankingData || null,
