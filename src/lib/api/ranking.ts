@@ -20,7 +20,7 @@ const ranking = {
       params: params,
     });
 
-    return res.data;
+    return res.data.ranking;
   },
 };
 
