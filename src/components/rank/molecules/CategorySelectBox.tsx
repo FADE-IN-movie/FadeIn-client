@@ -7,7 +7,7 @@ import ComboBox from "@components/common/ComboBox";
 import { useEffect } from "react";
 
 const movieGenreArr = [
-  { value: "", text: "장르 전체" },
+  { value: "all", text: "장르 전체" },
   { value: "28", text: "액션" },
   { value: "12", text: "모험" },
   { value: "16", text: "애니메이션" },
@@ -30,7 +30,7 @@ const movieGenreArr = [
 ];
 
 const tvGenreArr = [
-  { value: "", text: "장르 전체" },
+  { value: "all", text: "장르 전체" },
   { value: "10759", text: "액션&모험" },
   { value: "16", text: "애니메이션" },
   { value: "80", text: "범죄" },
@@ -63,7 +63,7 @@ const CategorySelectBox = () => {
   return (
     <Box>
       <ComboBox
-        info={selectedGenre.value === "movie" ? movieGenreArr : tvGenreArr}
+        info={selectedType.value === "movie" ? movieGenreArr : tvGenreArr}
         selectedMenu={selectedGenre}
         setSelectedMenu={setSelectedGenre}
       />
