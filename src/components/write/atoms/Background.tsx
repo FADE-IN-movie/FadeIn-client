@@ -9,7 +9,7 @@ interface IProps {
 }
 
 const Background = ({ height }: IProps) => {
-  const content = useRecoilValue(reviewDetailState);
+  const { content } = useRecoilValue(reviewDetailState);
 
   return (
     <ImageWrap height={height}>
