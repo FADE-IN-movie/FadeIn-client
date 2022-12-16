@@ -23,23 +23,23 @@ const WritePage = () => {
   const isSignIn = useRecoilValue(isSignInState);
   const setReviewData = useSetRecoilState(reviewDetailState);
   const { query } = useRouter();
+  const tmdbId = Number(query.contentId);
+  const type = query.type as string;
 
   useEffect(() => {
     (async () => {
       const reviewId = (query.reviewId as string) || null;
-      const tmdbId = Number(query.contentId);
-      const type = query.type as string;
 
       if (!tmdbId || !type) return;
       await reviews.getWritePage(reviewId, tmdbId, type).then((res) => {
         setReviewData(res);
       });
     })();
-  }, [query]);
+  }, [query, tmdbId, type]);
 
   useEffect(() => setCookie("write", "false"), []);
 
-  if (!isSignIn) return <NotFoundTemplate />;
+  if (!isSignIn || !tmdbId || !type) return <NotFoundTemplate />;
   return (
     <Wrap>
       <SEO title="감상평 작성" />
