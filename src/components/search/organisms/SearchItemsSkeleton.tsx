@@ -3,24 +3,11 @@ import ContentCardSkeleton from "@components/common/ContentCard/Skeleton";
 
 const SearchItemsSkeleton = () => {
   return (
-    <Grid>
-      <ContentCardSkeleton />
-      <ContentCardSkeleton />
-      <ContentCardSkeleton />
-      <ContentCardSkeleton />
-      <ContentCardSkeleton />
-      <ContentCardSkeleton />
-      <ContentCardSkeleton />
-      <ContentCardSkeleton />
-      <ContentCardSkeleton />
-      <ContentCardSkeleton />
-      <ContentCardSkeleton />
-      <ContentCardSkeleton />
-      <ContentCardSkeleton />
-      <ContentCardSkeleton />
-      <ContentCardSkeleton />
-      <ContentCardSkeleton />
-    </Grid>
+    <>
+      {Array.from({ length: 20 }).map((_, i) => (
+        <ContentCardSkeleton key={i} />
+      ))}
+    </>
   );
 };
 
