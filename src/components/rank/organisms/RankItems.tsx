@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import styled from "styled-components";
 import { theme } from "@styles/theme";
 
@@ -6,10 +7,12 @@ import ContentCard from "@components/common/ContentCard";
 import Grid from "@components/layouts/Grid";
 import useRank from "@hooks/useRank";
 import { IContentInfo } from "@typings/info";
+import RankItemsSkeleton from "./RankItemsSkeleton";
 
 const RankItems = () => {
   const [target, setTarget] = useState<HTMLElement | null | undefined>(null);
-  const { ranking, isValidating, isSameSize, setSize } = useRank();
+  const { ranking, isLoading, isValidating, isSameSize, setSize } = useRank();
+  const router = useRouter();
 
   const onIntersect: IntersectionObserverCallback = useCallback(
     ([entry], observer) => {
@@ -36,13 +39,25 @@ const RankItems = () => {
     return () => observer && observer.disconnect();
   }, [target, onIntersect]);
 
-  if (!ranking.length) return <Text>( 해당 정보가 존재하지 않습니다. )</Text>;
+  if (ranking && !ranking.length)
+    return <Text>( 해당 정보가 존재하지 않습니다. )</Text>;
   return (
     <div>
       <Grid>
-        {ranking?.map((result: IContentInfo, i: number) => (
-          <ContentCard key={i} responsive info={result} />
+        {ranking?.map((info: IContentInfo, i: number) => (
+          <div
+            key={i}
+            onClick={() =>
+              router.push({
+                pathname: `/content`,
+                query: { type: info.type, id: info.id },
+              })
+            }
+          >
+            <ContentCard key={i} responsive info={info} />
+          </div>
         ))}
+        {(isLoading || isValidating || !isSameSize) && <RankItemsSkeleton />}
       </Grid>
       <div ref={setTarget} style={{ marginTop: "10rem" }} />
     </div>
