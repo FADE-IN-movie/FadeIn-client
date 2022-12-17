@@ -3,15 +3,17 @@ import styled from "styled-components";
 import ResultText from "../atoms/ResultText";
 import SearchTabBar from "../organisms/SearchTabBar";
 import SearchItems from "../organisms/SearchItems";
+import useSearch from "@hooks/useSearch";
+import SearchItemsSkeleton from "../organisms/SearchItemsSkeleton";
 
 const SearchPageTemplate = () => {
+  const { isLoading } = useSearch();
+
   return (
     <div>
       <ResultText />
       <SearchTabBar />
-      <Content>
-        <SearchItems />
-      </Content>
+      <Content>{isLoading ? <SearchItemsSkeleton /> : <SearchItems />}</Content>
     </div>
   );
 };
