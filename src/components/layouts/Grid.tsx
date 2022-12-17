@@ -48,7 +48,8 @@ const Layout = styled.div<LayoutPropsType>`
   gap: 3em 1rem;
   font-size: ${(props) => `${props.width / 10}px`};
 
-  & > div {
+  & > div,
+  & > span {
     @media screen and (min-width: 1651px) {
       width: calc(12.5% - 0.9rem);
     }

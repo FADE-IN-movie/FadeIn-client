@@ -4,7 +4,11 @@ import RankItems from "../organisms/RankItems";
 import CustomPageTitle from "@components/common/CustomPageTitle";
 import SelectBar from "../organisms/SelectBar";
 
+import useRank from "@hooks/useRank";
+import RankItemsSkeleton from "../organisms/RankItemsSkeleton";
+
 const RankTemplate = () => {
+  const { isLoading } = useRank();
   return (
     <Template>
       <TopContent>
@@ -12,7 +16,7 @@ const RankTemplate = () => {
         <SelectBar />
       </TopContent>
       <MainContent>
-        <RankItems />
+        {isLoading ? <RankItemsSkeleton /> : <RankItems />}
       </MainContent>
     </Template>
   );

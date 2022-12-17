@@ -1,12 +1,20 @@
 import { ReactNode } from "react";
 import styled from "styled-components";
 
+import { SkeletonTheme } from "react-loading-skeleton";
+
 interface IProps {
   children: ReactNode;
 }
 
 const Layout = ({ children }: IProps) => {
-  return <Wrap>{children}</Wrap>;
+  return (
+    <Wrap>
+      <SkeletonTheme baseColor="#2e2e2e" highlightColor="#444">
+        {children}
+      </SkeletonTheme>
+    </Wrap>
+  );
 };
 
 export default Layout;
