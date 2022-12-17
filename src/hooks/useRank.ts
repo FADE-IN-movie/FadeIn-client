@@ -41,6 +41,7 @@ const useRank = () => {
 
   return {
     ranking: rankingData || null,
+    isLoading: !data,
     isSameSize: rankingData.length === size * 20,
     isValidating,
     isReachingEnd,
