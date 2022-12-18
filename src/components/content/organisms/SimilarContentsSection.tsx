@@ -5,7 +5,7 @@ import useContentDetail from "@hooks/useContentDetail";
 import { IContentInfo } from "@typings/info";
 
 import ContentCard from "@components/common/ContentCard";
-import CustomTitle from "@components/common/CustomTitle";
+import CustomTitle from "@components/common/CustomTitle/CustomTitle";
 import Grid from "@components/layouts/Grid";
 
 const SimilarContentsSection = () => {

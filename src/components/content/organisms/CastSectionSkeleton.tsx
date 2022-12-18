@@ -1,34 +1,24 @@
 import styled from "styled-components";
-
-import useContentDetail from "@hooks/useContentDetail";
-import { IContentDetailInfo } from "@typings/info";
-
-import CustomTitle from "@components/common/CustomTitle/CustomTitle";
+import CustomTitleSkeleton from "@components/common/CustomTitle/Skeleton";
 import CastInfoBox from "../molecules/CastInfoBox";
+import CastInfoBoxSkeleton from "../molecules/CastInfoBoxSkeleton";
 
-const CastSection = () => {
-  const { cast } = useContentDetail();
-  const nullText = "(해당 정보 없음)";
-
+const CastSectionSkeleton = () => {
   return (
     <Section>
       <div className="titleWrap">
-        <CustomTitle>주요 출연진</CustomTitle>
+        <CustomTitleSkeleton />
       </div>
-      {cast?.length ? (
-        <div className="castInfoContainer">
-          {cast?.slice(1).map((info: IContentDetailInfo, i: number) => (
-            <CastInfoBox key={i} info={info} />
-          ))}
-        </div>
-      ) : (
-        nullText
-      )}
+      <div className="castInfoContainer">
+        {Array.from({ length: 4 }).map((_, i) => (
+          <CastInfoBoxSkeleton key={i} />
+        ))}
+      </div>
     </Section>
   );
 };
 
-export default CastSection;
+export default CastSectionSkeleton;
 
 const Section = styled.section`
   .titleWrap {
