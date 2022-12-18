@@ -5,7 +5,7 @@ const ContentCardSkeleton = () => {
   return (
     <div>
       <Skeleton width="10em" height="14.5em" />
-      <Skeleton width="10em" height="2rem" style={{ marginTop: "0.7em" }} />
+      <Skeleton width="10em" height="0.9em" style={{ marginTop: "0.6em" }} />
     </div>
   );
 };
