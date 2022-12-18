@@ -39,7 +39,7 @@ const RankItems = () => {
     return () => observer && observer.disconnect();
   }, [target, onIntersect]);
 
-  if (ranking && !ranking.length)
+  if (!isLoading && ranking && !ranking.length)
     return <Text>( 해당 정보가 존재하지 않습니다. )</Text>;
   return (
     <div>
