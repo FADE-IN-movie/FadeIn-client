@@ -1,13 +1,16 @@
+import useContents from "@hooks/useContents";
 import styled from "styled-components";
 
 import IntroSection from "../organisms/IntroSection";
 import ListSection from "../organisms/ListSection";
+import ListSectionSkeleton from "../organisms/ListSectionSkeleton";
 
 const MainPageTemplate = () => {
+  const { isLoading, isValidating } = useContents();
   return (
     <Template>
       <IntroSection />
-      <ListSection />
+      {isLoading || isValidating ? <ListSectionSkeleton /> : <ListSection />}
     </Template>
   );
 };

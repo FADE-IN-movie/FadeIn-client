@@ -20,7 +20,7 @@ type ListTitlesType = {
 const ListSection = () => {
   const { userName } = useRecoilValue(loggedUserState);
   const router = useRouter();
-  const { data, isLoading } = useContents();
+  const { data } = useContents();
   const isSignIn = useRecoilValue(isSignInState);
   const type = router.query.type === "movie" ? "영화" : "TV 프로그램";
 
@@ -35,7 +35,6 @@ const ListSection = () => {
     recommend: `FADE-IN 추천 ${type}`,
   };
 
-  if (isLoading) return null;
   return (
     <Section>
       {Object.keys(data)?.map((title, i) => (

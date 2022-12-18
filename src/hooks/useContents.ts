@@ -6,7 +6,7 @@ import contents from "@lib/api/contentsAPI";
 
 const useContents = () => {
   const page = useRecoilValue(currentPageState);
-  const { data } = useSWR(
+  const { data, isValidating } = useSWR(
     page ? ["recommendContents", page] : null,
     () => contents.getRecommendContents(page),
     {
@@ -17,6 +17,7 @@ const useContents = () => {
   return {
     data: data,
     isLoading: !data,
+    isValidating,
   };
 };
 
