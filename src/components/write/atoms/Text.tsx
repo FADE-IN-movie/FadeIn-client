@@ -13,6 +13,7 @@ const Text = ({ children }: IProps) => {
 export default Text;
 
 const StyledText = styled.span`
+  height: 1.4rem;
   font-size: 1.4rem;
   color: ${theme.palette.light_gray};
 `;
