@@ -2,10 +2,12 @@ import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 
+import useWrite from "@hooks/useWrite";
 import Background from "../atoms/Background";
 import CustomPageTitle from "@components/common/CustomPageTitle";
 import Form from "../organisms/Form";
 import WritePoster from "../atoms/WritePoster";
+import WritePosterSkeleton from "../atoms/WritePosterSkeleton";
 
 type TemplatePropsType = {
   height: number;
@@ -16,6 +18,7 @@ const WriteTemplate = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const { query } = useRouter();
   const type = query.reviewId ? "edit" : "write";
+  const { isLoading, isValidating } = useWrite();
 
   useEffect(() => {
     const getBackgroundHeight = () => {
@@ -37,7 +40,11 @@ const WriteTemplate = () => {
           </CustomPageTitle>
           <Form />
           <div className="posterWrap">
-            <WritePoster />
+            {isLoading || isValidating ? (
+              <WritePosterSkeleton />
+            ) : (
+              <WritePoster />
+            )}
           </div>
         </Layout>
       </Container>

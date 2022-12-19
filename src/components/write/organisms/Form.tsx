@@ -9,6 +9,9 @@ import { getToday } from "@utils/date";
 
 import useForm from "@hooks/useForm";
 import useWrite from "@hooks/useWrite";
+
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import FormItem from "../molecules/FormItem";
 import Text from "../atoms/Text";
 import Input from "../molecules/Input";
@@ -73,7 +76,11 @@ const Form = () => {
         <StyledForm>
           <FormItem title="제목">
             <Text>
-              {content?.title && `${content.title} (${content.originalTitle})`}
+              {content?.title ? (
+                `${content.title} (${content.originalTitle})`
+              ) : (
+                <Skeleton width="25rem" height="1.6rem" />
+              )}
             </Text>
           </FormItem>
           <FormItem required title="본 날짜">
