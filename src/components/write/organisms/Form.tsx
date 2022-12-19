@@ -4,11 +4,11 @@ import styled from "styled-components";
 import { theme } from "@styles/theme";
 
 import { useRecoilValue } from "recoil";
-import { reviewDetailState } from "@states/reviews";
 import { nullErrorCntState } from "@states/write";
 import { getToday } from "@utils/date";
 
 import useForm from "@hooks/useForm";
+import useWrite from "@hooks/useWrite";
 import FormItem from "../molecules/FormItem";
 import Text from "../atoms/Text";
 import Input from "../molecules/Input";
@@ -20,7 +20,7 @@ import TimeInput from "../atoms/TimeInput";
 import ConfirmModal from "@components/common/ConfirmModal";
 
 const Form = () => {
-  const { content, review } = useRecoilValue(reviewDetailState);
+  const { content, review } = useWrite();
   const {
     values,
     setValues,
@@ -73,7 +73,7 @@ const Form = () => {
         <StyledForm>
           <FormItem title="제목">
             <Text>
-              {content.title && `${content.title} (${content.originalTitle})`}
+              {content?.title && `${content.title} (${content.originalTitle})`}
             </Text>
           </FormItem>
           <FormItem required title="본 날짜">

@@ -10,7 +10,12 @@ interface IProps {
 
 const DateInput = ({ name, value, handleChange }: IProps) => {
   return (
-    <Input type="date" name={name} value={value} onChange={handleChange} />
+    <Input
+      type="date"
+      name={name}
+      value={value || ""}
+      onChange={handleChange}
+    />
   );
 };
 
