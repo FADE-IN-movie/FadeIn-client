@@ -6,7 +6,7 @@ import { isSignInState } from "@states/users";
 
 const useLike = () => {
   const isSignIn = useRecoilValue(isSignInState);
-  const { data } = useSWR(
+  const { data, isValidating } = useSWR(
     [isSignIn ? "like" : null],
     () => {
       if (isSignIn) return like.getLikeList();
@@ -19,7 +19,7 @@ const useLike = () => {
   return {
     movie: data ? data.movie : null,
     tv: data ? data.tv : null,
-    isLoading: !data,
+    isValidating,
   };
 };
 
