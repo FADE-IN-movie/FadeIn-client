@@ -11,7 +11,14 @@ import RankItemsSkeleton from "./RankItemsSkeleton";
 
 const RankItems = () => {
   const [target, setTarget] = useState<HTMLElement | null | undefined>(null);
-  const { ranking, isLoading, isValidating, isSameSize, setSize } = useRank();
+  const {
+    ranking,
+    isLoading,
+    isValidating,
+    isSameSize,
+    isReachingEnd,
+    setSize,
+  } = useRank();
   const router = useRouter();
 
   const onIntersect: IntersectionObserverCallback = useCallback(
@@ -39,7 +46,9 @@ const RankItems = () => {
     return () => observer && observer.disconnect();
   }, [target, onIntersect]);
 
-  if (!isLoading && ranking && !ranking.length)
+  console.log(isValidating, isLoading);
+
+  if (!isLoading && !ranking?.length)
     return <Text>( 해당 정보가 존재하지 않습니다. )</Text>;
   return (
     <div>
@@ -57,7 +66,9 @@ const RankItems = () => {
             <ContentCard key={i} responsive info={info} />
           </div>
         ))}
-        {(isLoading || isValidating || !isSameSize) && <RankItemsSkeleton />}
+        {(isLoading || isValidating || (!isSameSize && !isReachingEnd)) && (
+          <RankItemsSkeleton />
+        )}
       </Grid>
       <div ref={setTarget} style={{ marginTop: "10rem" }} />
     </div>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import useSWRInfinite from "swr/infinite";
 import ranking from "@lib/api/ranking";
 
@@ -34,14 +34,25 @@ const useRank = () => {
     (data && data.length && data[data.length - 1].length < PAGE_SIZE) ||
     false;
 
-  useEffect(() => {
-    if (!data) return;
-    setRankingData(() => data.flat());
+  const resetData = useCallback(() => setRankingData([]), []);
+  const setFormmatedData = useCallback(() => {
+    if (data) setRankingData(() => data.flat());
   }, [data]);
+
+  useEffect(() => resetData(), [type, genre, sortBy, resetData]);
+
+  useEffect(() => {
+    const isInitialized = rankingData.length === 0;
+    if (isInitialized && data) setFormmatedData();
+  }, [rankingData, data, setFormmatedData]);
+
+  useEffect(() => {
+    if (data) setFormmatedData();
+  }, [size, data, setFormmatedData]);
 
   return {
     ranking: rankingData || null,
-    isLoading: !data,
+    isLoading: !rankingData?.length,
     isSameSize: rankingData.length === size * 20,
     isValidating,
     isReachingEnd,
