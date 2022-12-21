@@ -1,4 +1,4 @@
-import CustomTitle from "@components/common/CustomTitle/CustomTitle";
+import CustomTitle from "@components/common/CustomTitle";
 import styled from "styled-components";
 
 import useContentDetail from "@hooks/useContentDetail";
