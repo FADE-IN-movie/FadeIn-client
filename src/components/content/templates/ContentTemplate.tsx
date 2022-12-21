@@ -4,7 +4,8 @@ import styled from "styled-components";
 import BackDrop from "../atoms/BackDrop";
 import ContentPoster from "../atoms/ContentPoster";
 import ContentPosterSkeleton from "../atoms/ContentPosterSkeleton";
-import ButtonControlBox from "../organisms/BtnControlBox";
+import BtnControlBox from "../organisms/BtnControlBox";
+import BtnControlBoxSkeleton from "../organisms/BtnControlBoxSkeleton";
 import CastSection from "../organisms/CastSection";
 import CastSectionSkeleton from "../organisms/CastSectionSkeleton";
 import ContentDetailInfoSection from "../organisms/ContentDetailInfoSection";
@@ -29,7 +30,7 @@ const ContentTemplate = () => {
           <div className="container">
             {isSkeleton ? <ContentInfoBoxSkeleton /> : <ContentInfoBox />}
             <div className="buttonBoxWrap">
-              <ButtonControlBox />
+              {isSkeleton ? <BtnControlBoxSkeleton /> : <BtnControlBox />}
             </div>
           </div>
         </TopContent>
