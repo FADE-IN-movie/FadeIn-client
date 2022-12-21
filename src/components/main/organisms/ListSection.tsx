@@ -9,7 +9,7 @@ import { loggedUserState } from "@states/users";
 
 import { IContentInfo } from "@typings/info";
 
-import CustomTitle from "@components/common/CustomTitle/CustomTitle";
+import CustomTitle from "@components/common/CustomTitle";
 import ContentCard from "@components/common/ContentCard";
 import Carousel from "@components/common/Carousel";
 
