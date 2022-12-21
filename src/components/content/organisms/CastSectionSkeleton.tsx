@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import CustomTitleSkeleton from "@components/common/CustomTitle/Skeleton";
-import CastInfoBox from "../molecules/CastInfoBox";
 import CastInfoBoxSkeleton from "../molecules/CastInfoBoxSkeleton";
 
 const CastSectionSkeleton = () => {
