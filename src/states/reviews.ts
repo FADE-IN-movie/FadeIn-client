@@ -28,8 +28,3 @@ export const writeSearchKeywordState = atom({
   key: "writeSearchKeywordState",
   default: "",
 });
-
-export const isCalendarLoadingState = atom({
-  key: "isCalendarLoadingState",
-  default: false,
-});

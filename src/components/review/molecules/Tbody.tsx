@@ -20,9 +20,6 @@ const Tbody = ({ today, reviewDateArr }: IProps) => {
   const [dateArr, setDateArr] = useState<JSX.Element[][]>();
   const [totalDate, setTotalDate] = useState<number>();
   const [startDay, setStartDay] = useState<number>();
-  const [isCalendarLoading, setIsCalendarLoading] = useRecoilState(
-    isCalendarLoadingState
-  );
   const setIsCalendarOpen = useSetRecoilState(isCalendarOpenState);
 
   useEffect(() => {
@@ -101,7 +98,6 @@ const Tbody = ({ today, reviewDateArr }: IProps) => {
     today,
     setSelectedDate,
     setIsCalendarOpen,
-    setIsCalendarLoading,
   ]);
 
   if (!today) return null;
