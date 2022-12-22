@@ -1,11 +1,7 @@
 import { useState, useEffect, MouseEvent } from "react";
 
 import { useRecoilState, useSetRecoilState } from "recoil";
-import {
-  selectedDateState,
-  isCalendarOpenState,
-  isCalendarLoadingState,
-} from "@states/reviews";
+import { selectedDateState, isCalendarOpenState } from "@states/reviews";
 
 import { IDate } from "@typings/date";
 import Td from "../atoms/Date";
