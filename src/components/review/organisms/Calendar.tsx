@@ -18,9 +18,10 @@ import { clickOutside } from "@utils/display";
 import Thead from "../molecules/Thead";
 import Tbody from "../molecules/Tbody";
 import Control from "../molecules/Control";
+import Loading from "../atoms/Loading";
 
 const Calendar = () => {
-  const { reviews } = useReviews();
+  const { reviews, isLoading, isValidating } = useReviews();
   const [reviewDateArr, setReviewDateArr] = useState<string[]>();
   const calendarRef = useRef<HTMLDivElement>(null);
   const [todayDate, setTodayDate] = useRecoilState(todayDateState);
@@ -97,8 +98,14 @@ const Calendar = () => {
         onClickNext={onClickNext}
       />
       <Table>
-        <Thead />
-        <Tbody today={todayDate} reviewDateArr={reviewDateArr} />
+        {isLoading || isValidating ? (
+          <Loading />
+        ) : (
+          <>
+            <Thead />
+            <Tbody today={todayDate} reviewDateArr={reviewDateArr} />
+          </>
+        )}
       </Table>
     </StyledCalendar>
   );

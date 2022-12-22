@@ -10,7 +10,7 @@ import { IReviewInfo } from "@typings/info";
 
 const useReviews = () => {
   const { year, month } = useRecoilValue(selectedDateState);
-  const { data, error, mutate } = useSWR(
+  const { data, error, isValidating, mutate } = useSWR(
     year && month ? ["reviews", year, month] : null,
     () => reviews.getReviews(year, month)
   );
@@ -38,6 +38,7 @@ const useReviews = () => {
   return {
     reviews: data ? data.review : null,
     isLoading: !data,
+    isValidating,
     isError: error,
     onDeleteReview,
   };
