@@ -35,11 +35,9 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         <ThemeProvider theme={theme}>
           <Auth />
           <Alert />
-          <Header />
           <Layout>
             <Component {...pageProps} />
           </Layout>
-          <Footer />
         </ThemeProvider>
       </RecoilRoot>
     </>
