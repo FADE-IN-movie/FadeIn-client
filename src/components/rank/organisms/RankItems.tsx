@@ -46,8 +46,6 @@ const RankItems = () => {
     return () => observer && observer.disconnect();
   }, [target, onIntersect]);
 
-  console.log(isValidating, isLoading);
-
   if (!isLoading && !ranking?.length)
     return <Text>( 해당 정보가 존재하지 않습니다. )</Text>;
   return (
@@ -70,7 +68,9 @@ const RankItems = () => {
           <RankItemsSkeleton />
         )}
       </Grid>
-      <div ref={setTarget} style={{ marginTop: "10rem" }} />
+      {!isLoading && !isValidating && (
+        <div ref={setTarget} style={{ marginTop: "10rem" }} />
+      )}
     </div>
   );
 };
