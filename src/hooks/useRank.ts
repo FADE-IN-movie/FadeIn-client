@@ -52,8 +52,8 @@ const useRank = () => {
 
   return {
     ranking: rankingData || null,
-    isLoading: !data,
-    isSameSize: Number(rankingData.length / PAGE_SIZE) === size,
+    isLoading: !rankingData?.length,
+    isSameSize: rankingData.length === size * PAGE_SIZE,
     isValidating,
     isReachingEnd,
     size,
