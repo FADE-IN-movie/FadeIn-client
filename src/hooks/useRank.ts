@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import useSWRInfinite from "swr/infinite";
-import ranking from "@lib/api/ranking";
+import ranking from "@lib/api/rankingAPI";
 
 import { useRecoilValue } from "recoil";
 import { IContentInfo } from "@typings/info";
@@ -52,8 +52,8 @@ const useRank = () => {
 
   return {
     ranking: rankingData || null,
-    isLoading: !rankingData?.length,
-    isSameSize: rankingData.length === size * 20,
+    isLoading: !data,
+    isSameSize: Number(rankingData.length / PAGE_SIZE) === size,
     isValidating,
     isReachingEnd,
     size,
