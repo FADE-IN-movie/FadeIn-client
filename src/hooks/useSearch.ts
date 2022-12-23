@@ -63,7 +63,7 @@ const useSearch = () => {
     resultCnt: resultCnt || null,
     isLoading: !data,
     isValidating,
-    isSameSize: Number(searchData.length / PAGE_SIZE) === size,
+    isSameSize: searchData.length === size * PAGE_SIZE,
     isReachingEnd,
     isError: error,
     size,
