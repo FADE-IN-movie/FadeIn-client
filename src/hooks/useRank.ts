@@ -17,7 +17,7 @@ const useRank = () => {
   const sortBy = useRecoilValue(selectedSortMenuState);
   const { data, isValidating, size, setSize } = useSWRInfinite<IContentInfo[]>(
     (pageIdx) => {
-      if (isReachingEnd || !genre || !type || !sortBy) return null;
+      if (!genre || !type || !sortBy) return null;
       return [pageIdx, genre, type, sortBy];
     },
     (pageIdx) => ranking.getRank(genre.value, type.value, sortBy, pageIdx + 1),
@@ -43,7 +43,7 @@ const useRank = () => {
 
   useEffect(() => {
     const isInitialized = rankingData.length === 0;
-    if (isInitialized && data) setFormmatedData();
+    if (isInitialized && data && data.flat().length > 0) setFormmatedData();
   }, [rankingData, data, setFormmatedData]);
 
   useEffect(() => {
@@ -52,7 +52,7 @@ const useRank = () => {
 
   return {
     ranking: rankingData || null,
-    isLoading: !rankingData?.length,
+    isLoading: !data,
     isSameSize: rankingData.length === size * PAGE_SIZE,
     isValidating,
     isReachingEnd,
