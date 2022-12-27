@@ -37,7 +37,7 @@ const CustomBtn = ({
 export default CustomBtn;
 
 const Button = styled.button<ButtonPropsType>`
-  padding: 1.1rem 2.3rem;
+  padding: 0.9rem 2.3rem;
   min-width: 11.5rem;
   line-height: 1.3;
   border-radius: 10px;
