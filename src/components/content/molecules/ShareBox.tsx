@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
-import { useRecoilValue, useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { isKakaoInitState } from "@states/contents";
+import { successAlertState } from "@states/alert";
 
 import useContentDetail from "@hooks/useContentDetail";
 
@@ -12,6 +13,7 @@ const ShareBox = () => {
   const url = "https://fade-in.net";
   const encodedUrl = encodeURI(encodeURIComponent(url));
   const [isKakaoInit, setIsKakaoInit] = useRecoilState(isKakaoInitState);
+  const setSuccessAlert = useSetRecoilState(successAlertState);
   const naverBlogReqUrl =
     "https://share.naver.com/web/shareView.nhn?url=" +
     encodedUrl +
@@ -20,6 +22,7 @@ const ShareBox = () => {
 
   const copyUrl = () => {
     navigator.clipboard.writeText(window.location.href);
+    setSuccessAlert("클립보드 복사가 완료되었습니다.");
   };
 
   const shareKakao = () => {
