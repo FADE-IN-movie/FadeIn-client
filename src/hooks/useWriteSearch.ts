@@ -25,6 +25,8 @@ const useSearch = () => {
     },
     {
       revalidateOnFocus: false,
+      revalidateAll: false,
+      revalidateFirstPage: false,
     }
   );
   const PAGE_SIZE = 20;
