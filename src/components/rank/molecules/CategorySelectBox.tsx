@@ -63,14 +63,14 @@ const CategorySelectBox = () => {
   return (
     <Box>
       <ComboBox
-        info={selectedType.value === "movie" ? movieGenreArr : tvGenreArr}
-        selectedMenu={selectedGenre}
-        setSelectedMenu={setSelectedGenre}
-      />
-      <ComboBox
         info={typeMenuInfo}
         selectedMenu={selectedType}
         setSelectedMenu={setSelectedType}
+      />
+      <ComboBox
+        info={selectedType.value === "movie" ? movieGenreArr : tvGenreArr}
+        selectedMenu={selectedGenre}
+        setSelectedMenu={setSelectedGenre}
       />
     </Box>
   );
