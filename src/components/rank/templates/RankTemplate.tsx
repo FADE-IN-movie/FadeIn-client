@@ -29,5 +29,6 @@ const Template = styled.div`
 const TopContent = styled.div``;
 
 const MainContent = styled.div`
-  padding: 3rem 0;
+  padding: 3rem 0 3rem 0;
+  min-height: 80rem;
 `;

@@ -1,39 +1,57 @@
+import useContentDetail from "@hooks/useContentDetail";
 import styled from "styled-components";
 
 import BackDrop from "../atoms/BackDrop";
 import ContentPoster from "../atoms/ContentPoster";
-import ButtonControlBox from "../organisms/BtnControlBox";
+import ContentPosterSkeleton from "../atoms/ContentPosterSkeleton";
+import BtnControlBox from "../organisms/BtnControlBox";
+import BtnControlBoxSkeleton from "../organisms/BtnControlBoxSkeleton";
 import CastSection from "../organisms/CastSection";
+import CastSectionSkeleton from "../organisms/CastSectionSkeleton";
 import ContentDetailInfoSection from "../organisms/ContentDetailInfoSection";
+import ContentDetailInfoSectionSkeleton from "../organisms/ContentDetailInfoSectionSkeleton";
 import ContentInfoBox from "../organisms/ContentInfoBox";
+import ContentInfoBoxSkeleton from "../organisms/ContentInfoBoxSkeleton";
+import SimilarContentsSectionSkeleton from "../organisms/SimilarContentSectionSkeleton";
 import SimilarContentsSection from "../organisms/SimilarContentsSection";
 
 const ContentTemplate = () => {
+  const { isLoading, isValidating } = useContentDetail();
+  const isSkeleton = isLoading || isValidating;
+
   return (
     <div>
       <BackDrop />
       <Contents>
         <TopContent>
           <div className="posterWrap">
-            <ContentPoster />
+            {isSkeleton ? <ContentPosterSkeleton /> : <ContentPoster />}
           </div>
           <div className="container">
-            <ContentInfoBox />
+            {isSkeleton ? <ContentInfoBoxSkeleton /> : <ContentInfoBox />}
             <div className="buttonBoxWrap">
-              <ButtonControlBox />
+              {isSkeleton ? <BtnControlBoxSkeleton /> : <BtnControlBox />}
             </div>
           </div>
         </TopContent>
         <Main>
           <MainContent>
-            <ContentDetailInfoSection />
+            {isSkeleton ? (
+              <ContentDetailInfoSectionSkeleton />
+            ) : (
+              <ContentDetailInfoSection />
+            )}
             <div className="castSectionWrap">
-              <CastSection />
+              {isSkeleton ? <CastSectionSkeleton /> : <CastSection />}
             </div>
-            <SimilarContentsSection />
+            {isSkeleton ? (
+              <SimilarContentsSectionSkeleton />
+            ) : (
+              <SimilarContentsSection />
+            )}
           </MainContent>
           <SideContent>
-            <CastSection />
+            {isSkeleton ? <CastSectionSkeleton /> : <CastSection />}
           </SideContent>
         </Main>
       </Contents>

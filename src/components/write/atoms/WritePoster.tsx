@@ -1,13 +1,12 @@
-import { useRecoilValue } from "recoil";
-import { reviewDetailState } from "@states/reviews";
+import useWrite from "@hooks/useWrite";
 
 import Poster from "@components/common/Poster";
 
 const WritePoster = () => {
-  const { content } = useRecoilValue(reviewDetailState);
+  const { content } = useWrite();
 
   return (
-    <Poster outline width="30rem" height="40rem" url={content.poster || ""} />
+    <Poster outline width="30rem" height="40rem" url={content?.poster || ""} />
   );
 };
 

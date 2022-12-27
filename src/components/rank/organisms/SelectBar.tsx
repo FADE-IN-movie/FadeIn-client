@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
 import CategorySelectBox from "../molecules/CategorySelectBox";
-import RankSortMenu from "../molecules/RankSortMenu";
+import SortMenu from "../molecules/SortMenu";
 
 const SelectBar = () => {
   return (
     <Bar>
       <CategorySelectBox />
-      <RankSortMenu />
+      <SortMenu />
     </Bar>
   );
 };

@@ -1,61 +1,42 @@
 import { useEffect } from "react";
 import { useRouter } from "next/router";
-// import { GetServerSideProps } from "next";
 import styled from "styled-components";
 
-import { useSetRecoilState } from "recoil";
-import { reviewDetailState } from "@states/reviews";
+import { useRecoilValue } from "recoil";
+import { isSignInState } from "@states/users";
 
-import reviews from "@lib/api/reviewsAPI";
+import { setCookie } from "@utils/cookie";
 
+import useWrite from "@hooks/useWrite";
 import WriteTemplate from "@components/write/templates/WriteTemplate";
-
-// interface IProps {
-//   info: IReviewInfo;
-// }
+import NotFoundTemplate from "@components/404/templates/NotFoundTemplate";
+import SEO from "@components/common/SEO";
 
 const WritePage = () => {
-  const setReviewData = useSetRecoilState(reviewDetailState);
+  const isSignIn = useRecoilValue(isSignInState);
   const { query } = useRouter();
+  const isQueryLoaded = Object.keys(query).length;
+  const tmdbId = Number(query.contentId);
+  const type = query.type as string;
+  const { isError } = useWrite();
 
-  useEffect(() => {
-    (async () => {
-      const reviewId = (query.reviewId as string) || null;
-      const tmdbId = Number(query.contentId);
-      const type = query.type as string;
+  useEffect(() => setCookie("write", "false"), []);
 
-      if (!tmdbId || !type) return;
-      await reviews.getWritePage(reviewId, tmdbId, type).then((res) => {
-        setReviewData(res);
-      });
-    })();
-  }, [query]);
-
+  if (
+    !isSignIn ||
+    (isQueryLoaded && !tmdbId) ||
+    (isQueryLoaded && !type) ||
+    isError
+  )
+    return <NotFoundTemplate />;
   return (
     <Wrap>
+      <SEO title="감상평 작성" />
       <WriteTemplate />
     </Wrap>
   );
 };
 
 export default WritePage;
-
-// export const getServerSideProps: GetServerSideProps = async ({
-//   query,
-//   req,
-// }) => {
-//   const reviewId = null;
-//   const tmdbId = Number(query.contentId);
-//   const type = query.type as string;
-//   const accessToken = req ? req.cookies.accessToken : null;
-//   if (accessToken) setAuthorizationToken(accessToken);
-
-//   const info = await reviews.getWritePage(reviewId, tmdbId, type);
-//   console.log(info);
-
-//   return {
-//     props: { info },
-//   };
-// };
 
 const Wrap = styled.div``;

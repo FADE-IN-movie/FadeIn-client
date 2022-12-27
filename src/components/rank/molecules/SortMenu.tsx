@@ -1,29 +1,35 @@
-import { useEffect, useState } from "react";
-
 import styled from "styled-components";
 import { theme } from "@styles/theme";
 
-const menu = ["인기순", "평점순", "최신순"];
+import { useRecoilState } from "recoil";
+import { selectedSortMenuState } from "@states/menus";
 
-interface IProps {
-  selectedMenu: string;
-  setSelectedMenu: (menu: string) => void;
-}
+const menuInfo = [
+  {
+    value: "popularity",
+    text: "인기순",
+  },
+  { value: "rating", text: "평점순" },
+  {
+    value: "date",
+    text: "최신순",
+  },
+];
 
 type ButtonProps = {
   isActive: boolean;
 };
 
-const SortMenu = ({ selectedMenu, setSelectedMenu }: IProps) => {
-  useEffect(() => setSelectedMenu(menu[0]), []);
+const SortMenu = () => {
+  const [selectedMenu, setSelectedMenu] = useRecoilState(selectedSortMenuState);
 
   return (
     <Box>
-      {menu.map((text, i) => (
+      {menuInfo.map(({ text, value }, i) => (
         <Menu key={i}>
           <Button
-            isActive={selectedMenu === text}
-            onClick={() => setSelectedMenu(text)}
+            isActive={selectedMenu === value}
+            onClick={() => setSelectedMenu(value)}
           >
             {text}
           </Button>

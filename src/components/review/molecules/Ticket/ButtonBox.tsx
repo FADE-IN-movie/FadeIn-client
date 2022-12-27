@@ -1,8 +1,6 @@
+import { MouseEvent } from "react";
 import { useRouter } from "next/router";
-
 import styled from "styled-components";
-
-import useReviews from "@hooks/useReviews";
 
 import EditIcon from "@images/write_icon.svg";
 import DeleteIcon from "@images/delete_icon.svg";
@@ -11,31 +9,43 @@ interface IProps {
   type?: string;
   contentId: number;
   reviewId?: string;
+  setIsDeleteModalOpen: (isOpen: boolean) => void;
 }
 
-const ButtonBox = ({ type, contentId, reviewId }: IProps) => {
+const ButtonBox = ({
+  type,
+  contentId,
+  reviewId,
+  setIsDeleteModalOpen,
+}: IProps) => {
   const router = useRouter();
-  const { onDeleteReview } = useReviews();
+
+  const onClickDeleteBtn = (e: MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    setIsDeleteModalOpen(true);
+  };
 
   return (
-    <Box>
-      <button title="수정">
-        <EditIcon
-          width="1.5rem"
-          fill="#E4E4E4"
-          onClick={() =>
-            router.push({
-              pathname: `/write`,
-              query: { type: type, contentId: contentId, reviewId: reviewId },
-            })
-          }
-        />
-      </button>
-      <div className="dividingLine" />
-      <button title="삭제" onClick={() => onDeleteReview(reviewId || "")}>
-        <DeleteIcon width="1.2rem" fill="#E4E4E4" />
-      </button>
-    </Box>
+    <>
+      <Box>
+        <button title="수정">
+          <EditIcon
+            width="1.5rem"
+            fill="#E4E4E4"
+            onClick={() =>
+              router.push({
+                pathname: `/write`,
+                query: { type: type, contentId: contentId, reviewId: reviewId },
+              })
+            }
+          />
+        </button>
+        <div className="dividingLine" />
+        <button title="삭제" onClick={onClickDeleteBtn}>
+          <DeleteIcon width="1.2rem" fill="#E4E4E4" />
+        </button>
+      </Box>
+    </>
   );
 };
 

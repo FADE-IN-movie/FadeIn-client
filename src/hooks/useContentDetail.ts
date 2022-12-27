@@ -7,7 +7,7 @@ const useContentDetail = () => {
   const { query } = useRouter();
   const tmdbId = Number(query.id);
   const type = query.type as string;
-  const { data, error, mutate } = useSWR(
+  const { data, error, isValidating, mutate } = useSWR(
     tmdbId && type ? ["contentDetail", tmdbId, type] : null,
     () => contents.getDetail(tmdbId, type),
     {
@@ -40,6 +40,7 @@ const useContentDetail = () => {
     similarContent: data ? data.similarContent : null,
     currentLike: data ? data.currentLike : null,
     isLoading: !data,
+    isValidating,
     isError: error,
     onToggleLike,
   };

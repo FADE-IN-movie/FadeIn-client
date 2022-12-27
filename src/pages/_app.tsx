@@ -6,11 +6,11 @@ import RecoilNexus from "recoil-nexus";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "../styles/GlobalStyles";
 import { theme } from "../styles/theme";
+import { SkeletonTheme } from "react-loading-skeleton";
 
+import Alert from "@components/common/Alert";
 import Auth from "@components/auth/Auth";
-import Header from "@components/common/Header";
 import Layout from "@components/common/Layout";
-import Footer from "@components/common/Footer";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
@@ -32,12 +32,13 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         <RecoilNexus />
         <GlobalStyles />
         <ThemeProvider theme={theme}>
-          <Auth />
-          <Header />
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-          <Footer />
+          <SkeletonTheme baseColor="#2e2e2e" highlightColor="#444">
+            <Auth />
+            <Alert />
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </SkeletonTheme>
         </ThemeProvider>
       </RecoilRoot>
     </>
