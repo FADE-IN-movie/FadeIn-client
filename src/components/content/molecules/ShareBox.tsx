@@ -37,14 +37,14 @@ const ShareBox = () => {
         description: data.overview || "",
         imageUrl: data.poster,
         link: {
-          webUrl: `https://fade-in.net`,
+          webUrl: window.location.href,
         },
       },
       buttons: [
         {
           title: "웹으로 이동",
           link: {
-            webUrl: `https://fade-in.net`,
+            webUrl: window.location.href,
           },
         },
       ],
