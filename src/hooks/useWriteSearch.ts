@@ -7,7 +7,7 @@ import { useRecoilValue } from "recoil";
 import { writeSearchKeywordState } from "@states/reviews";
 import { IContentInfo } from "@typings/info";
 
-const useSearch = () => {
+const useWriteSearch = () => {
   const [searchData, setSearchData] = useState<IContentInfo[]>([]);
   const [total, setTotal] = useState(0);
   const keyword = useRecoilValue(writeSearchKeywordState);
@@ -25,6 +25,8 @@ const useSearch = () => {
     },
     {
       revalidateOnFocus: false,
+      revalidateAll: false,
+      revalidateFirstPage: false,
     }
   );
   const PAGE_SIZE = 20;
@@ -65,4 +67,4 @@ const useSearch = () => {
   };
 };
 
-export default useSearch;
+export default useWriteSearch;
