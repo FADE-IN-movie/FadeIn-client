@@ -9,7 +9,7 @@ import ShareBtn from "../atoms/ShareBtn";
 
 const ShareBox = () => {
   const { data } = useContentDetail();
-  const url = "http://www.naver.com"; // 배포한 뒤 수정 필요
+  const url = "https://fade-in.net";
   const encodedUrl = encodeURI(encodeURIComponent(url));
   const [isKakaoInit, setIsKakaoInit] = useRecoilState(isKakaoInitState);
   const naverBlogReqUrl =
@@ -37,14 +37,14 @@ const ShareBox = () => {
         description: data.overview || "",
         imageUrl: data.poster,
         link: {
-          webUrl: "http://localhost:3000",
+          webUrl: `https://fade-in.net`,
         },
       },
       buttons: [
         {
           title: "웹으로 이동",
           link: {
-            webUrl: "http://localhost:3000",
+            webUrl: `https://fade-in.net`,
           },
         },
       ],

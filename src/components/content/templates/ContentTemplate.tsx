@@ -16,8 +16,8 @@ import SimilarContentsSectionSkeleton from "../organisms/SimilarContentSectionSk
 import SimilarContentsSection from "../organisms/SimilarContentsSection";
 
 const ContentTemplate = () => {
-  const { isLoading, isValidating } = useContentDetail();
-  const isSkeleton = isLoading || isValidating;
+  const { isLoading } = useContentDetail();
+  const isSkeleton = isLoading;
 
   return (
     <div>
