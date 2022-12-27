@@ -20,5 +20,5 @@ export default MainPageTemplate;
 const Template = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 10rem;
+  gap: 7rem;
 `;
