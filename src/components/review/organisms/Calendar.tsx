@@ -66,8 +66,8 @@ const Calendar = () => {
       clickOutside(target, calendarRef.current, setIsCalendarOpen);
     };
 
-    document.addEventListener("click", onClickHandler);
-    return () => document.removeEventListener("click", onClickHandler);
+    document.addEventListener("mousedown", onClickHandler);
+    return () => document.removeEventListener("mousedown", onClickHandler);
   }, [calendarRef, setIsCalendarOpen]);
 
   useEffect(() => {

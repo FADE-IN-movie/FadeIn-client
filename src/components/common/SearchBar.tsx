@@ -66,8 +66,8 @@ const SearchBar = ({ isStatic, main, write, width }: IProps) => {
       clickOutside(target, inputRef.current, setIsInputVisible, true);
     };
 
-    document.addEventListener("click", onClickHandler);
-    return () => document.removeEventListener("click", onClickHandler);
+    document.addEventListener("mousedown", onClickHandler);
+    return () => document.removeEventListener("mousedown", onClickHandler);
   }, [inputRef, isStatic]);
 
   useEffect(() => {

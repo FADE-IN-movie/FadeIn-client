@@ -38,8 +38,8 @@ const ComboBox = ({ info, selectedMenu, setSelectedMenu }: IProps) => {
       clickOutside(target, boxRef.current, setIsMenuOpen);
     };
 
-    document.addEventListener("click", onClickHandler);
-    return () => document.removeEventListener("click", onClickHandler);
+    document.addEventListener("mousedown", onClickHandler);
+    return () => document.removeEventListener("mousedown", onClickHandler);
   }, [boxRef]);
 
   return (

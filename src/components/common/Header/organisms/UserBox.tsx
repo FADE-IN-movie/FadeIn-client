@@ -18,8 +18,8 @@ const UserBox = () => {
       clickOutside(target, boxRef.current, setIsListOpen);
     };
 
-    document.addEventListener("click", onClickHandler);
-    return () => document.removeEventListener("click", onClickHandler);
+    document.addEventListener("mousedown", onClickHandler);
+    return () => document.removeEventListener("mousedown", onClickHandler);
   }, [boxRef]);
 
   return (

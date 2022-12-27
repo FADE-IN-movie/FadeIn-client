@@ -26,8 +26,8 @@ const Modal = ({ children, isStatic, setIsOpen }: IProps) => {
       clickOutside(target, boxRef.current, setIsOpen);
     };
 
-    document.addEventListener("click", onClickHandler);
-    return () => document.removeEventListener("click", onClickHandler);
+    document.addEventListener("mousedown", onClickHandler);
+    return () => document.removeEventListener("mousedown", onClickHandler);
   }, [boxRef, setIsOpen]);
 
   return (
