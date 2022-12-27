@@ -46,8 +46,9 @@ const Button = styled.button<ButtonPropsType>`
   ${(props) => {
     if (props.outline)
       return css`
-        border: 1px solid ${props.color};
+        border: 2px solid ${props.color};
         color: ${props.color};
+        font-weight: bold;
       `;
     else
       return css`
