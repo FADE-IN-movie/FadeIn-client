@@ -25,7 +25,6 @@ const WriteSearchItems = () => {
 
   const onIntersect: IntersectionObserverCallback = useCallback(
     ([entry], observer) => {
-      console.log(entry.isIntersecting);
       if (entry.isIntersecting && !isValidating && isSameSize) {
         observer.unobserve(entry.target);
         setSize((prev) => prev + 1);
@@ -37,7 +36,6 @@ const WriteSearchItems = () => {
 
   useEffect(() => {
     if (!target) return;
-
     const observer: IntersectionObserver = new IntersectionObserver(
       onIntersect,
       {
@@ -45,7 +43,6 @@ const WriteSearchItems = () => {
       }
     );
     observer.observe(target);
-
     return () => observer && observer.disconnect();
   }, [target, onIntersect]);
 
@@ -57,24 +54,28 @@ const WriteSearchItems = () => {
         <Scrollbars autoHide style={{ height: "100%" }}>
           <Grid>
             {search?.map((info: IContentInfo, i: number) => (
-              <div
-                key={i}
-                onClick={() =>
-                  router.push({
-                    pathname: `/write`,
-                    query: { type: info.type, contentId: info.id },
-                  })
-                }
-              >
-                <ContentCard key={i} responsive info={info} />
-              </div>
+              <>
+                {info.title === "" ? null : (
+                  <div
+                    key={i}
+                    onClick={() =>
+                      router.push({
+                        pathname: `/write`,
+                        query: { type: info.type, contentId: info.id },
+                      })
+                    }
+                  >
+                    <ContentCard key={i} responsive info={info} />
+                  </div>
+                )}
+              </>
             ))}
             {(isValidating || isLoading || (!isSameSize && !isReachingEnd)) && (
               <WriteSearchItemsSkeleton />
             )}
           </Grid>
           {!isLoading && !isValidating && (
-            <div ref={setTarget} style={{ margin: "3rem 0" }} />
+            <div ref={setTarget} style={{ margin: "3rem 0", height: "3rem" }} />
           )}
         </Scrollbars>
       </Wrap>
