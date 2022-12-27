@@ -31,34 +31,37 @@ const ListSection = () => {
       router.query.type === "movie"
         ? `현재 상영 중인 ${type}`
         : `방영 중인 ${type}`,
-    preference: `${isSignIn ? `${userName}님이 ` : ""}` + `좋아할 만한 ${type}`,
+    preference: `${isSignIn ? `${userName}님이 좋아할 만한 ${type}` : ""}`,
     recommend: `FADE-IN 추천 ${type}`,
   };
 
   return (
     <Section>
-      {Object.keys(data)?.map((title, i) => (
-        <div key={i}>
-          <TitleWrap>
-            <CustomTitle>{listTitles[title]}</CustomTitle>
-          </TitleWrap>
-          <Carousel>
-            {data[title]?.map((info: IContentInfo, i: number) => (
-              <div
-                key={i}
-                onClick={() =>
-                  router.push({
-                    pathname: `/content`,
-                    query: { type: info.type, id: info.id },
-                  })
-                }
-              >
-                <ContentCard info={info} />
-              </div>
-            ))}
-          </Carousel>
-        </div>
-      ))}
+      {Object.keys(data)?.map((title, i) => {
+        if (!isSignIn && title === "preference") return null;
+        return (
+          <div key={i}>
+            <TitleWrap>
+              <CustomTitle>{listTitles[title]}</CustomTitle>
+            </TitleWrap>
+            <Carousel>
+              {data[title]?.map((info: IContentInfo, i: number) => (
+                <div
+                  key={i}
+                  onClick={() =>
+                    router.push({
+                      pathname: `/content`,
+                      query: { type: info.type, id: info.id },
+                    })
+                  }
+                >
+                  <ContentCard info={info} />
+                </div>
+              ))}
+            </Carousel>
+          </div>
+        );
+      })}
     </Section>
   );
 };

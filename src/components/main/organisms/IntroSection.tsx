@@ -1,7 +1,10 @@
 import { useState, MouseEvent } from "react";
-
+import { useRouter } from "next/router";
 import styled from "styled-components";
 import { theme } from "@styles/theme";
+
+import { useRecoilValue } from "recoil";
+import { isSignInState } from "@states/users";
 
 import BackgroundImg from "../molecules/BackgroundImg";
 import MainText from "../molecules/MainText";
@@ -12,11 +15,15 @@ import SignInBox from "@components/auth/SignInBox";
 
 const IntroSection = () => {
   const [isSignInModalOpen, setIsSignInModalOpen] = useState(false);
+  const isSignIn = useRecoilValue(isSignInState);
+  const router = useRouter();
 
   const onOpenSignInModal = (e: MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     setIsSignInModalOpen(true);
   };
+
+  const goPage = (page: string) => router.push(page);
 
   return (
     <>
@@ -29,15 +36,22 @@ const IntroSection = () => {
               <SearchBar isStatic main width="43rem" />
             </div>
             <div className="btnBox">
-              <CustomBtn outline color="#8E9EEE" textColor={theme.logo_color}>
-                Show more
+              <CustomBtn
+                outline
+                color="#8E9EEE"
+                textColor={theme.logo_color}
+                onClickHandler={() => goPage("/rank")}
+              >
+                더 보기
               </CustomBtn>
               <CustomBtn
                 color="linear-gradient(276.79deg, #8E9EEE 20.53%, #E3E3FF 95.78%)"
                 textColor="white"
-                onClickHandler={onOpenSignInModal}
+                onClickHandler={
+                  isSignIn ? () => goPage("/review") : onOpenSignInModal
+                }
               >
-                Login
+                {isSignIn ? "내 감상평" : "로그인"}
               </CustomBtn>
             </div>
           </div>
