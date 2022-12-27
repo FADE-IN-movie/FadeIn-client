@@ -25,7 +25,10 @@ const ContentDetailInfoSection = () => {
             value={data.releaseDate?.slice(0, 4) || nullText}
           />
           <Descript title="연령 등급" value={data.certification || nullText} />
-          <Descript title="상영 시간" value={`${data.runtime}분`} />
+          <Descript
+            title="상영 시간"
+            value={data.runtime ? `${data.runtime}분` : nullText}
+          />
         </div>
         <div className="overview">
           <Descript
