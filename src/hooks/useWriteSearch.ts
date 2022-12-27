@@ -7,7 +7,7 @@ import { useRecoilValue } from "recoil";
 import { writeSearchKeywordState } from "@states/reviews";
 import { IContentInfo } from "@typings/info";
 
-const useSearch = () => {
+const useWriteSearch = () => {
   const [searchData, setSearchData] = useState<IContentInfo[]>([]);
   const [total, setTotal] = useState(0);
   const keyword = useRecoilValue(writeSearchKeywordState);
@@ -67,4 +67,4 @@ const useSearch = () => {
   };
 };
 
-export default useSearch;
+export default useWriteSearch;
