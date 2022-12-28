@@ -6,6 +6,9 @@ import { theme } from "@styles/theme";
 import Logo from "./Logo";
 
 const Footer = () => {
+  const githubUrl = "https://github.com/FADE-IN-movie/FADE-IN";
+  const tmdbUrl = "https://www.themoviedb.org/?language=ko";
+
   return (
     <Wrap>
       <div className="box">
@@ -13,8 +16,13 @@ const Footer = () => {
         <p className="copyRight">
           Copyright 2022 Fade-In, All rights reserved.
         </p>
+        <Link href={tmdbUrl}>
+          <a target="_blank" rel="noopener noreferrer">
+            <p className="source">Open API from TMDB</p>
+          </a>
+        </Link>
         <button className="aboutUs">
-          <Link href="https://github.com/FADE-IN-movie/FADE-IN">
+          <Link href={githubUrl}>
             <a target="_blank" rel="noopener noreferrer">
               About Us
             </a>
@@ -43,6 +51,11 @@ const Wrap = styled.div`
     .copyRight {
       color: ${theme.palette.light_gray};
       margin-top: 0.6rem;
+    }
+
+    .source {
+      color: #868484;
+      margin-top: 0.4rem;
     }
 
     .aboutUs {
