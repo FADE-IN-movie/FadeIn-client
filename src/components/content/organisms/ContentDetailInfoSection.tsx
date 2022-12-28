@@ -2,12 +2,13 @@ import CustomTitle from "@components/common/CustomTitle";
 import styled from "styled-components";
 
 import useContentDetail from "@hooks/useContentDetail";
+import { MESSAGE } from "@data/message";
 
 import Descript from "../molecules/Descript";
 
 const ContentDetailInfoSection = () => {
   const { data, isLoading } = useContentDetail();
-  const nullText = "(해당 정보 없음)";
+  const nullText = `(${MESSAGE.NOT_EXIST_INFO})`;
 
   if (isLoading) return null;
   return (

@@ -5,7 +5,8 @@ export const MESSAGE = {
   SUCCESS_CREATE_REVIEW: "리뷰를 등록하였습니다.",
   SUCCESS_DELETE_REVIEW: "리뷰 삭제가 완료되었습니다.",
 
-  NOT_EXIST_INFO: "해당 정보가 존재하지 않습니다.",
+  NOT_EXIST_INFO: "해당 정보 없음",
+  NOT_EXIST_DATA: "해당 정보가 존재하지 않습니다.",
   NOT_EXIST_REVIEW: "선택된 날짜에 작성한 감상평이 존재하지 않습니다.",
   NOT_SUCCESS_CREATE_REVIEW: "리뷰를 등록하지 못했습니다. 다시 시도해주세요.",
   NOT_SUCCESS_DELETE_REVIEW: "리뷰를 삭제하지 못했습니다. 다시 시도해주세요.",

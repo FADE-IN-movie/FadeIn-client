@@ -19,7 +19,7 @@ const MyListItems = () => {
   const router = useRouter();
 
   if (!movie || !tv || !data || isValidating) return null;
-  if (data?.length === 0) return <Text>( {MESSAGE.NOT_EXIST_INFO} )</Text>;
+  if (data?.length === 0) return <Text>( {MESSAGE.NOT_EXIST_DATA} )</Text>;
   return (
     <Grid>
       {data?.map((info: IContentInfo, i: number) => (
