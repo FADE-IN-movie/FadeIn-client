@@ -50,7 +50,7 @@ const SearchItems = () => {
   }, [target, onIntersect]);
 
   if (!isValidating && !search?.length)
-    return <Text>( {MESSAGE.NOT_EXIST_INFO} )</Text>;
+    return <Text>( {MESSAGE.NOT_EXIST_DATA} )</Text>;
   return (
     <div>
       <Grid>

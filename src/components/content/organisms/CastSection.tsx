@@ -2,13 +2,13 @@ import styled from "styled-components";
 
 import useContentDetail from "@hooks/useContentDetail";
 import { IContentDetailInfo } from "@typings/info";
+import { MESSAGE } from "@data/message";
 
 import CustomTitle from "@components/common/CustomTitle";
 import CastInfoBox from "../molecules/CastInfoBox";
 
 const CastSection = () => {
   const { cast } = useContentDetail();
-  const nullText = "(해당 정보 없음)";
 
   return (
     <Section>
@@ -22,7 +22,7 @@ const CastSection = () => {
           ))}
         </div>
       ) : (
-        nullText
+        `(${MESSAGE.NOT_EXIST_INFO})`
       )}
     </Section>
   );
@@ -31,6 +31,8 @@ const CastSection = () => {
 export default CastSection;
 
 const Section = styled.section`
+  font-size: 1.3rem;
+
   .titleWrap {
     margin-bottom: 2rem;
   }

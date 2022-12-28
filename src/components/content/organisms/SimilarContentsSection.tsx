@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 
 import useContentDetail from "@hooks/useContentDetail";
 import { IContentInfo } from "@typings/info";
+import { MESSAGE } from "@data/message";
 
 import ContentCard from "@components/common/ContentCard";
 import CustomTitle from "@components/common/CustomTitle";
@@ -11,7 +12,6 @@ import Grid from "@components/layouts/Grid";
 const SimilarContentsSection = () => {
   const router = useRouter();
   const { similarContent } = useContentDetail();
-  const nullText = "(해당 정보 없음)";
 
   return (
     <Section>
@@ -35,7 +35,7 @@ const SimilarContentsSection = () => {
           ))}
         </Grid>
       ) : (
-        nullText
+        `(${MESSAGE.NOT_EXIST_INFO})`
       )}
     </Section>
   );
