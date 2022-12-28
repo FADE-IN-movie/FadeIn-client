@@ -33,9 +33,11 @@ const Box = styled.div<DescriptPropsType>`
     margin-bottom: ${(props) => props.isOverview && "1rem"};
     margin-right: 1.5rem;
     line-height: 1.4;
+    flex-shrink: 0;
   }
 
   .value {
     line-height: 1.4;
+    padding-right: 1rem;
   }
 `;
