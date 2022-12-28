@@ -45,6 +45,7 @@ const Box = styled.div`
 `;
 
 const ImageWrap = styled.div`
+  flex-shrink: 0;
   position: relative;
   width: 7rem;
   height: 10.5rem;
