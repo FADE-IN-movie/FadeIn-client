@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { useEffect, useState, ReactNode } from "react";
 import styled from "styled-components";
 import { theme } from "@styles/theme";
 
@@ -13,14 +13,6 @@ const Text = ({ children }: IProps) => {
 export default Text;
 
 const StyledText = styled.span`
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  text-overflow: ellipsis;
-  word-wrap: break-word;
-  white-space: normal;
-  overflow: hidden;
-  height: calc(1.4 * 3rem);
   font-size: 1.4rem;
   color: ${theme.palette.light_gray};
 
