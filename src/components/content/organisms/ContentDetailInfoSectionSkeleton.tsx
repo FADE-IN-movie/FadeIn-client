@@ -17,7 +17,6 @@ const ContentDetailInfoSectionSkeleton = () => {
           <DescriptSkeleton />
           <DescriptSkeleton />
           <DescriptSkeleton />
-          <DescriptSkeleton />
         </div>
         <div className="overview">
           <Skeleton width="5rem" height="1.3rem" />
@@ -32,7 +31,6 @@ export default ContentDetailInfoSectionSkeleton;
 
 const Section = styled.section`
   width: 100%;
-  margin-top: 0.8rem;
 
   .titleWrap {
     margin-bottom: 2.5rem;
@@ -42,13 +40,18 @@ const Section = styled.section`
     .infoBox {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      grid-template-rows: repeat(3, 2.5rem);
+      row-gap: 0.6rem;
+      grid-template-rows: minmax(1.9rem, 1fr) repeat(2, 1.9rem);
       grid-auto-flow: column;
-      align-items: center;
+
+      & > div:first-child {
+        grid-column: 1 / 3;
+        grid-row: 1 / 2;
+      }
 
       @media screen and (max-width: 850px) {
         grid-template-columns: 1fr;
-        grid-template-rows: repeat(6, 2.4rem);
+        grid-template-rows: minmax(1.9rem, 1fr) repeat(5, 1.9rem);
       }
     }
 
