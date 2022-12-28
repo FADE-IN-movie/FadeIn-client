@@ -64,10 +64,10 @@ const Box = styled.div<BoxPropsType>`
   width: fit-content;
   height: fit-content;
   margin: 4rem;
-  min-width: ${(props) => !props.isStatic && "34rem"};
-  min-height: ${(props) => !props.isStatic && "18rem"};
+  min-width: ${(props) => !props.isStatic && "30rem"};
+  min-height: ${(props) => !props.isStatic && "16rem"};
   background: ${theme.palette.dark_gray};
-  padding: 3rem 4rem;
+  padding: 2rem 3rem;
   border-radius: 5px;
 
   .content {

@@ -90,12 +90,11 @@ export default ShareBox;
 const Box = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 4.5rem;
+  gap: 3rem;
 
   .title {
-    font-size: 1.8rem;
+    margin-left: -0.7rem;
+    font-size: 1.6rem;
   }
 
   .boxContainer {

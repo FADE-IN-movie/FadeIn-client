@@ -50,12 +50,14 @@ const ModalBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 3rem;
-  padding: 2rem 2rem 1rem 2rem;
+  gap: 2.5rem;
+  padding: 0rem 1rem 0rem 1rem;
+  margin-bottom: -1rem;
+  /* border: 1px solid gray; */
 
   .main {
     font-size: 1.6rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem;
   }
 
   .sub {
@@ -65,6 +67,6 @@ const ModalBox = styled.div`
 
   .btnBox {
     display: flex;
-    gap: 1rem;
+    gap: 1.5rem;
   }
 `;

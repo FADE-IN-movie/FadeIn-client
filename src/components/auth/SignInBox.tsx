@@ -42,7 +42,7 @@ const Box = styled.div`
   h3 {
     font-size: 1.5rem;
     font-weight: bold;
-    margin-bottom: 1rem;
+    margin-bottom: 1.2rem;
   }
 
   #naverIdLogin {
