@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import useReviews from "@hooks/useReviews";
 import { IReviewInfo } from "@typings/info";
+import { MESSAGE } from "@data/message";
 
 import TicketFront from "./TicketFront";
 import TicketBack from "./TicketBack";
@@ -62,7 +63,7 @@ const Ticket = ({ review }: IProps) => {
 
       {isDeleteModalOpen && (
         <ConfirmModal
-          mainText="감상평을 삭제하시겠습니까?"
+          mainText={MESSAGE.CONFIRM_DELETE_REVIEW}
           acceptText="삭제"
           setIsOpen={setIsDeleteModalOpen}
           onClickAccept={onDeleteAccept}

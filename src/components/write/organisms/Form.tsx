@@ -6,6 +6,7 @@ import { theme } from "@styles/theme";
 import { useRecoilValue } from "recoil";
 import { nullErrorCntState } from "@states/write";
 import { getToday } from "@utils/date";
+import { MESSAGE } from "@data/message";
 
 import useForm from "@hooks/useForm";
 import useWrite from "@hooks/useWrite";
@@ -97,10 +98,7 @@ const Form = () => {
               handleChange={onChangeForm}
             />
           </FormItem>
-          <FormItem
-            title="본 장소"
-            warn="최대 20자로 입력할 수 있는 글자 수가 제한됩니다."
-          >
+          <FormItem title="본 장소" warn={MESSAGE.TEXT_LIMIT(20)}>
             <Input
               name="watchedIn"
               limit={20}
@@ -108,10 +106,7 @@ const Form = () => {
               handleChange={onChangeForm}
             />
           </FormItem>
-          <FormItem
-            title="같이 본 사람"
-            warn="최대 12자로 입력할 수 있는 글자 수가 제한됩니다."
-          >
+          <FormItem title="같이 본 사람" warn={MESSAGE.TEXT_LIMIT(12)}>
             <Input
               name="watchedWith"
               limit={12}
@@ -127,10 +122,7 @@ const Form = () => {
           >
             <StarRating initialScore={values.rating} setValues={setValues} />
           </FormItem>
-          <FormItem
-            title="메모"
-            warn="최대 24자로 입력할 수 있는 글자 수가 제한됩니다."
-          >
+          <FormItem title="메모" warn={MESSAGE.TEXT_LIMIT(24)}>
             <Input
               name="memo"
               limit={24}
@@ -162,8 +154,8 @@ const Form = () => {
 
         {isCacelModalOpen && (
           <ConfirmModal
-            mainText="작성 중인 내용을 취소하시겠습니까?"
-            subText="확인 선택 시, 작성한 내용은 저장되지 않습니다."
+            mainText={MESSAGE.CONFIRM_WRITE_CANCEL}
+            subText={MESSAGE.CONFIRM_WRITE_CANCEL_SUB}
             setIsOpen={setIsCancelModalOpen}
             onClickAccept={onClickAcceptBtn}
           />

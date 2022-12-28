@@ -5,6 +5,7 @@ import { isKakaoInitState } from "@states/contents";
 import { successAlertState } from "@states/alert";
 
 import useContentDetail from "@hooks/useContentDetail";
+import { MESSAGE } from "@data/message";
 
 import ShareBtn from "../atoms/ShareBtn";
 
@@ -22,7 +23,7 @@ const ShareBox = () => {
 
   const copyUrl = () => {
     navigator.clipboard.writeText(window.location.href);
-    setSuccessAlert("클립보드 복사가 완료되었습니다.");
+    setSuccessAlert(MESSAGE.SUCCESS_COPY_URL);
   };
 
   const shareKakao = () => {

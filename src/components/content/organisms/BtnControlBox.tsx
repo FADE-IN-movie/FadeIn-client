@@ -9,10 +9,10 @@ import { isSignInState } from "@states/users";
 import { getCookie, setCookie } from "@utils/cookie";
 
 import useContentDetail from "@hooks/useContentDetail";
+import { MESSAGE } from "@data/message";
 
 import ContentActionBtn from "../molecules/ContentActionBtn";
 import Modal from "@components/common/Modal";
-
 import WriteIcon from "@images/write_icon.svg";
 import OutlineHeartIcon from "@images/outline_heart_icon.svg";
 import FillHeartIcon from "@images/fill_heart_icon.svg";
@@ -90,7 +90,7 @@ const BtnControlBox = () => {
       {isSignInAlertModalOpen && (
         <ConfirmModal
           setIsOpen={setIsSignInAlertModalOpen}
-          mainText="해당 서비스를 위해 로그인이 필요합니다"
+          mainText={MESSAGE.REQUIRE_SIGNIN}
           onClickAccept={openSignInModal}
           acceptText="로그인"
         />

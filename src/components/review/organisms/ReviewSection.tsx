@@ -10,6 +10,7 @@ import { IReviewInfo } from "@typings/info";
 
 import CalendarIcon from "@images/calendar_icon.svg";
 import Ticket from "../molecules/Ticket";
+import { MESSAGE } from "@data/message";
 
 const ReviewSection = () => {
   const { year, month, date } = useRecoilValue(selectedDateState);
@@ -62,9 +63,7 @@ const ReviewSection = () => {
             ))}
           </Container>
         ) : (
-          <p className="warnText">
-            ( 선택된 날짜에 작성한 감상평이 존재하지 않습니다. )
-          </p>
+          <p className="warnText">( {MESSAGE.NOT_EXIST_REVIEW} )</p>
         ))}
     </Section>
   );

@@ -6,6 +6,7 @@ import styled from "styled-components";
 import { theme } from "@styles/theme";
 
 import { IContentInfo } from "@typings/info";
+import { MESSAGE } from "@data/message";
 
 import Grid from "@components/layouts/Grid";
 import ContentCard from "@components/common/ContentCard";
@@ -49,7 +50,7 @@ const SearchItems = () => {
   }, [target, onIntersect]);
 
   if (!isValidating && !search?.length)
-    return <Text>( 해당 정보가 존재하지 않습니다. )</Text>;
+    return <Text>( {MESSAGE.NOT_EXIST_INFO} )</Text>;
   return (
     <div>
       <Grid>

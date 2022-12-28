@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 
 import useLike from "@hooks/useLike";
 import { IContentInfo } from "@typings/info";
+import { MESSAGE } from "@data/message";
 
 import { useRecoilValue } from "recoil";
 import { selectedMenuState } from "@states/menus";
@@ -18,8 +19,7 @@ const MyListItems = () => {
   const router = useRouter();
 
   if (!movie || !tv || !data || isValidating) return null;
-  if (data?.length === 0)
-    return <Text>( 해당 정보가 존재하지 않습니다. )</Text>;
+  if (data?.length === 0) return <Text>( {MESSAGE.NOT_EXIST_INFO} )</Text>;
   return (
     <Grid>
       {data?.map((info: IContentInfo, i: number) => (

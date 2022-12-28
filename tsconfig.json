@@ -21,6 +21,7 @@
       "@lib/*": ["./src/lib/*"],
       "@hooks/*": ["./src/hooks/*"],
       "@typings/*": ["typings/*"],
+      "@data/*": ["public/assets/data/*"],
       "@images/*": ["public/assets/images/*"],
       "@states/*": ["./src/states/*"],
       "@styles/*": ["./src/styles/*"]

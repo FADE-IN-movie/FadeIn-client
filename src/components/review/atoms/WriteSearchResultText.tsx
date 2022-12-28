@@ -3,6 +3,7 @@ import styled from "styled-components";
 import useWriteSearch from "@hooks/useWriteSearch";
 import { useRecoilValue } from "recoil";
 import { writeSearchKeywordState } from "@states/reviews";
+import { MESSAGE } from "@data/message";
 
 const WriteSearchResultText = () => {
   const { total, isLoading } = useWriteSearch();
@@ -13,12 +14,11 @@ const WriteSearchResultText = () => {
     <Text>
       {!isLoading ? (
         <>
-          {" "}
-          <span className="bold">&apos;{writeSearchKeyword}&apos;</span> 검색
-          결과가 {total}개 있습니다.
+          <span className="bold">&apos;{writeSearchKeyword}&apos;</span>{" "}
+          {MESSAGE.SEARCH_RESULT(total)}
         </>
       ) : (
-        <>검색 중입니다.</>
+        <>{MESSAGE.SEARCHING}</>
       )}
     </Text>
   );

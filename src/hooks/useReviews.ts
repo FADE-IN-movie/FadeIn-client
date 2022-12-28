@@ -7,6 +7,7 @@ import { useRecoilValue, useSetRecoilState } from "recoil";
 import { successAlertState, errorAlertState } from "@states/alert";
 import { selectedDateState } from "@states/reviews";
 import { IReviewInfo } from "@typings/info";
+import { MESSAGE } from "@data/message";
 
 const useReviews = () => {
   const { year, month } = useRecoilValue(selectedDateState);
@@ -28,10 +29,10 @@ const useReviews = () => {
         );
 
         mutate({ review: newData }, false);
-        setSuccessAlert("리뷰 삭제가 완료되었습니다.");
+        setSuccessAlert(MESSAGE.SUCCESS_DELETE_REVIEW);
       })
       .catch(() => {
-        setErrorAlert("리뷰를 삭제하지 못했습니다. 다시 시도해주세요.");
+        setErrorAlert(MESSAGE.NOT_SUCCESS_DELETE_REVIEW);
       });
   };
 

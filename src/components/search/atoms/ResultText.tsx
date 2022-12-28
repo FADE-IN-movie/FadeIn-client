@@ -1,6 +1,8 @@
-import useSearch from "@hooks/useSearch";
-import { useRouter } from "next/router";
 import styled from "styled-components";
+import { useRouter } from "next/router";
+import useSearch from "@hooks/useSearch";
+
+import { MESSAGE } from "@data/message";
 
 const ResultText = () => {
   const { resultCnt } = useSearch();
@@ -10,12 +12,11 @@ const ResultText = () => {
     <Text>
       {resultCnt ? (
         <>
-          {" "}
-          <span className="bold">&apos;{query.keyword}&apos;</span> 검색 결과가{" "}
-          {resultCnt.total}개 있습니다.
+          <span className="bold">&apos;{query.keyword}&apos;</span>{" "}
+          {MESSAGE.SEARCH_RESULT(resultCnt.total)}
         </>
       ) : (
-        <>검색 중입니다.</>
+        <>{MESSAGE.SEARCHING}</>
       )}
     </Text>
   );

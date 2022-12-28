@@ -8,6 +8,7 @@ import { nullErrorCntState } from "@states/write";
 import { successAlertState, errorAlertState } from "@states/alert";
 
 import { v4 as uuidv4 } from "uuid";
+import { MESSAGE } from "@data/message";
 
 type UseFormProps = {
   initialValues: IReviewDataInfo;
@@ -41,7 +42,7 @@ const useForm = ({ initialValues }: UseFormProps) => {
   const onSubmitForm = () => {
     if (values.rating === 0) {
       setNullErrorCnt((prev) => prev + 1);
-      return setErrorAlert("필수 값을 입력해주세요.");
+      return setErrorAlert(MESSAGE.REQUIRE_VALUE);
     }
     const reviewId = uuidv4();
     reviews
@@ -49,7 +50,7 @@ const useForm = ({ initialValues }: UseFormProps) => {
       .then((status) => {
         switch (status) {
           case 201:
-            setSuccessAlert("리뷰를 등록하였습니다.");
+            setSuccessAlert(MESSAGE.SUCCESS_CREATE_REVIEW);
             router.push("/review");
             break;
           default:
@@ -57,7 +58,7 @@ const useForm = ({ initialValues }: UseFormProps) => {
         }
       })
       .catch(() => {
-        setErrorAlert("리뷰를 등록하지 못했습니다. 다시 시도해주세요.");
+        setErrorAlert(MESSAGE.NOT_SUCCESS_CREATE_REVIEW);
       });
   };
 
