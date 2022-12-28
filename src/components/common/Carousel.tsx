@@ -94,7 +94,7 @@ const Carousel = ({ children }: IProps) => {
     <Container ref={containerRef}>
       {!isStart && (
         <PrevBtn onClick={onClickPrev}>
-          <PrevIcon width="16" fill={theme.palette.light_gray} />
+          <PrevIcon width="16" fill="white" />
         </PrevBtn>
       )}
       <div className="slideItems" ref={itemsRef}>
@@ -102,7 +102,7 @@ const Carousel = ({ children }: IProps) => {
       </div>
       {!isEnd && (
         <NextBtn onClick={onClickNext}>
-          <NextIcon width="16" fill={theme.palette.light_gray} />
+          <NextIcon width="16" fill="white" />
         </NextBtn>
       )}
     </Container>
@@ -133,19 +133,19 @@ const Container = styled.div`
 
 const Btn = styled.button`
   position: absolute;
-  top: 0;
-  height: calc(100% - 2.6rem);
-  padding: 1rem;
+  top: 10rem;
+  border-radius: 50%;
+  padding: 1.2rem 1.7rem;
   background: rgba(0, 0, 0, 0.5);
   z-index: 5;
 `;
 
 const PrevBtn = styled(Btn)`
-  border-radius: 5px 0 0 5px;
   left: -4rem;
+  padding: 1.2rem 2rem 1rem 1.7rem;
 `;
 
 const NextBtn = styled(Btn)`
-  border-radius: 0 5px 5px 0;
   right: -4rem;
+  padding: 1.2rem 1.7rem 1rem 2rem;
 `;
