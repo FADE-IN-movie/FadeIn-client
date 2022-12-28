@@ -1,9 +1,9 @@
-import CustomTitle from "@components/common/CustomTitle";
 import styled from "styled-components";
 
 import useContentDetail from "@hooks/useContentDetail";
 import { MESSAGE } from "@data/message";
 
+import CustomTitle from "@components/common/CustomTitle";
 import Descript from "../molecules/Descript";
 
 const ContentDetailInfoSection = () => {
@@ -27,7 +27,7 @@ const ContentDetailInfoSection = () => {
           /> */}
           <Descript title="연령 등급" value={data.certification || nullText} />
           <Descript
-            title="상영 시간"
+            title="러닝 타임"
             value={data.runtime ? `${data.runtime}분` : nullText}
           />
         </div>
