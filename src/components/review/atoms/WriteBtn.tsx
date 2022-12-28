@@ -1,6 +1,6 @@
 import { MouseEvent } from "react";
 import styled from "styled-components";
-import WriteIcon from "@images/write_icon.svg";
+import AddIcon from "@images/add_icon.svg";
 
 interface IProps {
   onClickHandler: (e: MouseEvent<HTMLButtonElement>) => void;
@@ -9,7 +9,7 @@ interface IProps {
 const WriteBtn = ({ onClickHandler }: IProps) => {
   return (
     <Button onClick={onClickHandler}>
-      <WriteIcon width="2rem" fill="white" />
+      <AddIcon width="2rem" fill="white" />
     </Button>
   );
 };
