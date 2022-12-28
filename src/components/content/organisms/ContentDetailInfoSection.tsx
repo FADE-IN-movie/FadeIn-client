@@ -21,10 +21,10 @@ const ContentDetailInfoSection = () => {
           <Descript title="원제" value={data.originalTitle || nullText} />
           <Descript title="국가" value={data.country || nullText} />
           <Descript title="장르" value={data.genre?.join("/") || nullText} />
-          <Descript
+          {/* <Descript
             title="제작 연도"
             value={data.releaseDate?.slice(0, 4) || nullText}
-          />
+          /> */}
           <Descript title="연령 등급" value={data.certification || nullText} />
           <Descript
             title="상영 시간"
@@ -56,9 +56,15 @@ const Section = styled.section`
     .infoBox {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      grid-template-rows: repeat(3, 2.5rem);
+      row-gap: 0.6rem;
+      grid-template-rows: minmax(1.9rem, 1fr) repeat(2, 1.9rem);
       grid-auto-flow: column;
-      align-items: center;
+      /* align-items: center; */
+
+      & > div:first-child {
+        grid-column: 1 / 3;
+        grid-row: 1 / 2;
+      }
 
       @media screen and (max-width: 850px) {
         grid-template-columns: 1fr;
