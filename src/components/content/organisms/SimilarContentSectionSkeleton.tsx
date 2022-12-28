@@ -21,7 +21,6 @@ const SimilarContentsSectionSkeleton = () => {
 export default SimilarContentsSectionSkeleton;
 
 const Section = styled.section`
-  font-size: 1.3rem;
   .titleWrap {
     margin-bottom: 2rem;
   }

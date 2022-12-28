@@ -43,8 +43,8 @@ const Box = styled.div`
   .creditsInfoBox {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
-    margin-top: 3rem;
+    gap: 2rem;
+    margin-top: 3.8rem;
     margin-left: 1rem;
   }
 `;
