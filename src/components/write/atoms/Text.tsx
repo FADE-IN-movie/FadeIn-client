@@ -13,7 +13,18 @@ const Text = ({ children }: IProps) => {
 export default Text;
 
 const StyledText = styled.span`
-  height: 1.4rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  white-space: normal;
+  overflow: hidden;
+  height: calc(1.4 * 3rem);
   font-size: 1.4rem;
   color: ${theme.palette.light_gray};
+
+  @media screen and (min-width: 801px) {
+    width: calc(100% - 38rem);
+  }
 `;
