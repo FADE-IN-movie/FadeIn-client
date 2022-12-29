@@ -45,9 +45,9 @@ const Calendar = () => {
   };
 
   useEffect(() => {
-    const { year, month, date } = selectedDate;
+    const { year, month } = selectedDate;
 
-    if (selectedDate && year > 0 && month > 0 && date > 0) return;
+    if (selectedDate && year > 0 && month > 0) return;
 
     const { year: tYear, month: tMonth, date: tDate } = getToday();
 
