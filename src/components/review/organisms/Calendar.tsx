@@ -45,20 +45,24 @@ const Calendar = () => {
   };
 
   useEffect(() => {
-    const { year, month, date } = getToday();
+    const { year, month, date } = selectedDate;
+
+    if (selectedDate && year > 0 && month > 0 && date > 0) return;
+
+    const { year: tYear, month: tMonth, date: tDate } = getToday();
 
     setTodayDate({
-      year: year,
-      month: month,
-      date: date,
+      year: tYear,
+      month: tMonth,
+      date: tDate,
     });
 
     setSelectedDate({
-      year: year,
-      month: month,
-      date: date,
+      year: tYear,
+      month: tMonth,
+      date: tDate,
     });
-  }, [setSelectedDate, setTodayDate]);
+  }, [setSelectedDate, setTodayDate, selectedDate]);
 
   useEffect(() => {
     const onClickHandler = ({ target }: Event) => {

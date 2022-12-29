@@ -3,6 +3,7 @@ export const MESSAGE = {
 
   SUCCESS_COPY_URL: "클립보드 복사가 완료되었습니다.",
   SUCCESS_CREATE_REVIEW: "리뷰를 등록하였습니다.",
+  SUCCESS_EDIT_REVIEW: "리뷰 수정이 완료되었습니다.",
   SUCCESS_DELETE_REVIEW: "리뷰 삭제가 완료되었습니다.",
 
   NOT_EXIST_INFO: "해당 정보 없음",
