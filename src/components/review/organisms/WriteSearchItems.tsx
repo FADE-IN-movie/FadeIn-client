@@ -65,7 +65,7 @@ const WriteSearchItems = () => {
                       })
                     }
                   >
-                    <ContentCard key={i} responsive info={info} />
+                    <ContentCard responsive info={info} />
                   </div>
                 )}
               </>

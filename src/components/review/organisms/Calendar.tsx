@@ -82,14 +82,15 @@ const Calendar = () => {
       const [rYear, rMonth, rDate] = review.watchedDate.split("-");
       const { year, month } = selectedDate;
 
-      const isSameYear = year.toString() === rYear;
-      const isSameMonth = month.toString() === rMonth;
+      const isSameYear = year === Number(rYear);
+      const isSameMonth = month === Number(rMonth);
 
       if (isSameYear && isSameMonth && rDate !== undefined)
         set.add(Number(rDate).toString());
     });
 
     const filteredArr: string[] = Array.from(set);
+    console.log(filteredArr);
 
     setReviewDateArr(filteredArr);
   }, [selectedDate, reviews]);
