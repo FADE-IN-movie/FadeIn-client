@@ -26,7 +26,12 @@ const Alert = () => {
   }, [errorAlert, setErrorAlert]);
 
   return (
-    <StyledToastContainer className="toast" theme="dark" position="top-right" />
+    <StyledToastContainer
+      className="toast"
+      theme="dark"
+      position="top-right"
+      autoClose={1500}
+    />
   );
 };
 
