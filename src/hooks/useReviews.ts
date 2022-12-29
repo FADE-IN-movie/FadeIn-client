@@ -10,9 +10,9 @@ import { IReviewInfo } from "@typings/info";
 import { MESSAGE } from "@data/message";
 
 const useReviews = () => {
-  const { year, month, date } = useRecoilValue(selectedDateState);
+  const { year, month } = useRecoilValue(selectedDateState);
   const { data, error, isValidating, mutate } = useSWR(
-    year && month && date ? ["reviews", year, month, date] : null,
+    year && month ? ["reviews", year, month] : null,
     () => reviews.getReviews(year, month)
   );
   const setSuccessAlert = useSetRecoilState(successAlertState);
