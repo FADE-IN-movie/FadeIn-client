@@ -49,8 +49,6 @@ const SearchItems = () => {
     return () => observer && observer.disconnect();
   }, [target, onIntersect]);
 
-  if (!isValidating && !search?.length)
-    return <Text>( {MESSAGE.NOT_EXIST_DATA} )</Text>;
   return (
     <div>
       <Grid>
