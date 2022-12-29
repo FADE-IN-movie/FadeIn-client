@@ -90,7 +90,6 @@ const Calendar = () => {
     });
 
     const filteredArr: string[] = Array.from(set);
-    console.log(filteredArr);
 
     setReviewDateArr(filteredArr);
   }, [selectedDate, reviews]);
