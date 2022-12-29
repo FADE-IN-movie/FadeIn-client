@@ -25,22 +25,18 @@ const ReviewSection = () => {
   };
 
   useEffect(() => {
-    (() => {
-      if (!reviews) return;
-      const newArr = reviews.filter((review: IReviewInfo) => {
-        const [rYear, rMonth, rDate] = review.watchedDate
-          .split("-")
-          .map(Number);
+    if (!reviews) return;
+    const newArr = reviews.filter((review: IReviewInfo) => {
+      const [rYear, rMonth, rDate] = review.watchedDate.split("-").map(Number);
 
-        const isSameYear = rYear === year;
-        const isSameMonth = rMonth === month;
-        const isSameDate = date ? rDate === date : true;
+      const isSameYear = rYear === year;
+      const isSameMonth = rMonth === month;
+      const isSameDate = date ? rDate === date : true;
 
-        return isSameYear && isSameMonth && isSameDate;
-      });
+      return isSameYear && isSameMonth && isSameDate;
+    });
 
-      setFilteredReviews(newArr);
-    })();
+    setFilteredReviews(newArr);
   }, [reviews, year, month, date]);
 
   return (

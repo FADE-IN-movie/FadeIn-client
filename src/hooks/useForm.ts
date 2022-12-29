@@ -6,6 +6,7 @@ import reviews from "@lib/api/reviewsAPI";
 import { useSetRecoilState } from "recoil";
 import { nullErrorCntState } from "@states/write";
 import { successAlertState, errorAlertState } from "@states/alert";
+import { selectedDateState } from "@states/reviews";
 
 import { v4 as uuidv4 } from "uuid";
 import { MESSAGE } from "@data/message";
@@ -15,14 +16,15 @@ type UseFormProps = {
 };
 
 const useForm = ({ initialValues }: UseFormProps) => {
-  const setNullErrorCnt = useSetRecoilState(nullErrorCntState);
-  const setSuccessAlert = useSetRecoilState(successAlertState);
-  const setErrorAlert = useSetRecoilState(errorAlertState);
   const [values, setValues] = useState(initialValues);
   const router = useRouter();
   const { query } = router;
   const tmdbId = Number(query.contentId);
   const type = query.type as string;
+  const setNullErrorCnt = useSetRecoilState(nullErrorCntState);
+  const setSuccessAlert = useSetRecoilState(successAlertState);
+  const setErrorAlert = useSetRecoilState(errorAlertState);
+  const setSelectedDate = useSetRecoilState(selectedDateState);
 
   const initializeForm = useCallback((info: IReviewDataInfo) => {
     setValues(info);
@@ -39,6 +41,16 @@ const useForm = ({ initialValues }: UseFormProps) => {
     }));
   };
 
+  const changeToReviewDate = () => {
+    const { watchedDate } = values;
+    const [year, month, date] = watchedDate.split("-").map(Number);
+    setSelectedDate({
+      year: year,
+      month: month,
+      date: date,
+    });
+  };
+
   const onSubmitForm = () => {
     if (values.rating === 0) {
       setNullErrorCnt((prev) => prev + 1);
@@ -51,6 +63,7 @@ const useForm = ({ initialValues }: UseFormProps) => {
         switch (status) {
           case 201:
             setSuccessAlert(MESSAGE.SUCCESS_CREATE_REVIEW);
+            changeToReviewDate();
             router.push("/review");
             break;
           default:
@@ -66,6 +79,8 @@ const useForm = ({ initialValues }: UseFormProps) => {
     reviews.editReview(reviewId, tmdbId, type, values).then((status) => {
       switch (status) {
         case 202:
+          setSuccessAlert(MESSAGE.SUCCESS_EDIT_REVIEW);
+          changeToReviewDate();
           router.push("/review");
           break;
         default:
