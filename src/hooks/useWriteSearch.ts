@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 
+import useSWR from "swr";
 import useSWRInfinite from "swr/infinite";
 import reviews from "@lib/api/reviewsAPI";
 
@@ -9,24 +10,26 @@ import { IContentInfo } from "@typings/info";
 
 const useWriteSearch = () => {
   const [searchData, setSearchData] = useState<IContentInfo[]>([]);
-  const [total, setTotal] = useState(0);
   const keyword = useRecoilValue(writeSearchKeywordState);
   const { data, error, isValidating, size, setSize } = useSWRInfinite<
     IContentInfo[]
   >(
     (pageIdx) => (keyword ? [pageIdx, keyword] : null),
     async (pageIdx) => {
-      const { search, total } = await reviews.searchWriteKeyword(
-        keyword,
-        pageIdx + 1
-      );
-      setTotal(total);
+      const { search } = await reviews.searchWriteKeyword(keyword, pageIdx + 1);
       return search;
     },
     {
       revalidateOnFocus: false,
       revalidateAll: false,
       revalidateFirstPage: false,
+    }
+  );
+  const { data: resultCnt } = useSWR(
+    keyword ? ["writeSearchResultCnt", keyword] : null,
+    () => reviews.getWriteSearchResultCnt(keyword),
+    {
+      revalidateOnFocus: false,
     }
   );
   const PAGE_SIZE = 20;
@@ -57,7 +60,7 @@ const useWriteSearch = () => {
 
   return {
     search: searchData || null,
-    total,
+    resultCnt,
     isLoading: !data,
     isValidating,
     isSameSize: searchData.length === size * PAGE_SIZE,

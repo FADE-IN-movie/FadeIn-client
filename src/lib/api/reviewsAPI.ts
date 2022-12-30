@@ -50,6 +50,16 @@ const reviews = {
     return res.data;
   },
 
+  getWriteSearchResultCnt: async (keyword: string) => {
+    const { data } = await api.get(`${url}/search/length`, {
+      params: {
+        keyword: keyword,
+      },
+    });
+
+    return data;
+  },
+
   getReviews: async (year: number, month: number) => {
     const params = {
       year: year,
