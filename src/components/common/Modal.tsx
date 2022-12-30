@@ -2,7 +2,7 @@ import { useEffect, useRef, ReactNode } from "react";
 import styled from "styled-components";
 import { theme } from "@styles/theme";
 
-import { clickOutside } from "@utils/display";
+import { clickOutside, disableScroll, enableScroll } from "@utils/display";
 import CloseIcon from "@images/close_icon.svg";
 
 interface IProps {
@@ -29,6 +29,11 @@ const Modal = ({ children, isStatic, setIsOpen }: IProps) => {
     document.addEventListener("mousedown", onClickHandler);
     return () => document.removeEventListener("mousedown", onClickHandler);
   }, [boxRef, setIsOpen]);
+
+  useEffect(() => {
+    disableScroll();
+    return () => enableScroll();
+  }, []);
 
   return (
     <Background>
