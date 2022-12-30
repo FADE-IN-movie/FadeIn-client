@@ -6,7 +6,7 @@ import { writeSearchKeywordState } from "@states/reviews";
 import { MESSAGE } from "@data/message";
 
 const WriteSearchResultText = () => {
-  const { total, isLoading } = useWriteSearch();
+  const { resultCnt, isLoading } = useWriteSearch();
   const writeSearchKeyword = useRecoilValue(writeSearchKeywordState);
 
   if (!writeSearchKeyword) return null;
@@ -15,7 +15,7 @@ const WriteSearchResultText = () => {
       {!isLoading ? (
         <>
           <span className="bold">&apos;{writeSearchKeyword}&apos;</span>{" "}
-          {MESSAGE.SEARCH_RESULT(total)}
+          {MESSAGE.SEARCH_RESULT(resultCnt)}
         </>
       ) : (
         <>{MESSAGE.SEARCHING}</>
