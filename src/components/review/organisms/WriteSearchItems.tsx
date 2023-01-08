@@ -30,22 +30,18 @@ const WriteSearchItems = () => {
       <Wrap>
         <Scrollbars autoHide style={{ height: "100%" }}>
           <Grid>
-            {search?.map((info: IContentInfo, i: number) => (
-              <>
-                {info.title === "" ? null : (
-                  <div
-                    key={i}
-                    onClick={() =>
-                      router.push({
-                        pathname: `/write`,
-                        query: { type: info.type, contentId: info.id },
-                      })
-                    }
-                  >
-                    <ContentCard responsive info={info} />
-                  </div>
-                )}
-              </>
+            {search.map((info: IContentInfo, i: number) => (
+              <div
+                key={i}
+                onClick={() =>
+                  router.push({
+                    pathname: `/write`,
+                    query: { type: info.type, contentId: info.id },
+                  })
+                }
+              >
+                <ContentCard responsive info={info} />
+              </div>
             ))}
             {(isValidating || isLoading || (!isSameSize && !isReachingEnd)) && (
               <WriteSearchItemsSkeleton />

@@ -3,13 +3,13 @@ import styled from "styled-components";
 import { theme } from "@styles/theme";
 
 import useRank from "@hooks/useRank";
+import useInfiniteScroll from "@hooks/useInfiniteScroll";
 import { IContentInfo } from "@typings/info";
 import { MESSAGE } from "@data/message";
 
 import ContentCard from "@components/common/ContentCard";
 import Grid from "@components/layouts/Grid";
 import RankItemsSkeleton from "./RankItemsSkeleton";
-import useInfiniteScroll from "@hooks/useInfiniteScroll";
 
 const RankItems = () => {
   const {
