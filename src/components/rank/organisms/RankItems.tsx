@@ -1,4 +1,3 @@
-import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import { theme } from "@styles/theme";
@@ -10,9 +9,9 @@ import { MESSAGE } from "@data/message";
 import ContentCard from "@components/common/ContentCard";
 import Grid from "@components/layouts/Grid";
 import RankItemsSkeleton from "./RankItemsSkeleton";
+import useInfiniteScroll from "@hooks/useInfiniteScroll";
 
 const RankItems = () => {
-  const [target, setTarget] = useState<HTMLElement | null | undefined>(null);
   const {
     ranking,
     isLoading,
@@ -21,32 +20,8 @@ const RankItems = () => {
     isReachingEnd,
     setSize,
   } = useRank();
+  const target = useInfiniteScroll(isValidating, isSameSize, setSize);
   const router = useRouter();
-
-  const onIntersect: IntersectionObserverCallback = useCallback(
-    ([entry], observer) => {
-      if (entry.isIntersecting && !isValidating && isSameSize) {
-        observer.unobserve(entry.target);
-        setSize((prev) => prev + 1);
-        observer.observe(entry.target);
-      }
-    },
-    [isValidating, isSameSize, setSize]
-  );
-
-  useEffect(() => {
-    if (!target) return;
-
-    const observer: IntersectionObserver = new IntersectionObserver(
-      onIntersect,
-      {
-        threshold: 0.7,
-      }
-    );
-    observer.observe(target);
-
-    return () => observer && observer.disconnect();
-  }, [target, onIntersect]);
 
   if (!isLoading && !ranking?.length)
     return <Text>( {MESSAGE.NOT_EXIST_DATA} )</Text>;
@@ -70,9 +45,7 @@ const RankItems = () => {
           <RankItemsSkeleton />
         )}
       </Grid>
-      {!isLoading && !isValidating && (
-        <div ref={setTarget} style={{ marginTop: "10rem" }} />
-      )}
+      {!isLoading && !isValidating && <div {...target} />}
     </div>
   );
 };

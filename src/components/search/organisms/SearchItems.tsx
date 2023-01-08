@@ -1,19 +1,17 @@
-import { useEffect, useState, useCallback } from "react";
 import useSearch from "@hooks/useSearch";
 import { useRouter } from "next/router";
 
 import styled from "styled-components";
 import { theme } from "@styles/theme";
 
+import useInfiniteScroll from "@hooks/useInfiniteScroll";
 import { IContentInfo } from "@typings/info";
-import { MESSAGE } from "@data/message";
 
 import Grid from "@components/layouts/Grid";
 import ContentCard from "@components/common/ContentCard";
 import SearchItemsSkeleton from "./SearchItemsSkeleton";
 
 const SearchItems = () => {
-  const [target, setTarget] = useState<HTMLElement | null | undefined>(null);
   const {
     search,
     isLoading,
@@ -22,32 +20,8 @@ const SearchItems = () => {
     isReachingEnd,
     setSize,
   } = useSearch();
+  const target = useInfiniteScroll(isValidating, isSameSize, setSize);
   const router = useRouter();
-
-  const onIntersect: IntersectionObserverCallback = useCallback(
-    ([entry], observer) => {
-      if (entry.isIntersecting && !isValidating && isSameSize) {
-        observer.unobserve(entry.target);
-        setSize((prev) => prev + 1);
-        observer.observe(entry.target);
-      }
-    },
-    [isValidating, isSameSize, setSize]
-  );
-
-  useEffect(() => {
-    if (!target) return;
-
-    const observer: IntersectionObserver = new IntersectionObserver(
-      onIntersect,
-      {
-        threshold: 0.7,
-      }
-    );
-    observer.observe(target);
-
-    return () => observer && observer.disconnect();
-  }, [target, onIntersect]);
 
   return (
     <div>
@@ -69,9 +43,7 @@ const SearchItems = () => {
           <SearchItemsSkeleton />
         )}
       </Grid>
-      {!isLoading && !isValidating && (
-        <div ref={setTarget} style={{ marginTop: "10rem" }} />
-      )}
+      {!isLoading && !isValidating && <div {...target} />}
     </div>
   );
 };

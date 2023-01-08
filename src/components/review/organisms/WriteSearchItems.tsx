@@ -1,4 +1,3 @@
-import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import { theme } from "@styles/theme";
@@ -10,9 +9,9 @@ import Grid from "@components/layouts/Grid";
 import ContentCard from "@components/common/ContentCard";
 import { Scrollbars } from "react-custom-scrollbars-2";
 import WriteSearchItemsSkeleton from "./WriteSearchItemsSkeleton";
+import useInfiniteScroll from "@hooks/useInfiniteScroll";
 
 const WriteSearchItems = () => {
-  const [target, setTarget] = useState<HTMLElement | null | undefined>(null);
   const {
     search,
     isLoading,
@@ -21,30 +20,8 @@ const WriteSearchItems = () => {
     isReachingEnd,
     setSize,
   } = useWriteSearch();
+  const target = useInfiniteScroll(isValidating, isSameSize, setSize);
   const router = useRouter();
-
-  const onIntersect: IntersectionObserverCallback = useCallback(
-    ([entry], observer) => {
-      if (entry.isIntersecting && !isValidating && isSameSize) {
-        observer.unobserve(entry.target);
-        setSize((prev) => prev + 1);
-        observer.observe(entry.target);
-      }
-    },
-    [isValidating, isSameSize, setSize]
-  );
-
-  useEffect(() => {
-    if (!target) return;
-    const observer: IntersectionObserver = new IntersectionObserver(
-      onIntersect,
-      {
-        threshold: 0.7,
-      }
-    );
-    observer.observe(target);
-    return () => observer && observer.disconnect();
-  }, [target, onIntersect]);
 
   if (!search || !search.length || isLoading) return null;
   if (!isValidating && !search?.length) return null;
@@ -74,9 +51,7 @@ const WriteSearchItems = () => {
               <WriteSearchItemsSkeleton />
             )}
           </Grid>
-          {!isLoading && !isValidating && (
-            <div ref={setTarget} style={{ margin: "3rem 0", height: "3rem" }} />
-          )}
+          {!isLoading && !isValidating && <div {...target} />}
         </Scrollbars>
       </Wrap>
     </>
