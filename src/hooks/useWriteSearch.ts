@@ -59,7 +59,7 @@ const useWriteSearch = () => {
   }, [size, data, setFormmatedData]);
 
   return {
-    search: searchData || null,
+    search: searchData.filter((data) => data.title !== "") || null,
     resultCnt,
     isLoading: !data,
     isValidating,
